@@ -1,0 +1,867 @@
+{
+  "session_id": "ses_34ab4ba56b1b",
+  "config": {
+    "mode": "live",
+    "live_approved": true,
+    "credentials_present": true,
+    "segmentation_model": "sam-3.1",
+    "extraction_model": "muse-spark-1.3",
+    "max_live_requests_per_run": 40,
+    "max_upload_mb": 15,
+    "version": "0.1.0"
+  },
+  "sam_cases": [
+    {
+      "case": "single_machine",
+      "image": "usace_cat_generator.jpg",
+      "concept": "generator",
+      "expected_instances": 1,
+      "run_status": "succeeded",
+      "run_error": null,
+      "detections": 1,
+      "boxes": [
+        [
+          418,
+          106,
+          1389,
+          1347
+        ]
+      ],
+      "confidence": [
+        0.8083832263946533
+      ],
+      "mask_encoding": [
+        "one_bit"
+      ],
+      "detection_ids": [
+        "det_dc3d45628394"
+      ]
+    },
+    {
+      "case": "absent_object",
+      "image": "usace_cat_generator.jpg",
+      "concept": "forklift",
+      "expected_instances": 0,
+      "run_status": "succeeded",
+      "run_error": null,
+      "detections": 0,
+      "boxes": [],
+      "confidence": [],
+      "mask_encoding": [],
+      "detection_ids": []
+    },
+    {
+      "case": "ambiguous_concept",
+      "image": "fema_forklift_generators.jpg",
+      "concept": "machine",
+      "expected_instances": null,
+      "run_status": "succeeded",
+      "run_error": null,
+      "detections": 0,
+      "boxes": [],
+      "confidence": [],
+      "mask_encoding": [],
+      "detection_ids": []
+    },
+    {
+      "case": "scale_and_view",
+      "image": "fema_distribution_warehouse.jpg",
+      "concept": "forklift",
+      "expected_instances": 1,
+      "run_status": "succeeded",
+      "run_error": null,
+      "detections": 1,
+      "boxes": [
+        [
+          1466,
+          452,
+          1981,
+          1061
+        ]
+      ],
+      "confidence": [
+        0.8987342119216919
+      ],
+      "mask_encoding": [
+        "one_bit"
+      ],
+      "detection_ids": [
+        "det_cd563b3bae88"
+      ]
+    }
+  ],
+  "muse_cases": [
+    {
+      "case": "single_machine",
+      "detection_id": "det_dc3d45628394",
+      "http_status": 200,
+      "evidence": {
+        "id": "ev_0bafa26aeaad",
+        "detection_id": "det_dc3d45628394",
+        "status": "ok",
+        "evidence": {
+          "observed_object_type": "generator",
+          "visible_manufacturer": null,
+          "visible_model": null,
+          "visible_serial_number": null,
+          "visible_identifiers": [],
+          "visible_condition_observations": [
+            "large stationary engine coupled to electrical generator unit",
+            "unit mounted on concrete plinths on concrete floor",
+            "vertical metal pipe in foreground in front of unit",
+            "black-and-white photograph, no color information"
+          ],
+          "uncertainties": [
+            {
+              "field": "visible_manufacturer",
+              "note": "no manufacturer name legible; data plate on generator housing is blurred and unreadable"
+            },
+            {
+              "field": "visible_model",
+              "note": "no model designation legible in image"
+            },
+            {
+              "field": "visible_serial_number",
+              "note": "no serial number legible in image"
+            }
+          ],
+          "model_confidence": 0.9,
+          "evidence_references": [
+            {
+              "detection_id": "det_dc3d45628394",
+              "image_id": "img_ae8bc28c7d6d",
+              "image_sha256": "2665bc83aab5576ee107a1876f7db828d9398484d25178f91e9b6bac1a7441e6",
+              "crop_box": [
+                341,
+                7,
+                1466,
+                1446
+              ]
+            }
+          ]
+        },
+        "error": null,
+        "provider": "meta-muse",
+        "model": "muse-spark-1.3",
+        "mode": "live",
+        "provider_call_id": "call_8096acf4d04b"
+      },
+      "decision": {
+        "id": "dec_ev_0bafa26aeaad",
+        "evidence_id": "ev_0bafa26aeaad",
+        "detection_id": "det_dc3d45628394",
+        "image_id": "img_ae8bc28c7d6d",
+        "decision": "WEAK",
+        "tier": 3,
+        "matching_rule": "R3_TYPE_ONLY",
+        "evidence_ids": [
+          "ev_0bafa26aeaad"
+        ],
+        "candidate_asset_ids": [
+          "R-001",
+          "R-006"
+        ],
+        "matched_asset_id": null,
+        "match_score": 0.1,
+        "review_required": true,
+        "explanation": "Only the asset type (generator) is supported by visible evidence; 2 register assets are possible. Weak similarity \u2014 human review required.",
+        "unmatched_fields": [
+          "serial_number",
+          "manufacturer",
+          "model"
+        ],
+        "flags": [],
+        "review": null
+      },
+      "error": null
+    },
+    {
+      "case": "scale_and_view",
+      "detection_id": "det_cd563b3bae88",
+      "http_status": 200,
+      "evidence": {
+        "id": "ev_d505c5b1b26c",
+        "detection_id": "det_cd563b3bae88",
+        "status": "ok",
+        "evidence": {
+          "observed_object_type": "forklift",
+          "visible_manufacturer": "CAT",
+          "visible_model": null,
+          "visible_serial_number": null,
+          "visible_identifiers": [
+            {
+              "kind": "other",
+              "value": "CAT",
+              "readable": true
+            }
+          ],
+          "visible_condition_observations": [
+            "yellow body with black mast and overhead guard",
+            "operator seated on forklift carrying shrink-wrapped palletized load"
+          ],
+          "uncertainties": [
+            {
+              "field": "visible_model",
+              "note": "no model designation legible in crop"
+            },
+            {
+              "field": "visible_serial_number",
+              "note": "no serial number visible/legible in crop"
+            }
+          ],
+          "model_confidence": 0.85,
+          "evidence_references": [
+            {
+              "detection_id": "det_cd563b3bae88",
+              "image_id": "img_5e7b137d5612",
+              "image_sha256": "a71c220ff9394b61a2c6150d6a19266b7a4032782ed93fbfc3cf3f4ed2f8a4df",
+              "crop_box": [
+                1425,
+                404,
+                2022,
+                1109
+              ]
+            }
+          ]
+        },
+        "error": null,
+        "provider": "meta-muse",
+        "model": "muse-spark-1.3",
+        "mode": "live",
+        "provider_call_id": "call_f76441d61eee"
+      },
+      "decision": {
+        "id": "dec_ev_d505c5b1b26c",
+        "evidence_id": "ev_d505c5b1b26c",
+        "detection_id": "det_cd563b3bae88",
+        "image_id": "img_5e7b137d5612",
+        "decision": "WEAK",
+        "tier": 3,
+        "matching_rule": "R3_TYPE_ONLY",
+        "evidence_ids": [
+          "ev_d505c5b1b26c"
+        ],
+        "candidate_asset_ids": [
+          "R-002",
+          "R-003",
+          "R-004",
+          "R-005"
+        ],
+        "matched_asset_id": null,
+        "match_score": 0.0,
+        "review_required": true,
+        "explanation": "Only the asset type (forklift) is supported by visible evidence; 4 register assets are possible. Weak similarity \u2014 human review required.",
+        "unmatched_fields": [
+          "serial_number",
+          "manufacturer",
+          "model"
+        ],
+        "flags": [],
+        "review": null
+      },
+      "error": null
+    }
+  ],
+  "trace": {
+    "session_id": "ses_34ab4ba56b1b",
+    "runs": [
+      {
+        "id": "run_753d132044d9",
+        "session_id": "ses_34ab4ba56b1b",
+        "concept": "generator",
+        "status": "succeeded",
+        "image_ids": [
+          "img_ae8bc28c7d6d"
+        ],
+        "started_at": "2026-10-31T10:27:40.043Z",
+        "finished_at": "2026-10-31T10:27:48.405Z",
+        "detections": 1,
+        "evidence_ok": 1,
+        "evidence_failed": 0,
+        "error": null,
+        "mode": "live"
+      },
+      {
+        "id": "run_162e6cedda7c",
+        "session_id": "ses_34ab4ba56b1b",
+        "concept": "forklift",
+        "status": "succeeded",
+        "image_ids": [
+          "img_ae8bc28c7d6d"
+        ],
+        "started_at": "2026-10-31T10:27:48.646Z",
+        "finished_at": "2026-10-31T10:27:52.583Z",
+        "detections": 0,
+        "evidence_ok": 0,
+        "evidence_failed": 0,
+        "error": null,
+        "mode": "live"
+      },
+      {
+        "id": "run_5ac3c5758707",
+        "session_id": "ses_34ab4ba56b1b",
+        "concept": "machine",
+        "status": "succeeded",
+        "image_ids": [
+          "img_46d8b8bb05b1"
+        ],
+        "started_at": "2026-10-31T10:27:52.774Z",
+        "finished_at": "2026-10-31T10:27:56.244Z",
+        "detections": 0,
+        "evidence_ok": 0,
+        "evidence_failed": 0,
+        "error": null,
+        "mode": "live"
+      },
+      {
+        "id": "run_dd86c16bea81",
+        "session_id": "ses_34ab4ba56b1b",
+        "concept": "forklift",
+        "status": "succeeded",
+        "image_ids": [
+          "img_5e7b137d5612"
+        ],
+        "started_at": "2026-10-31T10:27:56.375Z",
+        "finished_at": "2026-10-31T10:28:01.239Z",
+        "detections": 1,
+        "evidence_ok": 1,
+        "evidence_failed": 0,
+        "error": null,
+        "mode": "live"
+      }
+    ],
+    "events": [
+      {
+        "run_id": "run_162e6cedda7c",
+        "seq": 1,
+        "ts": "2026-10-31T10:27:48.647Z",
+        "stage": "run",
+        "status": "started",
+        "message": "inspecting 1 image(s) for 'forklift' [LIVE mode]",
+        "image_id": null,
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_162e6cedda7c",
+        "seq": 2,
+        "ts": "2026-10-31T10:27:48.648Z",
+        "stage": "segment",
+        "status": "started",
+        "message": "segmenting usace_cat_generator.jpg",
+        "image_id": "img_ae8bc28c7d6d",
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_162e6cedda7c",
+        "seq": 3,
+        "ts": "2026-10-31T10:27:52.580Z",
+        "stage": "segment",
+        "status": "done",
+        "message": "usace_cat_generator.jpg: zero matches (valid outcome)",
+        "image_id": "img_ae8bc28c7d6d",
+        "detection_id": null,
+        "latency_ms": 3929.68
+      },
+      {
+        "run_id": "run_162e6cedda7c",
+        "seq": 4,
+        "ts": "2026-10-31T10:27:52.581Z",
+        "stage": "reconcile",
+        "status": "done",
+        "message": "reconciliation is recomputed deterministically on read",
+        "image_id": null,
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_162e6cedda7c",
+        "seq": 5,
+        "ts": "2026-10-31T10:27:52.582Z",
+        "stage": "run",
+        "status": "done",
+        "message": "0 detection(s); 0 failed step(s)",
+        "image_id": null,
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_5ac3c5758707",
+        "seq": 1,
+        "ts": "2026-10-31T10:27:52.775Z",
+        "stage": "run",
+        "status": "started",
+        "message": "inspecting 1 image(s) for 'machine' [LIVE mode]",
+        "image_id": null,
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_5ac3c5758707",
+        "seq": 2,
+        "ts": "2026-10-31T10:27:52.776Z",
+        "stage": "segment",
+        "status": "started",
+        "message": "segmenting fema_forklift_generators.jpg",
+        "image_id": "img_46d8b8bb05b1",
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_5ac3c5758707",
+        "seq": 3,
+        "ts": "2026-10-31T10:27:56.242Z",
+        "stage": "segment",
+        "status": "done",
+        "message": "fema_forklift_generators.jpg: zero matches (valid outcome)",
+        "image_id": "img_46d8b8bb05b1",
+        "detection_id": null,
+        "latency_ms": 3462.81
+      },
+      {
+        "run_id": "run_5ac3c5758707",
+        "seq": 4,
+        "ts": "2026-10-31T10:27:56.242Z",
+        "stage": "reconcile",
+        "status": "done",
+        "message": "reconciliation is recomputed deterministically on read",
+        "image_id": null,
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_5ac3c5758707",
+        "seq": 5,
+        "ts": "2026-10-31T10:27:56.243Z",
+        "stage": "run",
+        "status": "done",
+        "message": "0 detection(s); 0 failed step(s)",
+        "image_id": null,
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_753d132044d9",
+        "seq": 1,
+        "ts": "2026-10-31T10:27:40.045Z",
+        "stage": "run",
+        "status": "started",
+        "message": "inspecting 1 image(s) for 'generator' [LIVE mode]",
+        "image_id": null,
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_753d132044d9",
+        "seq": 2,
+        "ts": "2026-10-31T10:27:40.046Z",
+        "stage": "segment",
+        "status": "started",
+        "message": "segmenting usace_cat_generator.jpg",
+        "image_id": "img_ae8bc28c7d6d",
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_753d132044d9",
+        "seq": 3,
+        "ts": "2026-10-31T10:27:48.404Z",
+        "stage": "segment",
+        "status": "done",
+        "message": "usace_cat_generator.jpg: 1 match(es)",
+        "image_id": "img_ae8bc28c7d6d",
+        "detection_id": null,
+        "latency_ms": 4042.19
+      },
+      {
+        "run_id": "run_753d132044d9",
+        "seq": 4,
+        "ts": "2026-10-31T10:27:48.404Z",
+        "stage": "reconcile",
+        "status": "done",
+        "message": "reconciliation is recomputed deterministically on read",
+        "image_id": null,
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_753d132044d9",
+        "seq": 5,
+        "ts": "2026-10-31T10:27:48.405Z",
+        "stage": "run",
+        "status": "done",
+        "message": "1 detection(s); 0 failed step(s)",
+        "image_id": null,
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_753d132044d9",
+        "seq": 6,
+        "ts": "2026-10-31T10:28:06.267Z",
+        "stage": "extract",
+        "status": "done",
+        "message": "object #0: evidence validated",
+        "image_id": "img_ae8bc28c7d6d",
+        "detection_id": "det_dc3d45628394",
+        "latency_ms": 4967.43
+      },
+      {
+        "run_id": "run_dd86c16bea81",
+        "seq": 1,
+        "ts": "2026-10-31T10:27:56.376Z",
+        "stage": "run",
+        "status": "started",
+        "message": "inspecting 1 image(s) for 'forklift' [LIVE mode]",
+        "image_id": null,
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_dd86c16bea81",
+        "seq": 2,
+        "ts": "2026-10-31T10:27:56.376Z",
+        "stage": "segment",
+        "status": "started",
+        "message": "segmenting fema_distribution_warehouse.jpg",
+        "image_id": "img_5e7b137d5612",
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_dd86c16bea81",
+        "seq": 3,
+        "ts": "2026-10-31T10:28:01.238Z",
+        "stage": "segment",
+        "status": "done",
+        "message": "fema_distribution_warehouse.jpg: 1 match(es)",
+        "image_id": "img_5e7b137d5612",
+        "detection_id": null,
+        "latency_ms": 3164.83
+      },
+      {
+        "run_id": "run_dd86c16bea81",
+        "seq": 4,
+        "ts": "2026-10-31T10:28:01.238Z",
+        "stage": "reconcile",
+        "status": "done",
+        "message": "reconciliation is recomputed deterministically on read",
+        "image_id": null,
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_dd86c16bea81",
+        "seq": 5,
+        "ts": "2026-10-31T10:28:01.239Z",
+        "stage": "run",
+        "status": "done",
+        "message": "1 detection(s); 0 failed step(s)",
+        "image_id": null,
+        "detection_id": null,
+        "latency_ms": null
+      },
+      {
+        "run_id": "run_dd86c16bea81",
+        "seq": 6,
+        "ts": "2026-10-31T10:28:11.500Z",
+        "stage": "extract",
+        "status": "done",
+        "message": "object #0: evidence validated",
+        "image_id": "img_5e7b137d5612",
+        "detection_id": "det_cd563b3bae88",
+        "latency_ms": 5196.84
+      }
+    ],
+    "provider_calls": [
+      {
+        "id": "call_88ab88763a7a",
+        "run_id": "run_753d132044d9",
+        "provider": "meta-sam",
+        "model": "sam-3.1",
+        "mode": "live",
+        "operation": "segment",
+        "status": "ok",
+        "latency_ms": 4042.19,
+        "started_at": "2026-10-31T10:27:40.046Z",
+        "input_tokens": null,
+        "output_tokens": null,
+        "images": 1,
+        "estimated_cost_usd": 0.0025,
+        "error": null,
+        "raw_output_ref": "raw/call_88ab88763a7a.txt",
+        "correlation_id": "4b36695ed5b94764"
+      },
+      {
+        "id": "call_85416016b1be",
+        "run_id": "run_162e6cedda7c",
+        "provider": "meta-sam",
+        "model": "sam-3.1",
+        "mode": "live",
+        "operation": "segment",
+        "status": "ok",
+        "latency_ms": 3929.68,
+        "started_at": "2026-10-31T10:27:48.648Z",
+        "input_tokens": null,
+        "output_tokens": null,
+        "images": 1,
+        "estimated_cost_usd": 0.0025,
+        "error": null,
+        "raw_output_ref": null,
+        "correlation_id": "cb3f280f33864291"
+      },
+      {
+        "id": "call_2a04638f6b71",
+        "run_id": "run_5ac3c5758707",
+        "provider": "meta-sam",
+        "model": "sam-3.1",
+        "mode": "live",
+        "operation": "segment",
+        "status": "ok",
+        "latency_ms": 3462.81,
+        "started_at": "2026-10-31T10:27:52.776Z",
+        "input_tokens": null,
+        "output_tokens": null,
+        "images": 1,
+        "estimated_cost_usd": 0.0025,
+        "error": null,
+        "raw_output_ref": null,
+        "correlation_id": "1c013f5ae3e24528"
+      },
+      {
+        "id": "call_b4da12f80368",
+        "run_id": "run_dd86c16bea81",
+        "provider": "meta-sam",
+        "model": "sam-3.1",
+        "mode": "live",
+        "operation": "segment",
+        "status": "ok",
+        "latency_ms": 3164.83,
+        "started_at": "2026-10-31T10:27:56.377Z",
+        "input_tokens": null,
+        "output_tokens": null,
+        "images": 1,
+        "estimated_cost_usd": 0.0025,
+        "error": null,
+        "raw_output_ref": "raw/call_b4da12f80368.txt",
+        "correlation_id": "6535894d6dcd4149"
+      },
+      {
+        "id": "call_8096acf4d04b",
+        "run_id": "run_753d132044d9",
+        "provider": "meta-muse",
+        "model": "muse-spark-1.3",
+        "mode": "live",
+        "operation": "extract",
+        "status": "ok",
+        "latency_ms": 4967.43,
+        "started_at": "2026-10-31T10:28:01.274Z",
+        "input_tokens": 1534,
+        "output_tokens": 613,
+        "images": 1,
+        "estimated_cost_usd": 0.004523,
+        "error": null,
+        "raw_output_ref": "raw/call_8096acf4d04b.txt",
+        "correlation_id": "4b36695ed5b94764"
+      },
+      {
+        "id": "call_f76441d61eee",
+        "run_id": "run_dd86c16bea81",
+        "provider": "meta-muse",
+        "model": "muse-spark-1.3",
+        "mode": "live",
+        "operation": "extract",
+        "status": "ok",
+        "latency_ms": 5196.84,
+        "started_at": "2026-10-31T10:28:06.281Z",
+        "input_tokens": 1035,
+        "output_tokens": 680,
+        "images": 1,
+        "estimated_cost_usd": 0.004184,
+        "error": null,
+        "raw_output_ref": "raw/call_f76441d61eee.txt",
+        "correlation_id": "6535894d6dcd4149"
+      }
+    ],
+    "latency": [
+      {
+        "operation": "extract",
+        "count": 2,
+        "p50_ms": 5082.14,
+        "p95_ms": 5185.37,
+        "max_ms": 5196.84
+      },
+      {
+        "operation": "segment",
+        "count": 4,
+        "p50_ms": 3696.25,
+        "p95_ms": 4025.31,
+        "max_ms": 4042.19
+      }
+    ],
+    "total_estimated_cost_usd": 0.018707
+  },
+  "reconciliation": {
+    "session_id": "ses_34ab4ba56b1b",
+    "computed_at": "2026-10-31T10:28:11.519Z",
+    "summary": {
+      "assets_total": 7,
+      "by_status": {
+        "VERIFIED": 0,
+        "PROBABLE": 0,
+        "MISMATCHED": 0,
+        "UNVERIFIED": 6,
+        "NOT_OBSERVABLE": 1
+      },
+      "decisions_total": 2,
+      "by_decision": {
+        "VERIFIED": 0,
+        "PROBABLE": 0,
+        "WEAK": 2,
+        "MISMATCHED": 0,
+        "NOT_IN_REGISTER": 0,
+        "EVIDENCE_UNUSABLE": 0
+      },
+      "review_required": 2,
+      "reviewed": 0,
+      "inspected_concepts": [
+        "forklift",
+        "generator",
+        "machine"
+      ]
+    },
+    "decisions": [
+      {
+        "id": "dec_ev_d505c5b1b26c",
+        "evidence_id": "ev_d505c5b1b26c",
+        "detection_id": "det_cd563b3bae88",
+        "image_id": "img_5e7b137d5612",
+        "decision": "WEAK",
+        "tier": 3,
+        "matching_rule": "R3_TYPE_ONLY",
+        "evidence_ids": [
+          "ev_d505c5b1b26c"
+        ],
+        "candidate_asset_ids": [
+          "R-002",
+          "R-003",
+          "R-004",
+          "R-005"
+        ],
+        "matched_asset_id": null,
+        "match_score": 0.0,
+        "review_required": true,
+        "explanation": "Only the asset type (forklift) is supported by visible evidence; 4 register assets are possible. Weak similarity \u2014 human review required.",
+        "unmatched_fields": [
+          "serial_number",
+          "manufacturer",
+          "model"
+        ],
+        "flags": [],
+        "review": null
+      },
+      {
+        "id": "dec_ev_0bafa26aeaad",
+        "evidence_id": "ev_0bafa26aeaad",
+        "detection_id": "det_dc3d45628394",
+        "image_id": "img_ae8bc28c7d6d",
+        "decision": "WEAK",
+        "tier": 3,
+        "matching_rule": "R3_TYPE_ONLY",
+        "evidence_ids": [
+          "ev_0bafa26aeaad"
+        ],
+        "candidate_asset_ids": [
+          "R-001",
+          "R-006"
+        ],
+        "matched_asset_id": null,
+        "match_score": 0.1,
+        "review_required": true,
+        "explanation": "Only the asset type (generator) is supported by visible evidence; 2 register assets are possible. Weak similarity \u2014 human review required.",
+        "unmatched_fields": [
+          "serial_number",
+          "manufacturer",
+          "model"
+        ],
+        "flags": [],
+        "review": null
+      }
+    ],
+    "assets": [
+      {
+        "asset_id": "R-001",
+        "ledger_record_id": "led_494a199f54e6",
+        "status": "UNVERIFIED",
+        "decision_ids": [
+          "dec_ev_0bafa26aeaad"
+        ],
+        "reason": "Its facility and asset type were inspected, but no adequate visual evidence links to it. Not evidence that the asset is missing.",
+        "human_confirmed": false
+      },
+      {
+        "asset_id": "R-002",
+        "ledger_record_id": "led_64314ae77425",
+        "status": "UNVERIFIED",
+        "decision_ids": [
+          "dec_ev_d505c5b1b26c"
+        ],
+        "reason": "Its facility and asset type were inspected, but no adequate visual evidence links to it. Not evidence that the asset is missing.",
+        "human_confirmed": false
+      },
+      {
+        "asset_id": "R-003",
+        "ledger_record_id": "led_e15ffb74e1c2",
+        "status": "UNVERIFIED",
+        "decision_ids": [
+          "dec_ev_d505c5b1b26c"
+        ],
+        "reason": "Its facility and asset type were inspected, but no adequate visual evidence links to it. Not evidence that the asset is missing.",
+        "human_confirmed": false
+      },
+      {
+        "asset_id": "R-004",
+        "ledger_record_id": "led_6bf595d83e01",
+        "status": "UNVERIFIED",
+        "decision_ids": [
+          "dec_ev_d505c5b1b26c"
+        ],
+        "reason": "Its facility and asset type were inspected, but no adequate visual evidence links to it. Not evidence that the asset is missing.",
+        "human_confirmed": false
+      },
+      {
+        "asset_id": "R-005",
+        "ledger_record_id": "led_96282c9ac99e",
+        "status": "UNVERIFIED",
+        "decision_ids": [
+          "dec_ev_d505c5b1b26c"
+        ],
+        "reason": "Its facility and asset type were inspected, but no adequate visual evidence links to it. Not evidence that the asset is missing.",
+        "human_confirmed": false
+      },
+      {
+        "asset_id": "R-006",
+        "ledger_record_id": "led_2563c1914176",
+        "status": "UNVERIFIED",
+        "decision_ids": [
+          "dec_ev_0bafa26aeaad"
+        ],
+        "reason": "Its facility and asset type were inspected, but no adequate visual evidence links to it. Not evidence that the asset is missing.",
+        "human_confirmed": false
+      },
+      {
+        "asset_id": "R-007",
+        "ledger_record_id": "led_c0234d9d90de",
+        "status": "NOT_OBSERVABLE",
+        "decision_ids": [],
+        "reason": "No inspection covered this asset's facility and type.",
+        "human_confirmed": false
+      }
+    ]
+  },
+  "calls_used": {
+    "sam_via_app": 4,
+    "muse_via_app": 2
+  }
+}

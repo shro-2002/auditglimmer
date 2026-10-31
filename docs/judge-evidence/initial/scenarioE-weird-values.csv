@@ -1,0 +1,4 @@
+asset_id,asset_type,manufacturer,model,serial_number,facility_id,expected_location,ledger_value,currency,inspection_date
+Z-1,Generator,X,Y,S1,WH-01,L,1e309,USD,2026-10-01
+Z-2,Generator,X,Y,S2,WH-01,L,NaN,USD,2026-10-01
+Z-3,Generator,X,Y,S3,WH-01,L,"1,200",EUR,2026-10-01

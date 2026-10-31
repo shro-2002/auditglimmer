@@ -1,0 +1,4 @@
+f5c27459cb110586ed3926b74bcd9ab67eb3fa98fe6beca94646da3ebc30ffe6  docs/muse-study-protocol.md
+01bf2909e2438a1cf77dcd462ca76eeebe7ba193ca1c3765d54a6613d49ece87  fixtures/study/ground_truth.json
+0d964bf090fd23440bd3f6a8a1c360f44a4bd7e308c4dfd9b4bf8bc504b15a1c  fixtures/study/ledger_study.csv
+a2f62e2a383c011b7ff3da9ebf120220e91ead8ca528467e8ecf8dbd3299839e  eval/muse_study.py

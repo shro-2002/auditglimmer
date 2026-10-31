@@ -1,0 +1,662 @@
+{
+  "session_id": "ses_8cde3ee6a3bb",
+  "protocol": "docs/muse-study-protocol.md",
+  "n_images": 26,
+  "n_positive": 16,
+  "n_verifiable": 14,
+  "n_negative": 8,
+  "n_disputed": 2,
+  "metrics": {
+    "serial_exact_on_positives": {
+      "k": 11,
+      "n": 16,
+      "rate": 0.688,
+      "wilson95": [
+        0.444,
+        0.858
+      ]
+    },
+    "hallucinated_serial_on_negatives": {
+      "k": 0,
+      "n": 8,
+      "ids": []
+    },
+    "distractor_read_as_serial": [],
+    "false_auto_verifications": {
+      "k": 1,
+      "ids": [
+        "s14"
+      ]
+    },
+    "correct_auto_verifications": {
+      "k": 3,
+      "n_verifiable": 14,
+      "wilson95": [
+        0.076,
+        0.476
+      ]
+    },
+    "decisions": {
+      "EVIDENCE_UNUSABLE": 1,
+      "MISMATCHED": 5,
+      "NOT_IN_REGISTER": 1,
+      "PROBABLE": 2,
+      "VERIFIED": 4,
+      "WEAK": 13
+    },
+    "extract_calls": 26,
+    "extract_errors": 1,
+    "estimated_cost_usd": 0.157861,
+    "latency_ms_p50": 6203.61
+  },
+  "baseline_without_muse": "0 automatic verifications possible: with no visual evidence the rule engine has no identifier to match, so every asset stays UNVERIFIED and goes to a field check.",
+  "rows": [
+    {
+      "study_id": "s01",
+      "gt_status": "positive",
+      "gt_serial": "692",
+      "muse_serial": "692",
+      "muse_manufacturer": "Porsche - Diesel - Motorenbau G.m.b.H Friedrichshafen a. B.",
+      "muse_model": "418",
+      "muse_type": "tractor data plate",
+      "evidence_status": "ok",
+      "serial_exact": true,
+      "serial_emitted": false,
+      "distractor_read": false,
+      "uncertainty_on_serial": false,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "T-s01",
+        "D-s01"
+      ],
+      "flags": []
+    },
+    {
+      "study_id": "s02",
+      "gt_status": "positive",
+      "gt_serial": "254175",
+      "muse_serial": null,
+      "muse_manufacturer": null,
+      "muse_model": null,
+      "muse_type": null,
+      "evidence_status": "invalid",
+      "serial_exact": false,
+      "serial_emitted": false,
+      "distractor_read": false,
+      "uncertainty_on_serial": false,
+      "decision": "EVIDENCE_UNUSABLE",
+      "rule": "R0_EXTRACTION_FAILED",
+      "matched_asset": null,
+      "candidates": [],
+      "flags": [
+        "EXTRACTION_FAILED"
+      ]
+    },
+    {
+      "study_id": "s03",
+      "gt_status": "positive",
+      "gt_serial": "92233/58",
+      "muse_serial": "92233/65",
+      "muse_manufacturer": "Otto Boge, Bielefeld",
+      "muse_model": "270-?",
+      "muse_type": "compressor",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "T-s03",
+        "D-s03"
+      ],
+      "flags": [
+        "SERIAL_UNCERTAIN"
+      ]
+    },
+    {
+      "study_id": "s04",
+      "gt_status": "positive",
+      "gt_serial": "604",
+      "muse_serial": "604",
+      "muse_manufacturer": "RANGER ENGINEERING DIVISION OF FAIRCHILD ENGINE & AIRPLANE CORP.",
+      "muse_model": "L-440-1 / 6.444C-2",
+      "muse_type": "engine",
+      "evidence_status": "ok",
+      "serial_exact": true,
+      "serial_emitted": false,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "T-s04",
+        "D-s04",
+        "X-s04-1",
+        "X-s04-2",
+        "T-s07",
+        "D-s07",
+        "T-s17",
+        "D-s17"
+      ],
+      "flags": []
+    },
+    {
+      "study_id": "s05",
+      "gt_status": "positive",
+      "gt_serial": "921R1789",
+      "muse_serial": "921R1789",
+      "muse_manufacturer": "LIEBHERR-HYDRAULIKBAGGER GMBH",
+      "muse_model": "R921",
+      "muse_type": "excavator",
+      "evidence_status": "ok",
+      "serial_exact": true,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": false,
+      "decision": "MISMATCHED",
+      "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+      "matched_asset": null,
+      "candidates": [
+        "T-s05"
+      ],
+      "flags": [
+        "CONFLICTING_MANUFACTURER"
+      ]
+    },
+    {
+      "study_id": "s06",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "muse_serial": null,
+      "muse_manufacturer": null,
+      "muse_model": null,
+      "muse_type": "generator",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": false,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "T-s02",
+        "D-s02",
+        "X-s06-1",
+        "N-s06",
+        "T-s08",
+        "D-s08",
+        "U-s09-1",
+        "U-s09-2",
+        "T-s10",
+        "D-s10"
+      ],
+      "flags": []
+    },
+    {
+      "study_id": "s07",
+      "gt_status": "positive",
+      "gt_serial": "317876",
+      "muse_serial": "317876",
+      "muse_manufacturer": "PRATT & WHITNEY AIRCRAFT",
+      "muse_model": "R-1830-92",
+      "muse_type": "engine",
+      "evidence_status": "ok",
+      "serial_exact": true,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": false,
+      "decision": "MISMATCHED",
+      "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+      "matched_asset": null,
+      "candidates": [
+        "T-s07"
+      ],
+      "flags": [
+        "CONFLICTING_MANUFACTURER"
+      ]
+    },
+    {
+      "study_id": "s08",
+      "gt_status": "positive",
+      "gt_serial": "1104 802",
+      "muse_serial": "1104 802",
+      "muse_manufacturer": "ANTON PILLER KG",
+      "muse_model": "NKT 115-4",
+      "muse_type": "generator",
+      "evidence_status": "ok",
+      "serial_exact": true,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": false,
+      "decision": "MISMATCHED",
+      "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+      "matched_asset": null,
+      "candidates": [
+        "T-s08"
+      ],
+      "flags": [
+        "CONFLICTING_MANUFACTURER"
+      ]
+    },
+    {
+      "study_id": "s09",
+      "gt_status": "disputed",
+      "gt_serial": null,
+      "muse_serial": "264374",
+      "muse_manufacturer": null,
+      "muse_model": "G 182 /8",
+      "muse_type": "generator",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "T-s02",
+        "D-s02",
+        "X-s06-1",
+        "N-s06",
+        "T-s08",
+        "D-s08",
+        "U-s09-1",
+        "U-s09-2",
+        "T-s10",
+        "D-s10"
+      ],
+      "flags": [
+        "SERIAL_UNCERTAIN"
+      ]
+    },
+    {
+      "study_id": "s10",
+      "gt_status": "positive",
+      "gt_serial": "39061",
+      "muse_serial": null,
+      "muse_manufacturer": "Otto Bartholdi AG",
+      "muse_model": "WO 1250 / 1120 M22",
+      "muse_type": "generator",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": false,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "PROBABLE",
+      "rule": "R2a_MANUFACTURER_MODEL_AMBIGUOUS",
+      "matched_asset": null,
+      "candidates": [
+        "T-s10",
+        "D-s10",
+        "X-s10-1"
+      ],
+      "flags": [
+        "AMBIGUOUS_CANDIDATES"
+      ]
+    },
+    {
+      "study_id": "s11",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "muse_serial": null,
+      "muse_manufacturer": "CEM",
+      "muse_model": null,
+      "muse_type": "transformer",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": false,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "N-s11"
+      ],
+      "flags": []
+    },
+    {
+      "study_id": "s12",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "muse_serial": null,
+      "muse_manufacturer": "HYSTER",
+      "muse_model": null,
+      "muse_type": "forklift",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": false,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "N-s12"
+      ],
+      "flags": []
+    },
+    {
+      "study_id": "s13",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "muse_serial": null,
+      "muse_manufacturer": "AEG",
+      "muse_model": null,
+      "muse_type": "generator",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": false,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "N-s13"
+      ],
+      "flags": []
+    },
+    {
+      "study_id": "s14",
+      "gt_status": "disputed",
+      "gt_serial": null,
+      "muse_serial": "5735",
+      "muse_manufacturer": null,
+      "muse_model": null,
+      "muse_type": "generator",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": false,
+      "decision": "VERIFIED",
+      "rule": "R1_UNIQUE_SERIAL_MATCH",
+      "matched_asset": "U-s14-1",
+      "candidates": [
+        "U-s14-1"
+      ],
+      "flags": []
+    },
+    {
+      "study_id": "s15",
+      "gt_status": "positive",
+      "gt_serial": "1212073091",
+      "muse_serial": "1212073091",
+      "muse_manufacturer": "MALMBERGS",
+      "muse_model": "MS 711-2",
+      "muse_type": "electric motor",
+      "evidence_status": "ok",
+      "serial_exact": true,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": false,
+      "decision": "VERIFIED",
+      "rule": "R1_UNIQUE_SERIAL_MATCH",
+      "matched_asset": "T-s15",
+      "candidates": [
+        "T-s15"
+      ],
+      "flags": []
+    },
+    {
+      "study_id": "s16",
+      "gt_status": "positive",
+      "gt_serial": "8 253 379",
+      "muse_serial": "8.253 379",
+      "muse_manufacturer": "Loher GmbH",
+      "muse_model": "A 160 L A - V6/4",
+      "muse_type": "electric motor",
+      "evidence_status": "ok",
+      "serial_exact": true,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "MISMATCHED",
+      "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+      "matched_asset": null,
+      "candidates": [
+        "T-s16"
+      ],
+      "flags": [
+        "CONFLICTING_MANUFACTURER"
+      ]
+    },
+    {
+      "study_id": "s17",
+      "gt_status": "positive",
+      "gt_serial": "BP457977",
+      "muse_serial": "BP45797",
+      "muse_manufacturer": "PRATT & WHITNEY AIRCRAFT",
+      "muse_model": "P 1830 - 92",
+      "muse_type": "engine",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "T-s04",
+        "D-s04",
+        "X-s04-1",
+        "X-s04-2",
+        "T-s07",
+        "D-s07",
+        "T-s17",
+        "D-s17"
+      ],
+      "flags": [
+        "SERIAL_UNCERTAIN"
+      ]
+    },
+    {
+      "study_id": "s18",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "muse_serial": null,
+      "muse_manufacturer": null,
+      "muse_model": null,
+      "muse_type": "forklift",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": false,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "N-s12",
+        "N-s18",
+        "N-s24"
+      ],
+      "flags": []
+    },
+    {
+      "study_id": "s19",
+      "gt_status": "positive",
+      "gt_serial": "2660874",
+      "muse_serial": "2660874",
+      "muse_manufacturer": "AEG",
+      "muse_model": "VDNW 22/6",
+      "muse_type": "electric motor",
+      "evidence_status": "ok",
+      "serial_exact": true,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": false,
+      "decision": "VERIFIED",
+      "rule": "R1_UNIQUE_SERIAL_MATCH",
+      "matched_asset": "T-s19",
+      "candidates": [
+        "T-s19"
+      ],
+      "flags": []
+    },
+    {
+      "study_id": "s20",
+      "gt_status": "positive",
+      "gt_serial": "36734",
+      "muse_serial": "36734",
+      "muse_manufacturer": "MAFFEI-SCHWARTZKOPFF WERKE BERLIN",
+      "muse_model": "DGV1200/250",
+      "muse_type": "generator",
+      "evidence_status": "ok",
+      "serial_exact": true,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": false,
+      "decision": "MISMATCHED",
+      "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+      "matched_asset": null,
+      "candidates": [
+        "T-s20"
+      ],
+      "flags": [
+        "CONFLICTING_MANUFACTURER"
+      ]
+    },
+    {
+      "study_id": "s21",
+      "gt_status": "positive",
+      "gt_serial": "1S1084-1",
+      "muse_serial": "1S1084-1",
+      "muse_manufacturer": "Westinghouse",
+      "muse_model": null,
+      "muse_type": "generator",
+      "evidence_status": "ok",
+      "serial_exact": true,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "PROBABLE",
+      "rule": "R2c_SERIAL_UNCERTAIN",
+      "matched_asset": null,
+      "candidates": [
+        "T-s21"
+      ],
+      "flags": [
+        "SERIAL_UNCERTAIN"
+      ]
+    },
+    {
+      "study_id": "s22",
+      "gt_status": "positive",
+      "gt_serial": "1502071",
+      "muse_serial": "1502071",
+      "muse_manufacturer": "SIEMENS-SCHUCKERT",
+      "muse_model": "FL560/24-250",
+      "muse_type": "generator",
+      "evidence_status": "ok",
+      "serial_exact": true,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": false,
+      "decision": "VERIFIED",
+      "rule": "R1_UNIQUE_SERIAL_MATCH",
+      "matched_asset": "T-s22",
+      "candidates": [
+        "T-s22"
+      ],
+      "flags": []
+    },
+    {
+      "study_id": "s23",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "muse_serial": null,
+      "muse_manufacturer": "S&C ELECTRIC COMPANY",
+      "muse_model": "135012R3",
+      "muse_type": "switchgear",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": false,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "X-s23-1",
+        "N-s23"
+      ],
+      "flags": []
+    },
+    {
+      "study_id": "s24",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "muse_serial": null,
+      "muse_manufacturer": null,
+      "muse_model": null,
+      "muse_type": "forklift",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": false,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "N-s12",
+        "N-s18",
+        "N-s24"
+      ],
+      "flags": []
+    },
+    {
+      "study_id": "s25",
+      "gt_status": "positive",
+      "gt_serial": "470830",
+      "muse_serial": "470830 N",
+      "muse_manufacturer": "SIEMENS-SCHUCKERT WERKE",
+      "muse_model": "D.U.G 400/...",
+      "muse_type": "generator",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": true,
+      "distractor_read": false,
+      "uncertainty_on_serial": false,
+      "decision": "NOT_IN_REGISTER",
+      "rule": "R4_UNREGISTERED_SERIAL",
+      "matched_asset": null,
+      "candidates": [],
+      "flags": [
+        "OBSERVED_NOT_IN_REGISTER"
+      ]
+    },
+    {
+      "study_id": "s26",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "muse_serial": null,
+      "muse_manufacturer": "TOHATSU CORPORATION",
+      "muse_model": "3V2(MFS9.8A3)",
+      "muse_type": "outboard motor",
+      "evidence_status": "ok",
+      "serial_exact": false,
+      "serial_emitted": false,
+      "distractor_read": false,
+      "uncertainty_on_serial": true,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "N-s26"
+      ],
+      "flags": []
+    }
+  ]
+}

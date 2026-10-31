@@ -1,0 +1,76 @@
+{
+  "image": "generator_nameplate_ccbysa.jpg",
+  "label": {
+    "visible_serial_number": "5735",
+    "visible_manufacturer": null,
+    "visible_model": null,
+    "other_visible_fields": {
+      "AMP": "16",
+      "VOLT": "70",
+      "GIRI": "1000"
+    }
+  },
+  "label_source": "assistant visual reading (not independent human)",
+  "evidence": {
+    "observed_object_type": "generator nameplate",
+    "visible_manufacturer": null,
+    "visible_model": null,
+    "visible_serial_number": "5735",
+    "visible_identifiers": [
+      {
+        "kind": "serial",
+        "value": "5735",
+        "readable": true
+      },
+      {
+        "kind": "other",
+        "value": "No 5735",
+        "readable": true
+      },
+      {
+        "kind": "other",
+        "value": "AMP. 16",
+        "readable": true
+      },
+      {
+        "kind": "other",
+        "value": "VOLT 70",
+        "readable": true
+      },
+      {
+        "kind": "other",
+        "value": "GIRI 1000",
+        "readable": true
+      }
+    ],
+    "visible_condition_observations": [
+      "rectangular metal plate with textured background and raised border",
+      "brown-gold patina and surface soiling/corrosion especially at edges",
+      "attached with two round rivets on left and right sides",
+      "mounted on dark peeling-painted surface"
+    ],
+    "uncertainties": [
+      {
+        "field": "visible_manufacturer",
+        "note": "no manufacturer name is visible on the plate in the crop"
+      },
+      {
+        "field": "visible_model",
+        "note": "no model designation is visible on the plate in the crop"
+      },
+      {
+        "field": null,
+        "note": "HP value plate on top right is blank/illegible; second blank plate on bottom right is blank/illegible"
+      }
+    ],
+    "model_confidence": 0.9
+  },
+  "latency_ms": 7297,
+  "tokens": [
+    1399,
+    935
+  ],
+  "est_cost": 0.005723,
+  "request_id_present": true,
+  "finish_reason": "stop"
+}

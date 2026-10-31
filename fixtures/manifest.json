@@ -1,0 +1,679 @@
+{
+ "version": 1,
+ "license": "CC0-1.0. Synthetic images rendered by scripts/make_fixtures.py; no third-party content.",
+ "note": "Fixture labels are authored ground truth, not model output. 'muse' blocks include deliberate failure cases for testing.",
+ "facility_id": "WH-01",
+ "concepts": [
+  "generator",
+  "forklift"
+ ],
+ "images": [
+  {
+   "file": "bay_a_generators.png",
+   "title": "Bay A - standby generators",
+   "sha256": "213f7522327626a121a11d068703027aac0ace61f479f49932308e63dbf47d44",
+   "width": 1280,
+   "height": 800,
+   "facility_id": "WH-01",
+   "objects": [
+    {
+     "object_index": 1,
+     "concept": "generator",
+     "case": "exact_identifier_match",
+     "true_asset_id": "A-001",
+     "bounds": [
+      70,
+      300,
+      341,
+      541
+     ],
+     "raster_w": 271,
+     "raster_h": 241,
+     "area_px": 57799,
+     "svg_path": "M220 0h19v20h-19zM11 20h249v1h-249zM8 21h255v1h-255zM7 22h257v1h-257zM5 23h261v1h-261zM4 24h263v1h-263zM3 25h265v2h-265zM2 27h267v1h-267zM1 28h269v3h-269zM0 31h271v189h-271zM1 220h269v3h-269zM2 223h267v1h-267zM3 224h265v2h-265zM4 226h263v1h-263zM5 227h261v1h-261zM7 228h257v1h-257zM8 229h255v1h-255zM10 230h251v1h-251zM10 231h21v10h-21zM240 231h21v10h-21z",
+     "confidence": 0.95,
+     "muse": {
+      "kind": "ok",
+      "evidence": {
+       "observed_object_type": "industrial generator",
+       "visible_manufacturer": "Cumberland",
+       "visible_model": "PX-500",
+       "visible_serial_number": "GN-48213",
+       "visible_identifiers": [
+        {
+         "kind": "serial",
+         "value": "GN-48213",
+         "readable": true
+        }
+       ],
+       "visible_condition_observations": [
+        "surface rust on lower left panel"
+       ],
+       "uncertainties": [],
+       "model_confidence": 0.9
+      }
+     },
+     "plate_text": [
+      "CUMBERLAND",
+      "PX-500",
+      "S/N GN-48213"
+     ],
+     "plate_mode": "clear"
+    },
+    {
+     "object_index": 2,
+     "concept": "generator",
+     "case": "unreadable_serial_unique_model",
+     "true_asset_id": "A-002",
+     "bounds": [
+      380,
+      320,
+      631,
+      541
+     ],
+     "raster_w": 251,
+     "raster_h": 221,
+     "area_px": 48559,
+     "svg_path": "M200 0h19v20h-19zM11 20h229v1h-229zM8 21h235v1h-235zM7 22h237v1h-237zM5 23h241v1h-241zM4 24h243v1h-243zM3 25h245v2h-245zM2 27h247v1h-247zM1 28h249v3h-249zM0 31h251v169h-251zM1 200h249v3h-249zM2 203h247v1h-247zM3 204h245v2h-245zM4 206h243v1h-243zM5 207h241v1h-241zM7 208h237v1h-237zM8 209h235v1h-235zM10 210h231v1h-231zM10 211h21v10h-21zM220 211h21v10h-21z",
+     "confidence": 0.91,
+     "muse": {
+      "kind": "ok",
+      "evidence": {
+       "observed_object_type": "generator",
+       "visible_manufacturer": "Brightwater",
+       "visible_model": "BW-300",
+       "visible_serial_number": null,
+       "visible_identifiers": [],
+       "visible_condition_observations": [],
+       "uncertainties": [
+        {
+         "field": "visible_serial_number",
+         "note": "serial region illegible (blurred/scratched)"
+        }
+       ],
+       "model_confidence": 0.7
+      }
+     },
+     "plate_text": [
+      "BRIGHTWATER",
+      "BW-300",
+      "S/N GN-21094"
+     ],
+     "plate_mode": "blur_serial"
+    },
+    {
+     "object_index": 3,
+     "concept": "generator",
+     "case": "conflicting_ledger_serial",
+     "true_asset_id": "A-003",
+     "bounds": [
+      670,
+      290,
+      951,
+      541
+     ],
+     "raster_w": 281,
+     "raster_h": 251,
+     "area_px": 62719,
+     "svg_path": "M230 0h19v20h-19zM11 20h259v1h-259zM8 21h265v1h-265zM7 22h267v1h-267zM5 23h271v1h-271zM4 24h273v1h-273zM3 25h275v2h-275zM2 27h277v1h-277zM1 28h279v3h-279zM0 31h281v199h-281zM1 230h279v3h-279zM2 233h277v1h-277zM3 234h275v2h-275zM4 236h273v1h-273zM5 237h271v1h-271zM7 238h267v1h-267zM8 239h265v1h-265zM10 240h261v1h-261zM10 241h21v10h-21zM250 241h21v10h-21z",
+     "confidence": 0.93,
+     "muse": {
+      "kind": "ok",
+      "evidence": {
+       "observed_object_type": "industrial generator",
+       "visible_manufacturer": "Cumberland",
+       "visible_model": "PX-750",
+       "visible_serial_number": "GN-55011",
+       "visible_identifiers": [
+        {
+         "kind": "serial",
+         "value": "GN-55011",
+         "readable": true
+        }
+       ],
+       "visible_condition_observations": [],
+       "uncertainties": [],
+       "model_confidence": 0.9
+      }
+     },
+     "plate_text": [
+      "CUMBERLAND",
+      "PX-750",
+      "S/N GN-55011"
+     ],
+     "plate_mode": "clear"
+    },
+    {
+     "object_index": 4,
+     "concept": "generator",
+     "case": "duplicate_observation_first_view",
+     "true_asset_id": "A-007",
+     "bounds": [
+      990,
+      330,
+      1221,
+      541
+     ],
+     "raster_w": 231,
+     "raster_h": 211,
+     "area_px": 42429,
+     "svg_path": "M180 0h19v20h-19zM11 20h209v1h-209zM8 21h215v1h-215zM7 22h217v1h-217zM5 23h221v1h-221zM4 24h223v1h-223zM3 25h225v2h-225zM2 27h227v1h-227zM1 28h229v3h-229zM0 31h231v159h-231zM1 190h229v3h-229zM2 193h227v1h-227zM3 194h225v2h-225zM4 196h223v1h-223zM5 197h221v1h-221zM7 198h217v1h-217zM8 199h215v1h-215zM10 200h211v1h-211zM10 201h21v10h-21zM200 201h21v10h-21z",
+     "confidence": 0.9,
+     "muse": {
+      "kind": "ok",
+      "evidence": {
+       "observed_object_type": "generator",
+       "visible_manufacturer": "Brightwater",
+       "visible_model": "BW-400",
+       "visible_serial_number": "GN-70707",
+       "visible_identifiers": [
+        {
+         "kind": "serial",
+         "value": "GN-70707",
+         "readable": true
+        }
+       ],
+       "visible_condition_observations": [],
+       "uncertainties": [],
+       "model_confidence": 0.9
+      }
+     },
+     "plate_text": [
+      "BRIGHTWATER",
+      "BW-400",
+      "S/N GN-70707"
+     ],
+     "plate_mode": "clear"
+    },
+    {
+     "object_index": 5,
+     "concept": "generator",
+     "case": "malformed_provider_response",
+     "true_asset_id": "A-015",
+     "bounds": [
+      520,
+      580,
+      741,
+      761
+     ],
+     "raster_w": 221,
+     "raster_h": 181,
+     "area_px": 33989,
+     "svg_path": "M170 0h19v20h-19zM11 20h199v1h-199zM8 21h205v1h-205zM7 22h207v1h-207zM5 23h211v1h-211zM4 24h213v1h-213zM3 25h215v2h-215zM2 27h217v1h-217zM1 28h219v3h-219zM0 31h221v129h-221zM1 160h219v3h-219zM2 163h217v1h-217zM3 164h215v2h-215zM4 166h213v1h-213zM5 167h211v1h-211zM7 168h207v1h-207zM8 169h205v1h-205zM10 170h201v1h-201zM10 171h21v10h-21zM190 171h21v10h-21z",
+     "confidence": 0.88,
+     "muse": {
+      "kind": "malformed",
+      "raw": "{\"observed_object_type\": \"generator\", \"visible_manufacturer\": \"Cumber"
+     },
+     "plate_text": [
+      "CUMBERLAND",
+      "PX-300",
+      "S/N GN-15015"
+     ],
+     "plate_mode": "clear"
+    }
+   ]
+  },
+  {
+   "file": "bay_b_forklifts.png",
+   "title": "Bay B - forklift line",
+   "sha256": "ee7e6b1f667e496eb1037bb569eab9011bc1955b4d985ec115128d64b99030d6",
+   "width": 1280,
+   "height": 800,
+   "facility_id": "WH-01",
+   "objects": [
+    {
+     "object_index": 1,
+     "concept": "forklift",
+     "case": "serial_match_conflicting_manufacturer",
+     "true_asset_id": "A-010",
+     "bounds": [
+      60,
+      300,
+      291,
+      593
+     ],
+     "raster_w": 231,
+     "raster_h": 293,
+     "area_px": 43406,
+     "svg_path": "M10 0h17v230h-17zM34 0h17v230h-17zM80 10h131v11h-131zM84 21h9v79h-9zM200 21h9v79h-9zM54 100h177v130h-177zM0 230h231v11h-231zM10 241h17v20h-17zM34 241h17v20h-17zM54 241h177v20h-177zM62 261h57v9h-57zM162 261h57v9h-57zM63 270h55v4h-55zM163 270h55v4h-55zM64 274h53v2h-53zM164 274h53v2h-53zM65 276h51v2h-51zM165 276h51v2h-51zM66 278h49v2h-49zM166 278h49v2h-49zM67 280h47v1h-47zM167 280h47v1h-47zM68 281h45v1h-45zM168 281h45v1h-45zM69 282h43v2h-43zM169 282h43v2h-43zM70 284h41v1h-41zM170 284h41v1h-41zM71 285h39v1h-39zM171 285h39v1h-39zM73 286h35v1h-35zM173 286h35v1h-35zM74 287h33v1h-33zM174 287h33v1h-33zM75 288h31v1h-31zM175 288h31v1h-31zM77 289h27v1h-27zM177 289h27v1h-27zM79 290h23v1h-23zM179 290h23v1h-23zM81 291h19v1h-19zM181 291h19v1h-19zM85 292h11v1h-11zM185 292h11v1h-11z",
+     "confidence": 0.94,
+     "muse": {
+      "kind": "ok",
+      "evidence": {
+       "observed_object_type": "forklift",
+       "visible_manufacturer": "Hoistline",
+       "visible_model": "LM-25",
+       "visible_serial_number": "FL-7781",
+       "visible_identifiers": [
+        {
+         "kind": "serial",
+         "value": "FL-7781",
+         "readable": true
+        }
+       ],
+       "visible_condition_observations": [],
+       "uncertainties": [],
+       "model_confidence": 0.9
+      }
+     },
+     "plate_text": [
+      "HOISTLINE",
+      "LM-25",
+      "S/N FL-7781"
+     ],
+     "plate_mode": "clear"
+    },
+    {
+     "object_index": 2,
+     "concept": "forklift",
+     "case": "similar_looking_distinct_assets",
+     "true_asset_id": "A-011",
+     "bounds": [
+      320,
+      300,
+      551,
+      593
+     ],
+     "raster_w": 231,
+     "raster_h": 293,
+     "area_px": 43406,
+     "svg_path": "M10 0h17v230h-17zM34 0h17v230h-17zM80 10h131v11h-131zM84 21h9v79h-9zM200 21h9v79h-9zM54 100h177v130h-177zM0 230h231v11h-231zM10 241h17v20h-17zM34 241h17v20h-17zM54 241h177v20h-177zM62 261h57v9h-57zM162 261h57v9h-57zM63 270h55v4h-55zM163 270h55v4h-55zM64 274h53v2h-53zM164 274h53v2h-53zM65 276h51v2h-51zM165 276h51v2h-51zM66 278h49v2h-49zM166 278h49v2h-49zM67 280h47v1h-47zM167 280h47v1h-47zM68 281h45v1h-45zM168 281h45v1h-45zM69 282h43v2h-43zM169 282h43v2h-43zM70 284h41v1h-41zM170 284h41v1h-41zM71 285h39v1h-39zM171 285h39v1h-39zM73 286h35v1h-35zM173 286h35v1h-35zM74 287h33v1h-33zM174 287h33v1h-33zM75 288h31v1h-31zM175 288h31v1h-31zM77 289h27v1h-27zM177 289h27v1h-27zM79 290h23v1h-23zM179 290h23v1h-23zM81 291h19v1h-19zM181 291h19v1h-19zM85 292h11v1h-11zM185 292h11v1h-11z",
+     "confidence": 0.92,
+     "muse": {
+      "kind": "ok",
+      "evidence": {
+       "observed_object_type": "forklift",
+       "visible_manufacturer": "Liftmaster",
+       "visible_model": "LM-25",
+       "visible_serial_number": null,
+       "visible_identifiers": [],
+       "visible_condition_observations": [],
+       "uncertainties": [
+        {
+         "field": "visible_serial_number",
+         "note": "serial region illegible (blurred/scratched)"
+        }
+       ],
+       "model_confidence": 0.75
+      }
+     },
+     "plate_text": [
+      "LIFTMASTER",
+      "LM-25",
+      "S/N FL-7790"
+     ],
+     "plate_mode": "blur_serial"
+    },
+    {
+     "object_index": 3,
+     "concept": "forklift",
+     "case": "similar_looking_distinct_assets",
+     "true_asset_id": "A-012",
+     "bounds": [
+      580,
+      300,
+      811,
+      593
+     ],
+     "raster_w": 231,
+     "raster_h": 293,
+     "area_px": 43406,
+     "svg_path": "M10 0h17v230h-17zM34 0h17v230h-17zM80 10h131v11h-131zM84 21h9v79h-9zM200 21h9v79h-9zM54 100h177v130h-177zM0 230h231v11h-231zM10 241h17v20h-17zM34 241h17v20h-17zM54 241h177v20h-177zM62 261h57v9h-57zM162 261h57v9h-57zM63 270h55v4h-55zM163 270h55v4h-55zM64 274h53v2h-53zM164 274h53v2h-53zM65 276h51v2h-51zM165 276h51v2h-51zM66 278h49v2h-49zM166 278h49v2h-49zM67 280h47v1h-47zM167 280h47v1h-47zM68 281h45v1h-45zM168 281h45v1h-45zM69 282h43v2h-43zM169 282h43v2h-43zM70 284h41v1h-41zM170 284h41v1h-41zM71 285h39v1h-39zM171 285h39v1h-39zM73 286h35v1h-35zM173 286h35v1h-35zM74 287h33v1h-33zM174 287h33v1h-33zM75 288h31v1h-31zM175 288h31v1h-31zM77 289h27v1h-27zM177 289h27v1h-27zM79 290h23v1h-23zM179 290h23v1h-23zM81 291h19v1h-19zM181 291h19v1h-19zM85 292h11v1h-11zM185 292h11v1h-11z",
+     "confidence": 0.9,
+     "muse": {
+      "kind": "ok",
+      "evidence": {
+       "observed_object_type": "forklift",
+       "visible_manufacturer": "Liftmaster",
+       "visible_model": "LM-25",
+       "visible_serial_number": null,
+       "visible_identifiers": [],
+       "visible_condition_observations": [],
+       "uncertainties": [
+        {
+         "field": "visible_serial_number",
+         "note": "serial region illegible (blurred/scratched)"
+        }
+       ],
+       "model_confidence": 0.74
+      }
+     },
+     "plate_text": [
+      "LIFTMASTER",
+      "LM-25",
+      "S/N FL-7791"
+     ],
+     "plate_mode": "blur_serial"
+    },
+    {
+     "object_index": 4,
+     "concept": "forklift",
+     "case": "no_visible_identifiers",
+     "true_asset_id": "A-013",
+     "bounds": [
+      840,
+      320,
+      1041,
+      583
+     ],
+     "raster_w": 201,
+     "raster_h": 263,
+     "area_px": 34286,
+     "svg_path": "M10 0h17v200h-17zM34 0h17v200h-17zM80 0h101v11h-101zM84 11h9v79h-9zM170 11h9v79h-9zM54 90h147v110h-147zM0 200h201v11h-201zM10 211h17v20h-17zM34 211h17v20h-17zM54 211h147v20h-147zM62 231h57v9h-57zM132 231h57v9h-57zM63 240h55v4h-55zM133 240h55v4h-55zM64 244h53v2h-53zM134 244h53v2h-53zM65 246h51v2h-51zM135 246h51v2h-51zM66 248h49v2h-49zM136 248h49v2h-49zM67 250h47v1h-47zM137 250h47v1h-47zM68 251h45v1h-45zM138 251h45v1h-45zM69 252h43v2h-43zM139 252h43v2h-43zM70 254h41v1h-41zM140 254h41v1h-41zM71 255h39v1h-39zM141 255h39v1h-39zM73 256h35v1h-35zM143 256h35v1h-35zM74 257h33v1h-33zM144 257h33v1h-33zM75 258h31v1h-31zM145 258h31v1h-31zM77 259h27v1h-27zM147 259h27v1h-27zM79 260h23v1h-23zM149 260h23v1h-23zM81 261h19v1h-19zM151 261h19v1h-19zM85 262h11v1h-11zM155 262h11v1h-11z",
+     "confidence": 0.86,
+     "muse": {
+      "kind": "ok",
+      "evidence": {
+       "observed_object_type": "forklift",
+       "visible_manufacturer": null,
+       "visible_model": null,
+       "visible_serial_number": null,
+       "visible_identifiers": [],
+       "visible_condition_observations": [],
+       "uncertainties": [
+        {
+         "field": null,
+         "note": "no nameplate visible"
+        }
+       ],
+       "model_confidence": 0.6
+      }
+     },
+     "plate_text": null,
+     "plate_mode": "none"
+    },
+    {
+     "object_index": 5,
+     "concept": "forklift",
+     "case": "provider_timeout",
+     "true_asset_id": "A-014",
+     "bounds": [
+      1060,
+      326,
+      1251,
+      583
+     ],
+     "raster_w": 191,
+     "raster_h": 257,
+     "area_px": 31604,
+     "svg_path": "M80 0h91v11h-91zM10 4h17v190h-17zM34 4h17v190h-17zM84 11h9v79h-9zM160 11h9v79h-9zM54 90h137v104h-137zM0 194h191v11h-191zM10 205h17v20h-17zM34 205h17v20h-17zM54 205h137v20h-137zM62 225h57v9h-57zM122 225h57v9h-57zM63 234h55v4h-55zM123 234h55v4h-55zM64 238h53v2h-53zM124 238h53v2h-53zM65 240h51v2h-51zM125 240h51v2h-51zM66 242h49v2h-49zM126 242h49v2h-49zM67 244h47v1h-47zM127 244h47v1h-47zM68 245h45v1h-45zM128 245h45v1h-45zM69 246h43v2h-43zM129 246h43v2h-43zM70 248h41v1h-41zM130 248h41v1h-41zM71 249h39v1h-39zM131 249h39v1h-39zM73 250h35v1h-35zM133 250h35v1h-35zM74 251h33v1h-33zM134 251h33v1h-33zM75 252h31v1h-31zM135 252h31v1h-31zM77 253h27v1h-27zM137 253h27v1h-27zM79 254h23v1h-23zM139 254h23v1h-23zM81 255h19v1h-19zM141 255h19v1h-19zM85 256h11v1h-11zM145 256h11v1h-11z",
+     "confidence": 0.89,
+     "muse": {
+      "kind": "timeout"
+     },
+     "plate_text": [
+      "LIFTMASTER",
+      "LM-30",
+      "S/N FL-8890"
+     ],
+     "plate_mode": "clear"
+    }
+   ]
+  },
+  {
+   "file": "yard_c_mixed.png",
+   "title": "Yard C - mixed equipment",
+   "sha256": "66303a44e60bb34f6c8a1514eee11dbbd0ac6e76aeac9a9db6cecd24829eeb7c",
+   "width": 1280,
+   "height": 800,
+   "facility_id": "WH-01",
+   "objects": [
+    {
+     "object_index": 1,
+     "concept": "generator",
+     "case": "observed_not_in_register",
+     "true_asset_id": null,
+     "bounds": [
+      60,
+      330,
+      311,
+      551
+     ],
+     "raster_w": 251,
+     "raster_h": 221,
+     "area_px": 48559,
+     "svg_path": "M200 0h19v20h-19zM11 20h229v1h-229zM8 21h235v1h-235zM7 22h237v1h-237zM5 23h241v1h-241zM4 24h243v1h-243zM3 25h245v2h-245zM2 27h247v1h-247zM1 28h249v3h-249zM0 31h251v169h-251zM1 200h249v3h-249zM2 203h247v1h-247zM3 204h245v2h-245zM4 206h243v1h-243zM5 207h241v1h-241zM7 208h237v1h-237zM8 209h235v1h-235zM10 210h231v1h-231zM10 211h21v10h-21zM220 211h21v10h-21z",
+     "confidence": 0.92,
+     "muse": {
+      "kind": "ok",
+      "evidence": {
+       "observed_object_type": "generator",
+       "visible_manufacturer": "Voltane",
+       "visible_model": "VG-90",
+       "visible_serial_number": "GN-90001",
+       "visible_identifiers": [
+        {
+         "kind": "serial",
+         "value": "GN-90001",
+         "readable": true
+        }
+       ],
+       "visible_condition_observations": [],
+       "uncertainties": [],
+       "model_confidence": 0.9
+      }
+     },
+     "plate_text": [
+      "VOLTANE",
+      "VG-90",
+      "S/N GN-90001"
+     ],
+     "plate_mode": "clear"
+    },
+    {
+     "object_index": 2,
+     "concept": "generator",
+     "case": "contradictory_ledger_duplicate_serial",
+     "true_asset_id": "A-005",
+     "bounds": [
+      340,
+      310,
+      601,
+      551
+     ],
+     "raster_w": 261,
+     "raster_h": 241,
+     "area_px": 55689,
+     "svg_path": "M210 0h19v20h-19zM11 20h239v1h-239zM8 21h245v1h-245zM7 22h247v1h-247zM5 23h251v1h-251zM4 24h253v1h-253zM3 25h255v2h-255zM2 27h257v1h-257zM1 28h259v3h-259zM0 31h261v189h-261zM1 220h259v3h-259zM2 223h257v1h-257zM3 224h255v2h-255zM4 226h253v1h-253zM5 227h251v1h-251zM7 228h247v1h-247zM8 229h245v1h-245zM10 230h241v1h-241zM10 231h21v10h-21zM230 231h21v10h-21z",
+     "confidence": 0.93,
+     "muse": {
+      "kind": "ok",
+      "evidence": {
+       "observed_object_type": "industrial generator",
+       "visible_manufacturer": "Cumberland",
+       "visible_model": "PX-500",
+       "visible_serial_number": "GN-31337",
+       "visible_identifiers": [
+        {
+         "kind": "serial",
+         "value": "GN-31337",
+         "readable": true
+        }
+       ],
+       "visible_condition_observations": [],
+       "uncertainties": [],
+       "model_confidence": 0.9
+      }
+     },
+     "plate_text": [
+      "CUMBERLAND",
+      "PX-500",
+      "S/N GN-31337"
+     ],
+     "plate_mode": "clear"
+    },
+    {
+     "object_index": 3,
+     "concept": "generator",
+     "case": "exact_identifier_match",
+     "true_asset_id": "A-004",
+     "bounds": [
+      630,
+      320,
+      881,
+      551
+     ],
+     "raster_w": 251,
+     "raster_h": 231,
+     "area_px": 51069,
+     "svg_path": "M200 0h19v20h-19zM11 20h229v1h-229zM8 21h235v1h-235zM7 22h237v1h-237zM5 23h241v1h-241zM4 24h243v1h-243zM3 25h245v2h-245zM2 27h247v1h-247zM1 28h249v3h-249zM0 31h251v179h-251zM1 210h249v3h-249zM2 213h247v1h-247zM3 214h245v2h-245zM4 216h243v1h-243zM5 217h241v1h-241zM7 218h237v1h-237zM8 219h235v1h-235zM10 220h231v1h-231zM10 221h21v10h-21zM220 221h21v10h-21z",
+     "confidence": 0.94,
+     "muse": {
+      "kind": "ok",
+      "evidence": {
+       "observed_object_type": "generator",
+       "visible_manufacturer": "Brightwater",
+       "visible_model": "BW-220",
+       "visible_serial_number": "GN-62040",
+       "visible_identifiers": [
+        {
+         "kind": "serial",
+         "value": "GN-62040",
+         "readable": true
+        }
+       ],
+       "visible_condition_observations": [
+        "dent on top right corner"
+       ],
+       "uncertainties": [],
+       "model_confidence": 0.9
+      }
+     },
+     "plate_text": [
+      "BRIGHTWATER",
+      "BW-220",
+      "S/N GN-62040"
+     ],
+     "plate_mode": "clear"
+    },
+    {
+     "object_index": 4,
+     "concept": "generator",
+     "case": "duplicate_observation_second_view",
+     "true_asset_id": "A-007",
+     "bounds": [
+      910,
+      340,
+      1131,
+      541
+     ],
+     "raster_w": 221,
+     "raster_h": 201,
+     "area_px": 38409,
+     "svg_path": "M170 0h19v20h-19zM11 20h199v1h-199zM8 21h205v1h-205zM7 22h207v1h-207zM5 23h211v1h-211zM4 24h213v1h-213zM3 25h215v2h-215zM2 27h217v1h-217zM1 28h219v3h-219zM0 31h221v149h-221zM1 180h219v3h-219zM2 183h217v1h-217zM3 184h215v2h-215zM4 186h213v1h-213zM5 187h211v1h-211zM7 188h207v1h-207zM8 189h205v1h-205zM10 190h201v1h-201zM10 191h21v10h-21zM190 191h21v10h-21z",
+     "confidence": 0.87,
+     "muse": {
+      "kind": "ok",
+      "evidence": {
+       "observed_object_type": "generator",
+       "visible_manufacturer": "Brightwater",
+       "visible_model": "BW-400",
+       "visible_serial_number": "GN-70707",
+       "visible_identifiers": [
+        {
+         "kind": "serial",
+         "value": "GN-70707",
+         "readable": true
+        }
+       ],
+       "visible_condition_observations": [],
+       "uncertainties": [],
+       "model_confidence": 0.9
+      }
+     },
+     "plate_text": [
+      "BRIGHTWATER",
+      "BW-400",
+      "S/N GN-70707"
+     ],
+     "plate_mode": "clear"
+    },
+    {
+     "object_index": 5,
+     "concept": "generator",
+     "case": "unsupported_model_conclusion",
+     "true_asset_id": "A-009",
+     "bounds": [
+      420,
+      590,
+      651,
+      771
+     ],
+     "raster_w": 231,
+     "raster_h": 181,
+     "area_px": 35499,
+     "svg_path": "M180 0h19v20h-19zM11 20h209v1h-209zM8 21h215v1h-215zM7 22h217v1h-217zM5 23h221v1h-221zM4 24h223v1h-223zM3 25h225v2h-225zM2 27h227v1h-227zM1 28h229v3h-229zM0 31h231v129h-231zM1 160h229v3h-229zM2 163h227v1h-227zM3 164h225v2h-225zM4 166h223v1h-223zM5 167h221v1h-221zM7 168h217v1h-217zM8 169h215v1h-215zM10 170h211v1h-211zM10 171h21v10h-21zM200 171h21v10h-21z",
+     "confidence": 0.9,
+     "muse": {
+      "kind": "unsupported",
+      "raw": "{\"observed_object_type\": \"generator\", \"visible_manufacturer\": \"Cumberland\", \"visible_model\": \"PX-500\", \"visible_serial_number\": \"GN-90909\", \"visible_identifiers\": [], \"visible_condition_observations\": [], \"uncertainties\": [], \"model_confidence\": 0.9, \"estimated_value_usd\": 42000, \"legal_owner\": \"Northwind Bank\"}"
+     },
+     "plate_text": [
+      "CUMBERLAND",
+      "PX-500",
+      "S/N GN-90909"
+     ],
+     "plate_mode": "clear"
+    },
+    {
+     "object_index": 6,
+     "concept": "forklift",
+     "case": "forklift_in_yard_unregistered",
+     "true_asset_id": null,
+     "bounds": [
+      1140,
+      566,
+      1261,
+      763
+     ],
+     "raster_w": 121,
+     "raster_h": 197,
+     "area_px": 12919,
+     "svg_path": "M80 0h21v11h-21zM84 11h15v79h-15zM10 34h17v100h-17zM34 34h17v100h-17zM54 90h67v44h-67zM0 134h121v11h-121zM10 145h17v20h-17zM34 145h17v20h-17zM54 145h67v14h-67zM53 159h68v4h-68zM52 163h69v2h-69zM52 165h67v9h-67zM53 174h65v4h-65zM54 178h63v2h-63zM55 180h61v2h-61zM56 182h59v2h-59zM57 184h57v1h-57zM58 185h55v1h-55zM59 186h53v2h-53zM60 188h51v1h-51zM61 189h49v1h-49zM63 190h45v1h-45zM64 191h43v1h-43zM65 192h41v1h-41zM67 193h37v1h-37zM69 194h33v1h-33zM71 195h29v1h-29zM75 196h21v1h-21z",
+     "confidence": 0.71,
+     "muse": {
+      "kind": "ok",
+      "evidence": {
+       "observed_object_type": "pallet jack",
+       "visible_manufacturer": null,
+       "visible_model": null,
+       "visible_serial_number": null,
+       "visible_identifiers": [],
+       "visible_condition_observations": [],
+       "uncertainties": [
+        {
+         "field": null,
+         "note": "partially out of frame; may not be a forklift"
+        }
+       ],
+       "model_confidence": 0.4
+      }
+     },
+     "plate_text": null,
+     "plate_mode": "none"
+    }
+   ]
+  }
+ ],
+ "expected_asset_status": {
+  "A-001": "VERIFIED",
+  "A-002": "PROBABLE",
+  "A-003": "MISMATCHED",
+  "A-004": "VERIFIED",
+  "A-005": "PROBABLE",
+  "A-006": "PROBABLE",
+  "A-007": "PROBABLE",
+  "A-008": "UNVERIFIED",
+  "A-009": "UNVERIFIED",
+  "A-010": "MISMATCHED",
+  "A-011": "PROBABLE",
+  "A-012": "PROBABLE",
+  "A-013": "UNVERIFIED",
+  "A-014": "UNVERIFIED",
+  "A-015": "UNVERIFIED",
+  "A-020": "NOT_OBSERVABLE",
+  "A-021": "NOT_OBSERVABLE",
+  "A-022": "NOT_OBSERVABLE"
+ }
+}

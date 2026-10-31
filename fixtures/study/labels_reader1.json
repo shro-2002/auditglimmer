@@ -1,0 +1,249 @@
+{
+ "s01": {
+  "asset_type": "tractor",
+  "manufacturer": "Porsche-Diesel",
+  "model": "418",
+  "serial": "692",
+  "legibility": "clear_short",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s02": {
+  "asset_type": "generator",
+  "manufacturer": null,
+  "model": "DG 182/8",
+  "serial": "254175",
+  "legibility": "clear",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s03": {
+  "asset_type": "compressor",
+  "manufacturer": "Otto Boge",
+  "model": "B170-12",
+  "serial": "92233/58",
+  "legibility": "medium",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s04": {
+  "asset_type": "engine",
+  "manufacturer": "Ranger",
+  "model": "L-440-1",
+  "serial": "604",
+  "legibility": "clear_short",
+  "serial_alternates": [],
+  "distractor_numbers": [
+   "2001",
+   "W-535-AC-13318"
+  ]
+ },
+ "s05": {
+  "asset_type": "excavator",
+  "manufacturer": "Liebherr",
+  "model": "R921",
+  "serial": "921R1789",
+  "legibility": "clear",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s06": {
+  "asset_type": "generator",
+  "manufacturer": "Caterpillar",
+  "model": null,
+  "serial": null,
+  "legibility": "none_visible",
+  "serial_alternates": [],
+  "distractor_numbers": [
+   "BC-260"
+  ]
+ },
+ "s07": {
+  "asset_type": "engine",
+  "manufacturer": "Pratt & Whitney",
+  "model": "R-1830-92",
+  "serial": "317876",
+  "legibility": "clear",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s08": {
+  "asset_type": "generator",
+  "manufacturer": "Anton Piller",
+  "model": "NKT 115-4",
+  "serial": "1104802",
+  "legibility": "clear",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s09": {
+  "asset_type": "generator",
+  "manufacturer": null,
+  "model": "DG 182/8",
+  "serial": "254174",
+  "legibility": "hard",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s10": {
+  "asset_type": "generator",
+  "manufacturer": "Otto Bartholdi AG",
+  "model": "WO 1250/1120 M22",
+  "serial": "39061",
+  "legibility": "hard",
+  "serial_alternates": [],
+  "distractor_numbers": [
+   "318130"
+  ]
+ },
+ "s11": {
+  "asset_type": "transformer",
+  "manufacturer": "CEM",
+  "model": null,
+  "serial": null,
+  "legibility": "illegible",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s12": {
+  "asset_type": "forklift",
+  "manufacturer": "Hyster",
+  "model": null,
+  "serial": null,
+  "legibility": "none_visible",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s13": {
+  "asset_type": "generator",
+  "manufacturer": "AEG",
+  "model": null,
+  "serial": null,
+  "legibility": "illegible",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s14": {
+  "asset_type": "generator",
+  "manufacturer": null,
+  "model": null,
+  "serial": "5735",
+  "legibility": "clear",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s15": {
+  "asset_type": "electric motor",
+  "manufacturer": "Malmbergs",
+  "model": "MS 711-2",
+  "serial": "1212073091",
+  "legibility": "clear",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s16": {
+  "asset_type": "electric motor",
+  "manufacturer": "Loher",
+  "model": "A 160 LA-V6/4",
+  "serial": "8253379",
+  "legibility": "hard",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s17": {
+  "asset_type": "engine",
+  "manufacturer": "Pratt & Whitney",
+  "model": "R-1830-92",
+  "serial": "PP457977",
+  "legibility": "hard",
+  "serial_alternates": [
+   "BP457977"
+  ],
+  "distractor_numbers": []
+ },
+ "s18": {
+  "asset_type": "forklift",
+  "manufacturer": null,
+  "model": null,
+  "serial": null,
+  "legibility": "none_visible",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s19": {
+  "asset_type": "electric motor",
+  "manufacturer": "AEG",
+  "model": "VDNW 22/6",
+  "serial": "2660874",
+  "legibility": "clear",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s20": {
+  "asset_type": "generator",
+  "manufacturer": "Maffei-Schwartzkopff",
+  "model": "DGV 1200/250",
+  "serial": "36734",
+  "legibility": "clear",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s21": {
+  "asset_type": "generator",
+  "manufacturer": "Westinghouse",
+  "model": null,
+  "serial": "1S1084-1",
+  "legibility": "clear",
+  "serial_alternates": [
+   "IS1084-1"
+  ],
+  "distractor_numbers": []
+ },
+ "s22": {
+  "asset_type": "generator",
+  "manufacturer": "Siemens-Schuckert",
+  "model": "FL 560/24-250",
+  "serial": "1502071",
+  "legibility": "clear",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s23": {
+  "asset_type": "switchgear",
+  "manufacturer": "S&C",
+  "model": null,
+  "serial": null,
+  "legibility": "no_serial_field",
+  "serial_alternates": [],
+  "distractor_numbers": [
+   "135012R3"
+  ]
+ },
+ "s24": {
+  "asset_type": "forklift",
+  "manufacturer": null,
+  "model": null,
+  "serial": null,
+  "legibility": "none_visible",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s25": {
+  "asset_type": "generator",
+  "manufacturer": "Siemens-Schuckert Werke",
+  "model": "D.U.G 400/40",
+  "serial": "470830",
+  "legibility": "clear",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ },
+ "s26": {
+  "asset_type": "outboard motor",
+  "manufacturer": "Tohatsu",
+  "model": "MFS9.8A3",
+  "serial": null,
+  "legibility": "redacted",
+  "serial_alternates": [],
+  "distractor_numbers": []
+ }
+}

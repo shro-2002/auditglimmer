@@ -1,0 +1,236 @@
+[
+ {
+  "study_id": "s01",
+  "candidate": "c14",
+  "title": "File:Porsche Traktor 418 Typenschild.jpg",
+  "license": "CC BY-SA 3.0",
+  "artist": "RudolfSimon",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Porsche_Traktor_418_Typenschild.jpg",
+  "sha256": "2d2f0288d302a817eb7930fa06e4df653edbccec75145d37eae5f59acfd3b506"
+ },
+ {
+  "study_id": "s02",
+  "candidate": "c06",
+  "title": "File:Wasserkraftwerk Tarandt Typenschild Generator 254175.jpg",
+  "license": "CC0",
+  "artist": "SLUB Dresden / Carsten Pietzsch",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Wasserkraftwerk_Tarandt_Typenschild_Generator_254175.jpg",
+  "sha256": "dc299be903aa285320eb5cd09416b04b8d397bfb75bc2351a53af20ca27c456d"
+ },
+ {
+  "study_id": "s03",
+  "candidate": "c19",
+  "title": "File:Boge-Kompressor in der Leinenfabrik Steinhude.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Bernd Schwabe in Hannover",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Boge-Kompressor_in_der_Leinenfabrik_Steinhude.jpg",
+  "sha256": "eec32732a278236cdd62c1215ead4500e1bb5804152c563ac39364298e236ac1"
+ },
+ {
+  "study_id": "s04",
+  "candidate": "c21",
+  "title": "File:Ranger L-440-1 engine plate.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Pi3.124",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Ranger_L-440-1_engine_plate.jpg",
+  "sha256": "a32ee67f55340c3f72782defce1bdf1d772a2727d510a7d992a756466c092488"
+ },
+ {
+  "study_id": "s05",
+  "candidate": "c09",
+  "title": "File:Liebherr 921 Typenschild.jpg",
+  "license": "CC BY-SA 3.0",
+  "artist": "Norbert Schnitzler",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Liebherr_921_Typenschild.jpg",
+  "sha256": "fe5f56fff17103c1abfc6bb91d215e5818a02f1fc91e1ab52bbbfadff650d08b"
+ },
+ {
+  "study_id": "s06",
+  "candidate": "r_usace_cat_generator",
+  "title": "usace_cat_generator.jpg",
+  "license": "see fixtures/real/LICENSES.md",
+  "artist": "",
+  "source_page": "",
+  "sha256": "9fd1c7993193b566953de7e36fe5aaae02087afd5dd74a9227f4a26f46b2cdab"
+ },
+ {
+  "study_id": "s07",
+  "candidate": "c15",
+  "title": "File:Pratt & Whitney R-1830-92 Engine Identification Plate 317876.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "1peterk",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Pratt_%26_Whitney_R-1830-92_Engine_Identification_Plate_317876.jpg",
+  "sha256": "4957f2232ff9c2705803b72145a3ff04f834179e7fb592a213a2d9c03cdf9c73"
+ },
+ {
+  "study_id": "s08",
+  "candidate": "c04",
+  "title": "File:Typenschild Generator (1976).jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Rotkaeppchen68",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Typenschild_Generator_(1976).jpg",
+  "sha256": "2a8885e07eef8a7289eac3c653f87260592f1b374c90b83867bb60c59fe18deb"
+ },
+ {
+  "study_id": "s09",
+  "candidate": "c05",
+  "title": "File:Wasserkraftwerk Tarandt Typenschild Generator 254174.jpg",
+  "license": "CC0",
+  "artist": "SLUB Dresden / Carsten Pietzsch",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Wasserkraftwerk_Tarandt_Typenschild_Generator_254174.jpg",
+  "sha256": "475c7d74bf0d153448676d9704adbbedcdae8b9b54c86d1787a6462ca6186023"
+ },
+ {
+  "study_id": "s10",
+  "candidate": "c01",
+  "title": "File:Generator Otto Bartholdi AG Kraftwerk Leinau Typenschild.jpg",
+  "license": "CC0",
+  "artist": "Ordercrazy",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Generator_Otto_Bartholdi_AG_Kraftwerk_Leinau_Typenschild.jpg",
+  "sha256": "a45e2148100a60137d8b24f54553a9311a0a0ba5ac1c52ad2250f1360befac6b"
+ },
+ {
+  "study_id": "s11",
+  "candidate": "c12",
+  "title": "File:Pont-l'Abb\u00e9 high-voltage substation 08 - Eastern transformer identification plaque.jpg",
+  "license": "CC0",
+  "artist": "PtiBzh",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Pont-l%27Abb%C3%A9_high-voltage_substation_08_-_Eastern_transformer_identification_plaque.jpg",
+  "sha256": "f5b545dbae8af32f6d5968a3a55971b130a0f966e1e49f8deda66bd3d346d93e"
+ },
+ {
+  "study_id": "s12",
+  "candidate": "r_army_forklifts_row",
+  "title": "army_forklifts_row.jpg",
+  "license": "see fixtures/real/LICENSES.md",
+  "artist": "",
+  "source_page": "",
+  "sha256": "c3cea7e478445bed27d627224d7449db0ebc93efcc01f05392a2c8d247adc612"
+ },
+ {
+  "study_id": "s13",
+  "candidate": "c20",
+  "title": "File:Typenschild des Generators im LVR-Industriemuseum in Engelskirchen.JPG",
+  "license": "CC BY-SA 3.0",
+  "artist": "NearEMPTiness",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Typenschild_des_Generators_im_LVR-Industriemuseum_in_Engelskirchen.JPG",
+  "sha256": "9c65acfc233d79305e2b0f15044ceda0ccff954fa3e27333d14b11ffff124c5a"
+ },
+ {
+  "study_id": "s14",
+  "candidate": "r_generator_nameplate_ccbysa",
+  "title": "generator_nameplate_ccbysa.jpg",
+  "license": "see fixtures/real/LICENSES.md",
+  "artist": "",
+  "source_page": "",
+  "sha256": "ed701722eaa4fcabe9221aef01182177cce3c02ba83af0ad26a3ad74b8a6748d"
+ },
+ {
+  "study_id": "s15",
+  "candidate": "c11",
+  "title": "File:Motor nameplate Malmbergs.jpg",
+  "license": "CC0",
+  "artist": "Olgailga2",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Motor_nameplate_Malmbergs.jpg",
+  "sha256": "def1fd1c02999307572afe826644a592ab1b0ffd992e4806bafe528231ee1a18"
+ },
+ {
+  "study_id": "s16",
+  "candidate": "c18",
+  "title": "File:Typenschild eines Drehstromasynchronmotors.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Rotkaeppchen68",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Typenschild_eines_Drehstromasynchronmotors.jpg",
+  "sha256": "05fa3a93b44f826e6134a375205273f3cb7b5030798da4b8c494b0626b7628c0"
+ },
+ {
+  "study_id": "s17",
+  "candidate": "c16",
+  "title": "File:Pratt & Whitney R-1830-92 Engine Identification Plate PP457977.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "1peterk",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Pratt_%26_Whitney_R-1830-92_Engine_Identification_Plate_PP457977.jpg",
+  "sha256": "f1a7e6d4e768b147360863ffc63ac5a0552b1f30d5d58e659cfed8ccf31f7531"
+ },
+ {
+  "study_id": "s18",
+  "candidate": "r_fema_distribution_warehouse",
+  "title": "fema_distribution_warehouse.jpg",
+  "license": "see fixtures/real/LICENSES.md",
+  "artist": "",
+  "source_page": "",
+  "sha256": "be0cf6b7a53940887376a29cc3b36e076220ca819645c1c0494277c391eba449"
+ },
+ {
+  "study_id": "s19",
+  "candidate": "c07",
+  "title": "File:AEG Motor Typenschild Nummer 2660874 in der Leinenfabrik Steinhude.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Bernd Schwabe in Hannover",
+  "source_page": "https://commons.wikimedia.org/wiki/File:AEG_Motor_Typenschild_Nummer_2660874_in_der_Leinenfabrik_Steinhude.jpg",
+  "sha256": "db121865ba972f4609175f94e1c0d79827a212e0e5d6d49ff494021af06b338c"
+ },
+ {
+  "study_id": "s20",
+  "candidate": "c02",
+  "title": "File:Hoellenstein-Kraftwerk Tag der offenen T\u00fcr 2026 Typenschild Generator MSW 36734.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Gomera-b",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Hoellenstein-Kraftwerk_Tag_der_offenen_T%C3%BCr_2026_Typenschild_Generator_MSW_36734.jpg",
+  "sha256": "f8f5443360f05b6c0a4b03ab2d519d7cc27cc9c363f5fd37e9965f15f84684f6"
+ },
+ {
+  "study_id": "s21",
+  "candidate": "c17",
+  "title": "File:Generator Nameplate PF Percent.JPG",
+  "license": "CC BY-SA 3.0",
+  "artist": "Wtshymanski",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Generator_Nameplate_PF_Percent.JPG",
+  "sha256": "bdad395799c6aa66b6a9cf8eeae8e93b2d54e0c69eaef9753cad890ff9c8956c"
+ },
+ {
+  "study_id": "s22",
+  "candidate": "c03",
+  "title": "File:Hoellenstein-Kraftwerk Tag der offenen T\u00fcr 2026 Typenschild Generator Siemens-Schuckert 1502071.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Gomera-b",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Hoellenstein-Kraftwerk_Tag_der_offenen_T%C3%BCr_2026_Typenschild_Generator_Siemens-Schuckert_1502071.jpg",
+  "sha256": "f53fe1efb0e037b00f260cb81d98ee395b72b64c46db826aeb67c5749bc7cde6"
+ },
+ {
+  "study_id": "s23",
+  "candidate": "c13",
+  "title": "File:Load Interrupter Dataplate - Flickr - Beige Alert.jpg",
+  "license": "CC BY-SA 2.0",
+  "artist": "Michael Pereckas from Milwaukee, WI, USA",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Load_Interrupter_Dataplate_-_Flickr_-_Beige_Alert.jpg",
+  "sha256": "4acd92459d80226d47e38833d72371d7a065864bd406640c968a5cd68b2e24e5"
+ },
+ {
+  "study_id": "s24",
+  "candidate": "r_fema_forklift_generators",
+  "title": "fema_forklift_generators.jpg",
+  "license": "see fixtures/real/LICENSES.md",
+  "artist": "",
+  "source_page": "",
+  "sha256": "ad256f39183ac4b8b89e9cfa553b9b890806a19086df61f86c1d37105c274062"
+ },
+ {
+  "study_id": "s25",
+  "candidate": "c08",
+  "title": "File:Siemens-Schuckertwerke generator nameplate at Massarelos Power Station, Porto.jpg",
+  "license": "CC0",
+  "artist": "Novoklimov",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Siemens-Schuckertwerke_generator_nameplate_at_Massarelos_Power_Station,_Porto.jpg",
+  "sha256": "10d07cf9e997f125388b7e4dcc2eb9dda1cd2d2f838d01d1a0ef342e721215d0"
+ },
+ {
+  "study_id": "s26",
+  "candidate": "c10",
+  "title": "File:Serial plate of an Tohatsu MFS9.8A3 outboard motor.jpg",
+  "license": "CC0",
+  "artist": "PtiBzh",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Serial_plate_of_an_Tohatsu_MFS9.8A3_outboard_motor.jpg",
+  "sha256": "138151296bb04d660717df6c7329a196013bc03b3a0398aba02e603e51b77c28"
+ }
+]

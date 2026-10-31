@@ -1,0 +1,11 @@
+asset_id,asset_type,manufacturer,model,serial_number,facility_id,expected_location,ledger_value,currency,inspection_date
+C-001,Generator,Cumberland,PX-500,GN-48218,WH-01,Bay A,48000,USD,2026-10-01
+C-002,Generator,Cumberland,PX-500,GN-48213,WH-02,Dock 9,48000,USD,2026-10-01
+C-003,Generator,Cumberland,BW-220,GN-62040,WH-01,Yard C,29900,USD,2026-10-01
+C-004,Generator,Brightwater,BW-300,GN-21000,WH-01,Bay A,36500,USD,2026-10-01
+C-005,Generator,Brightwater,BW-300,GN-21001,WH-01,Bay A,36500,USD,2026-10-01
+C-006,Excavator,Komatsu,PC-200,EX-0001,WH-01,Yard C,250000,USD,2026-10-01
+C-007,Generator,Cumberland,PX-750,gn-55011 ,WH-01,Bay A,61000,USD,2026-10-01
+C-008,Generator,Brightwater,BW-400,GN-70707,WH-01,Bay A,52000,USD,2026-10-01
+C-009,Generator,Brightwater,BW-400,GN-70707,WH-01,Bay A,52000,USD,2026-10-01
+C-010,Forklift,Liftmaster,LM-25,,WH-01,Bay B,21000,USD,2026-10-01

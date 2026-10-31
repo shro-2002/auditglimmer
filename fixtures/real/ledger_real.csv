@@ -1,0 +1,8 @@
+asset_id,asset_type,manufacturer,model,serial_number,facility_id,expected_location,ledger_value,currency,inspection_date
+R-001,Generator,Caterpillar,,BC-260,WH-R,Plant room,52000,USD,2026-10-31
+R-002,Forklift,Hyster,,FL-H1102,WH-R,Dock,24000,USD,2026-10-31
+R-003,Forklift,Hyster,,FL-H1103,WH-R,Dock,24000,USD,2026-10-31
+R-004,Forklift,Caterpillar,,CAT-10K-0042,WH-R,Airfield,88000,USD,2026-10-31
+R-005,Forklift,Caterpillar,,FL-C2210,WH-R,Warehouse,31000,USD,2026-10-31
+R-006,Generator,Caterpillar,,GN-77100,WH-R,Warehouse,45000,USD,2026-10-31
+R-007,Pallet racking,Rackwell,RW-12,,WH-R,Warehouse,9000,USD,2026-10-31

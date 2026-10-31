@@ -1,0 +1,50 @@
+asset_id,asset_type,manufacturer,model,serial_number,facility_id,expected_location,ledger_value,currency,inspection_date
+T-s01,tractor,Porsche-Diesel,418,692,WH-S,true unit,,,2026-10-31
+D-s01,tractor,Porsche-Diesel,418,629,WH-S,look-alike decoy (one transposition),,,2026-10-31
+T-s02,generator,,DG 182/8,254175,WH-S,true unit,,,2026-10-31
+D-s02,generator,,DG 182/8,254157,WH-S,look-alike decoy (one transposition),,,2026-10-31
+T-s03,compressor,Otto Boge,B170-12,92233/58,WH-S,true unit,,,2026-10-31
+D-s03,compressor,Otto Boge,B170-12,9223385,WH-S,look-alike decoy (one transposition),,,2026-10-31
+T-s04,engine,Ranger,L-440-1,604,WH-S,true unit,,,2026-10-31
+D-s04,engine,Ranger,L-440-1,640,WH-S,look-alike decoy (one transposition),,,2026-10-31
+X-s04-1,engine,Ranger,L-440-1,2001,WH-S,distractor: number printed on the photo that is NOT the serial,,,2026-10-31
+X-s04-2,engine,Ranger,L-440-1,W-535-AC-13318,WH-S,distractor: number printed on the photo that is NOT the serial,,,2026-10-31
+T-s05,excavator,Liebherr,R921,921R1789,WH-S,true unit,,,2026-10-31
+D-s05,excavator,Liebherr,R921,921R1798,WH-S,look-alike decoy (one transposition),,,2026-10-31
+X-s06-1,generator,Caterpillar,,BC-260,WH-S,distractor: number printed on the photo that is NOT the serial,,,2026-10-31
+N-s06,generator,Caterpillar,,S06-UNSEEN-01,WH-S,registered unit whose serial is not visible,,,2026-10-31
+T-s07,engine,Pratt & Whitney,R-1830-92,317876,WH-S,true unit,,,2026-10-31
+D-s07,engine,Pratt & Whitney,R-1830-92,317867,WH-S,look-alike decoy (one transposition),,,2026-10-31
+T-s08,generator,Anton Piller,NKT 115-4,1104 802,WH-S,true unit,,,2026-10-31
+D-s08,generator,Anton Piller,NKT 115-4,1104820,WH-S,look-alike decoy (one transposition),,,2026-10-31
+U-s09-1,generator,,DG 182/8,254174,WH-S,disputed reading (readers disagree),,,2026-10-31
+U-s09-2,generator,,DG 182/8,264174,WH-S,disputed reading (readers disagree),,,2026-10-31
+T-s10,generator,Otto Bartholdi AG,WO 1250/1120 M22,39061,WH-S,true unit,,,2026-10-31
+D-s10,generator,Otto Bartholdi AG,WO 1250/1120 M22,39016,WH-S,look-alike decoy (one transposition),,,2026-10-31
+X-s10-1,generator,Otto Bartholdi AG,WO 1250/1120 M22,318130,WH-S,distractor: number printed on the photo that is NOT the serial,,,2026-10-31
+N-s11,transformer,CEM,,S11-UNSEEN-01,WH-S,registered unit whose serial is not visible,,,2026-10-31
+N-s12,forklift,Hyster,,S12-UNSEEN-01,WH-S,registered unit whose serial is not visible,,,2026-10-31
+N-s13,generator,AEG,,S13-UNSEEN-01,WH-S,registered unit whose serial is not visible,,,2026-10-31
+U-s14-1,generator,,,5735,WH-S,disputed reading (readers disagree),,,2026-10-31
+U-s14-2,generator,,,5765,WH-S,disputed reading (readers disagree),,,2026-10-31
+T-s15,electric motor,Malmbergs,MS 711-2,1212073091,WH-S,true unit,,,2026-10-31
+D-s15,electric motor,Malmbergs,MS 711-2,1212073019,WH-S,look-alike decoy (one transposition),,,2026-10-31
+T-s16,electric motor,Loher,A 160 LA-V6/4,8 253 379,WH-S,true unit,,,2026-10-31
+D-s16,electric motor,Loher,A 160 LA-V6/4,8253397,WH-S,look-alike decoy (one transposition),,,2026-10-31
+T-s17,engine,Pratt & Whitney,R-1830-92,BP457977,WH-S,true unit,,,2026-10-31
+D-s17,engine,Pratt & Whitney,R-1830-92,BP457978,WH-S,look-alike decoy (one transposition),,,2026-10-31
+N-s18,forklift,,,S18-UNSEEN-01,WH-S,registered unit whose serial is not visible,,,2026-10-31
+T-s19,electric motor,AEG,VDNW 22/6,2660874,WH-S,true unit,,,2026-10-31
+D-s19,electric motor,AEG,VDNW 22/6,2660847,WH-S,look-alike decoy (one transposition),,,2026-10-31
+T-s20,generator,Maffei-Schwartzkopff,DGV 1200/250,36734,WH-S,true unit,,,2026-10-31
+D-s20,generator,Maffei-Schwartzkopff,DGV 1200/250,36743,WH-S,look-alike decoy (one transposition),,,2026-10-31
+T-s21,generator,Westinghouse,,1S1084-1,WH-S,true unit,,,2026-10-31
+D-s21,generator,Westinghouse,,1S10814,WH-S,look-alike decoy (one transposition),,,2026-10-31
+T-s22,generator,Siemens-Schuckert,FL 560/24-250,1502071,WH-S,true unit,,,2026-10-31
+D-s22,generator,Siemens-Schuckert,FL 560/24-250,1502017,WH-S,look-alike decoy (one transposition),,,2026-10-31
+X-s23-1,switchgear,S&C,,135012R3,WH-S,distractor: number printed on the photo that is NOT the serial,,,2026-10-31
+N-s23,switchgear,S&C,,S23-UNSEEN-01,WH-S,registered unit whose serial is not visible,,,2026-10-31
+N-s24,forklift,,,S24-UNSEEN-01,WH-S,registered unit whose serial is not visible,,,2026-10-31
+T-s25,generator,Siemens-Schuckert Werke,D.U.G 400/40,470830,WH-S,true unit,,,2026-10-31
+D-s25,generator,Siemens-Schuckert Werke,D.U.G 400/40,470803,WH-S,look-alike decoy (one transposition),,,2026-10-31
+N-s26,outboard motor,Tohatsu,MFS9.8A3,S26-UNSEEN-01,WH-S,registered unit whose serial is not visible,,,2026-10-31

@@ -1,0 +1,236 @@
+{
+  "mode": "FIXTURE (demo) - measures engine/validation/provenance, NOT model quality",
+  "dataset": {
+    "images": 3,
+    "detections": 16,
+    "ledger_assets": 18,
+    "license": "CC0-1.0. Synthetic images rendered by scripts/make_fixtures.py; no third-party content."
+  },
+  "runs": [
+    {
+      "concept": "industrial generator",
+      "status": "partial",
+      "detections": 10
+    },
+    {
+      "concept": "forklift",
+      "status": "partial",
+      "detections": 6
+    }
+  ],
+  "metrics": {
+    "auto_match_count": 2,
+    "auto_match_precision": 1.0,
+    "false_automatic_match_rate": 0.0,
+    "candidate_recall_all_labelled": 0.7857,
+    "candidate_recall_usable_evidence": 1.0,
+    "human_review_rate": 0.6875,
+    "unregistered_objects_flagged": "2/2",
+    "asset_status_agreement_with_labels": "18/18",
+    "provenance_completeness": 1.0,
+    "schema_valid_extractions": "13/16",
+    "invalid_outputs_rejected": "2/2",
+    "timeouts_recovered_as_unusable": "1/1",
+    "fixture_mask_bounds_exact": "16/16 (identity check of the overlay path, not SAM IoU)",
+    "end_to_end_runs_completed": "2/2",
+    "latency_ms_fixture": [
+      {
+        "operation": "extract",
+        "count": 16,
+        "p50_ms": 0.01,
+        "p95_ms": 0.02,
+        "max_ms": 0.04
+      },
+      {
+        "operation": "segment",
+        "count": 6,
+        "p50_ms": 0.02,
+        "p95_ms": 0.28,
+        "max_ms": 0.37
+      }
+    ],
+    "estimated_cost_usd": 0.0
+  },
+  "not_measured": [
+    "SAM 3.1 segmentation quality (no live calls; needs MODEL_API_KEY + spend approval)",
+    "Muse Spark extraction accuracy on real nameplates",
+    "Live latency and actual billed cost"
+  ],
+  "per_detection": [
+    {
+      "case": "serial_match_conflicting_manufacturer",
+      "true_asset_id": "A-010",
+      "decision": "MISMATCHED",
+      "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+      "candidates": [
+        "A-010"
+      ],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "similar_looking_distinct_assets",
+      "true_asset_id": "A-011",
+      "decision": "PROBABLE",
+      "rule": "R2a_MANUFACTURER_MODEL_AMBIGUOUS",
+      "candidates": [
+        "A-010",
+        "A-011",
+        "A-012"
+      ],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "similar_looking_distinct_assets",
+      "true_asset_id": "A-012",
+      "decision": "PROBABLE",
+      "rule": "R2a_MANUFACTURER_MODEL_AMBIGUOUS",
+      "candidates": [
+        "A-010",
+        "A-011",
+        "A-012"
+      ],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "no_visible_identifiers",
+      "true_asset_id": "A-013",
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "candidates": [
+        "A-010",
+        "A-011",
+        "A-012",
+        "A-013",
+        "A-014"
+      ],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "provider_timeout",
+      "true_asset_id": "A-014",
+      "decision": "EVIDENCE_UNUSABLE",
+      "rule": "R0_EXTRACTION_FAILED",
+      "candidates": [],
+      "review_required": false,
+      "evidence_status": "error"
+    },
+    {
+      "case": "forklift_in_yard_unregistered",
+      "true_asset_id": null,
+      "decision": "NOT_IN_REGISTER",
+      "rule": "R4_NO_SUPPORTED_MATCH",
+      "candidates": [],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "exact_identifier_match",
+      "true_asset_id": "A-001",
+      "decision": "VERIFIED",
+      "rule": "R1_UNIQUE_SERIAL_MATCH",
+      "candidates": [
+        "A-001"
+      ],
+      "review_required": false,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "unreadable_serial_unique_model",
+      "true_asset_id": "A-002",
+      "decision": "PROBABLE",
+      "rule": "R2_MANUFACTURER_MODEL_UNIQUE",
+      "candidates": [
+        "A-002"
+      ],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "conflicting_ledger_serial",
+      "true_asset_id": "A-003",
+      "decision": "MISMATCHED",
+      "rule": "R6_SERIAL_NOT_IN_REGISTER_MODEL_MATCHES",
+      "candidates": [
+        "A-003"
+      ],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "duplicate_observation_first_view",
+      "true_asset_id": "A-007",
+      "decision": "PROBABLE",
+      "rule": "R2d_IDENTIFIER_SEEN_ON_MULTIPLE_OBJECTS",
+      "candidates": [
+        "A-007"
+      ],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "malformed_provider_response",
+      "true_asset_id": "A-015",
+      "decision": "EVIDENCE_UNUSABLE",
+      "rule": "R0_EXTRACTION_FAILED",
+      "candidates": [],
+      "review_required": false,
+      "evidence_status": "invalid"
+    },
+    {
+      "case": "observed_not_in_register",
+      "true_asset_id": null,
+      "decision": "NOT_IN_REGISTER",
+      "rule": "R4_UNREGISTERED_SERIAL",
+      "candidates": [],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "contradictory_ledger_duplicate_serial",
+      "true_asset_id": "A-005",
+      "decision": "PROBABLE",
+      "rule": "R2b_SERIAL_DUPLICATED_IN_LEDGER",
+      "candidates": [
+        "A-005",
+        "A-006"
+      ],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "exact_identifier_match",
+      "true_asset_id": "A-004",
+      "decision": "VERIFIED",
+      "rule": "R1_UNIQUE_SERIAL_MATCH",
+      "candidates": [
+        "A-004"
+      ],
+      "review_required": false,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "duplicate_observation_second_view",
+      "true_asset_id": "A-007",
+      "decision": "PROBABLE",
+      "rule": "R2d_IDENTIFIER_SEEN_ON_MULTIPLE_OBJECTS",
+      "candidates": [
+        "A-007"
+      ],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "unsupported_model_conclusion",
+      "true_asset_id": "A-009",
+      "decision": "EVIDENCE_UNUSABLE",
+      "rule": "R0_EXTRACTION_FAILED",
+      "candidates": [],
+      "review_required": false,
+      "evidence_status": "invalid"
+    }
+  ]
+}
