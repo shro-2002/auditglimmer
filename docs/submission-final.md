@@ -50,12 +50,20 @@ script). Independently recomputed 31 Oct. Older figures ("7 SAM + 5 Muse", "6 + 
    cannot auto-verify); correct single suggestion to the reviewer 5/6; 1 distractor number read on a negative (h04,
    flagged uncertain); 19 Muse calls, $0.12. AI-only labels, one source site, n = 14.
 
+**Holdout arms (post-hoc, same stored outputs):** rules without Muse give 0/6 correct single suggestions; with Muse
+5/6; with Muse + the two-read gate 5/6 at +42% cost — on this set the gate caught nothing. Muse's measured value is
+turning "check every asset" into the right single candidate; no arm auto-verified anything on whole-photo plates.
+
+**Evidence challenge page (`/challenge`):** one recorded-live case (SAM 3.1 masks on a real forklift photo; Muse read
+"HYSTER", no serial; rules narrowed the register to two Hyster rows and sent it to review) beside one labelled DEMO
+Tier 1 match. No live photo has produced a Tier 1 match yet, and the page says so.
+
 End-to-end live proof (31 Oct): a real equipment photo went SAM 3.1 → Muse → rules → UI. Muse found no legible
 serial, so the result was WEAK (type only) and no second read was needed. In the holdout the second read ran live
 5 times and agreed every time, so it has **not yet been seen catching a real disagreement** — it remains an
 experimental safeguard, not validated.
 
-Engineering: 143 backend tests (incl. 39 for the Tier 1 gate), 16 browser tests + 1 paid live journey, axe 0
+Engineering: 144 backend tests (incl. 40 for the Tier 1 gate), 17 browser tests + 1 paid live journey, axe 0
 serious issues, independent adversarial reviews. Labels in all studies are AI-made, not independent human ground truth.
 
 ## Judging criteria
