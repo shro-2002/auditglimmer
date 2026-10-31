@@ -55,8 +55,8 @@ in `docs/decisions.md`.
 | Set | What | Key numbers |
 |---|---|---|
 | Historical, pre-registered (26 photos) | `docs/muse-study-results.md` | serial exact 11/16 (69%); 0 invented serials; **1 unsafe verification (s14) — safety gate failed** |
-| Post-hoc (same 26) | engine changes after seeing outputs | correct auto-verifications 3/14 → 7/14 (optimistic; now impossible for whole-photo items) |
-| Fresh holdout (14 new photos, frozen before the run) | `docs/holdout-study-results.md`, independently verified | serial exact 5/6; **0 unsafe**, 0 auto-verifications (by design); correct single suggestion 5/6; second reads 5/5 agreed; $0.12 |
+| Post-hoc (same 26) | engine changes after seeing outputs | correct auto-verifications 3/14 → 7/14, but the post-hoc rules still auto-verified the disputed s14 (optimistic; now impossible for whole-photo items) |
+| Fresh holdout (14 new photos, frozen before the run) | `docs/holdout-study-results.md`, independently verified | serial exact 5/6; **0 unsafe**, 0 auto-verifications (by design); correct single suggestion 5/6 (3 of the 5 reach the reviewer labelled MISMATCHED: the register's long maker names conflict); second reads 5/5 agreed; $0.12 |
 | Holdout arms (post-hoc, same outputs) | `eval/results/holdout-arms.json` | no Muse: 0/6 suggestions · Muse: 5/6 · Muse + gate: 5/6 at +42% cost; the gate caught nothing on this set |
 | Fixture regression (DEMO) | `eval/run_eval.py` | 18/18 asset statuses; 0 false automatic matches |
 

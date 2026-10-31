@@ -16,7 +16,7 @@ const TEST_SESSION_PATTERN = /^(e2e|verify)/i;
 
 const PIPELINE = [
   ["Ledger", "Upload the borrower's equipment register (CSV) and site photos."],
-  ["SAM 3.1", "Segments every instance of an asset type in each photo."],
+  ["SAM 3.1", "Segments the instances it finds of a named asset type (recall not yet measured on live photos)."],
   ["Muse Spark 1.3", "Reads visible identifiers — make, model, serial, asset tag — from each region."],
   ["Rule engine", "Deterministically matches evidence to ledger rows; no model decides a match."],
   ["Human review", "Anything uncertain goes to a named reviewer with a written note."],

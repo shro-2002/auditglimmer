@@ -43,11 +43,11 @@ script). Independently recomputed 31 Oct. Older figures ("7 SAM + 5 Muse", "6 + 
    below the 70% bar); 0 invented serials on 8 negatives; **1 unsafe automatic verification on a disputed item
    (s14) — the pre-registered safety gate FAILED.** This failure motivated the two-read gate and the whole-photo rule.
 2. **Post-hoc development (same 26 photos, engine changes after seeing outputs; not pre-registered):** correct
-   automatic verifications 3/14 → 7/14. Optimistic by construction. Under the current rules these whole-photo
+   automatic verifications 3/14 → 7/14, while still auto-verifying the disputed s14. Optimistic by construction. Under the current rules these whole-photo
    items can no longer auto-verify at all.
 3. **Fresh holdout (14 new photos, frozen before the run; `docs/holdout-study-results.md`, independently
    verified):** exact serial 5/6 (CI 44–97%); 0 automatic verifications and 0 unsafe (by design: whole-photo plates
-   cannot auto-verify); correct single suggestion to the reviewer 5/6; 1 distractor number read on a negative (h04,
+   cannot auto-verify); correct single suggestion to the reviewer 5/6 (3 of those 5 labelled MISMATCHED because the synthetic register's long maker names conflict); 1 distractor number read on a negative (h04,
    flagged uncertain); 19 Muse calls, $0.12. AI-only labels, one source site, n = 14.
 
 **Holdout arms (post-hoc, same stored outputs):** rules without Muse give 0/6 correct single suggestions; with Muse
@@ -90,4 +90,4 @@ US Army (SSG Alfred Batungbacal) — public domain. Generator nameplate: Hawerot
 
 ## Links (owner to fill)
 
-Video: … · Repository: … · Hosted demo: not deployed (no authentication yet; localhost only)
+Video: … · Repository: … · Hosted demo: not deployed (localhost only; a shared access code exists, no per-user accounts)
