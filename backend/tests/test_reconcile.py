@@ -6,7 +6,7 @@ import random
 
 import pytest
 
-from app.reconcile import LedgerAsset, Observation, Review, canonical_type, norm_id, reconcile
+from app.reconcile import Confirmation, LedgerAsset, Observation, Review, canonical_type, norm_id, reconcile
 from app.schemas import ModelEvidence
 
 FAC = "WH-01"
@@ -19,12 +19,14 @@ def asset(aid: str, typ: str = "Generator", mfr: str | None = "Cumberland", mode
 
 def obs(eid: str, typ: str = "generator", mfr: str | None = None, model: str | None = None, serial: str | None = None,
         *, uncertain_serial: bool = False, status: str = "ok", concept: str = "generator", fac: str = FAC,
-        image: str = "img1") -> Observation:
+        image: str = "img1", confirm: object = "same") -> Observation:
     ev = ModelEvidence(
         observed_object_type=typ, visible_manufacturer=mfr, visible_model=model, visible_serial_number=serial,
         uncertainties=[{"field": "visible_serial_number", "note": "blurry"}] if uncertain_serial else [],
     ) if status == "ok" else None
-    return Observation(eid, f"det-{eid}", image, fac, concept, status, ev, None if status == "ok" else "boom")
+    # default: an agreeing independent second read, so these tests exercise the rules behind the Tier 1 gate
+    second = Confirmation("ok", ev) if confirm == "same" else confirm
+    return Observation(eid, f"det-{eid}", image, fac, concept, status, ev, None if status == "ok" else "boom", second)
 
 
 def run(assets, observations, reviews=(), inspected=None):  # noqa: ANN001, ANN201
@@ -70,7 +72,7 @@ def test_serial_match_in_other_facility_is_mismatched() -> None:
 
 
 def test_duplicate_serial_in_ledger_is_never_auto_resolved() -> None:
-    d, a = run([asset("A1", serial="GN-7"), asset("A2", serial="GN-0007")], [obs("e1", serial="GN0007")])
+    d, a = run([asset("A1", serial="GN-7"), asset("A2", serial="GN-0007")], [obs("e1", mfr="Cumberland", serial="GN0007")])
     # GN-7 normalizes to GN7 (len 3) so only A2 matches: unique
     assert d["e1"].matched_asset_id == "A2"
     d, a = run([asset("A1", serial="GN-7777"), asset("A2", serial="gn7777")], [obs("e1", serial="GN-7777")])

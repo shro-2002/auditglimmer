@@ -2,8 +2,10 @@
 
 **Mode: FIXTURE (DEMO).** Segmentation and extraction outputs are authored fixture labels on 3
 synthetic scenes. These results measure the reconciliation engine, validation, provenance, error
-handling and UI — **not** SAM 3.1 or Muse Spark quality. LIVE mode: **PARTIALLY VERIFIED** — SAM 3.1 transport verified
-live; segmentation of synthetic cartoons returns zero matches; Muse Spark not yet called live.
+handling and UI — **not** SAM 3.1 or Muse Spark quality. Live model results are reported separately and never mixed
+with these: historical pre-registered study (`docs/muse-study-results.md`), post-hoc re-scoring (same file, labelled),
+fresh holdout (`docs/holdout-study-protocol.md`, frozen, not yet run). Re-run after the Tier 1 gate (D-16/D-17):
+fixture A-004 now has an authored second read that disagrees (GN-62046), so it goes to review.
 
 Reproduce: `uv run --project backend python eval/run_eval.py` → `eval/results/fixture-eval.json`.
 
@@ -11,12 +13,12 @@ Reproduce: `uv run --project backend python eval/run_eval.py` → `eval/results/
 
 | Metric | Value |
 |---|---|
-| Automatic matches | 2 |
-| Auto-match precision | 1.00 (2/2) |
+| Automatic matches | 1 (A-001; A-004 now held by the two-read gate) |
+| Auto-match precision | 1.00 (1/1) |
 | False automatic-match rate | 0.00 (0/16) |
 | Candidate recall, all labelled detections | 0.79 (11/14; misses are the 3 deliberately failed extractions) |
 | Candidate recall, usable evidence | 1.00 |
-| Human-review rate | 0.69 (11/16) — by design: fixtures are mostly hard cases |
+| Human-review rate | 0.75 (12/16) — by design: fixtures are mostly hard cases |
 | Unregistered objects flagged NOT_IN_REGISTER | 2/2 |
 | Asset-status agreement with labels | 18/18 |
 | Provenance completeness | 1.00 |

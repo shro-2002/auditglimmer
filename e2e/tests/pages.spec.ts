@@ -4,7 +4,7 @@ import { expect, test } from "@playwright/test";
 import { API, seededSession } from "./helpers";
 
 const EXPECTED: Record<string, string> = {
-  "A-001": "VERIFIED", "A-004": "VERIFIED",
+  "A-001": "VERIFIED", "A-004": "PROBABLE",
   "A-003": "MISMATCHED", "A-010": "MISMATCHED",
   "A-002": "PROBABLE", "A-005": "PROBABLE", "A-006": "PROBABLE", "A-007": "PROBABLE", "A-011": "PROBABLE", "A-012": "PROBABLE",
   "A-008": "UNVERIFIED", "A-009": "UNVERIFIED", "A-013": "UNVERIFIED", "A-014": "UNVERIFIED", "A-015": "UNVERIFIED",

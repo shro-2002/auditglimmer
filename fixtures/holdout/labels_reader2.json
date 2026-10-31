@@ -1,0 +1,174 @@
+{
+  "h01": {
+    "asset_type": "tractor",
+    "manufacturer": "Fritz Bührer Hinwil-Zch.",
+    "model": "UNM4/10",
+    "serial": "11400",
+    "serial_confidence": "certain",
+    "ambiguous_characters": null,
+    "other_numbers_seen": "Motor No 9508879; Bohrg 75 mm; Hub 100 mm; Cyl 4; PS 30; Gewicht 1300 kg; gauges 40-120 C, 0-5 kg/cm2; Motor No may also be read as identifier",
+    "distractor_numbers": [
+      "9508879",
+      "1300"
+    ]
+  },
+  "h02": {
+    "asset_type": "wheel loader",
+    "manufacturer": "Liebherr-Werk Bischofshofen GmbH",
+    "model": "L544",
+    "serial": null,
+    "serial_confidence": "none",
+    "ambiguous_characters": "PIN field blank between asterisks (redacted/absent)",
+    "other_numbers_seen": "Year 2005; 121 kW; 40 km/h; 17900 kg; 9300 kg; 9800 kg; 5500 postcode; vertical 9069915",
+    "distractor_numbers": [
+      "9069915",
+      "17900",
+      "2005"
+    ]
+  },
+  "h03": {
+    "asset_type": "locomotive",
+    "manufacturer": "North British Locomotive Company Ltd, Glasgow",
+    "model": null,
+    "serial": "27291",
+    "serial_confidence": "certain",
+    "ambiguous_characters": null,
+    "other_numbers_seen": "Year 1953",
+    "distractor_numbers": [
+      "1953"
+    ]
+  },
+  "h04": {
+    "asset_type": "telehandler",
+    "manufacturer": "Merlo S.p.A.",
+    "model": "P40.17",
+    "serial": null,
+    "serial_confidence": "none",
+    "ambiguous_characters": "Chassis No shows ZF1P4000 then redacted; S.A.V. No first char C or G, 3 vs 8",
+    "other_numbers_seen": "S.A.V. No C303223; 4000 kg; 10350 kg; year 2013; 076978; 12010 postcode",
+    "distractor_numbers": [
+      "C303223",
+      "076978",
+      "ZF1P4000",
+      "10350"
+    ]
+  },
+  "h05": {
+    "asset_type": "current transformer",
+    "manufacturer": "Zhejiang Sanai Transformer Co., Ltd",
+    "model": "LZZBJ-11",
+    "serial": "31074",
+    "serial_confidence": "certain",
+    "ambiguous_characters": null,
+    "other_numbers_seen": "MC 03820522; 15/5 A; 0.5; 5 VA; 50 Hz; 12/28/75 kV; IEC60044-1; 1.5 kA; 3.75 kA; 2012 Y 11 M",
+    "distractor_numbers": [
+      "03820522",
+      "60044-1"
+    ]
+  },
+  "h06": {
+    "asset_type": "generator",
+    "manufacturer": "Bruce Peebles & Co Ltd, Edinburgh",
+    "model": "2316 SP",
+    "serial": "70520",
+    "serial_confidence": "certain",
+    "ambiguous_characters": null,
+    "other_numbers_seen": "4000 kW; 336 RPM; 3300 V; 785 A; 3 phases; 50 cycles; spec 226/1925; runaway 750; 128,000 lbs; turbine (Boving & Co) serial 987; 97 ft; 5,600 HP",
+    "distractor_numbers": [
+      "987",
+      "226/1925",
+      "128,000"
+    ]
+  },
+  "h07": {
+    "asset_type": "steam traction engine",
+    "manufacturer": null,
+    "model": null,
+    "serial": null,
+    "serial_confidence": "none",
+    "ambiguous_characters": null,
+    "other_numbers_seen": "none; nameplate reads Guiseley Urban District Council",
+    "distractor_numbers": []
+  },
+  "h08": {
+    "asset_type": "electric motor",
+    "manufacturer": "Crompton Parkinson",
+    "model": null,
+    "serial": null,
+    "serial_confidence": "none",
+    "ambiguous_characters": null,
+    "other_numbers_seen": "none visible",
+    "distractor_numbers": []
+  },
+  "h09": {
+    "asset_type": "elevator",
+    "manufacturer": null,
+    "model": null,
+    "serial": null,
+    "serial_confidence": "none",
+    "ambiguous_characters": "plates beside door not legible at this resolution",
+    "other_numbers_seen": "Kasarwadi Pune Metro station signage; bus timetable times",
+    "distractor_numbers": []
+  },
+  "h10": {
+    "asset_type": "steam pumping engine",
+    "manufacturer": "Nordberg",
+    "model": null,
+    "serial": null,
+    "serial_confidence": "none",
+    "ambiguous_characters": "plate text below NORDBERG blurred, unreadable",
+    "other_numbers_seen": "HAER IL-4-82 archive label; 5 x 7 / 4 x 5 film scale",
+    "distractor_numbers": [
+      "IL-4-82"
+    ]
+  },
+  "h11": {
+    "asset_type": "locomotive",
+    "manufacturer": "Henschel & Sohn, Kassel",
+    "model": null,
+    "serial": "28756",
+    "serial_confidence": "certain",
+    "ambiguous_characters": null,
+    "other_numbers_seen": "Year 1953",
+    "distractor_numbers": [
+      "1953"
+    ]
+  },
+  "h12": {
+    "asset_type": "electric motor",
+    "manufacturer": "Westinghouse Electric & Manufacturing Company",
+    "model": "Marine D.C. Motor",
+    "serial": "IS7P205",
+    "serial_confidence": "uncertain",
+    "ambiguous_characters": "first char I vs 1; S vs 5",
+    "other_numbers_seen": "1000 HP; 600 V; 1320 A; 425 RPM; instruction book 5107; small illegible stamp top-left",
+    "distractor_numbers": [
+      "5107",
+      "1320"
+    ]
+  },
+  "h13": {
+    "asset_type": "pump",
+    "manufacturer": null,
+    "model": null,
+    "serial": null,
+    "serial_confidence": "none",
+    "ambiguous_characters": "cast oval plates painted over, illegible",
+    "other_numbers_seen": "none legible",
+    "distractor_numbers": []
+  },
+  "h14": {
+    "asset_type": "generator",
+    "manufacturer": "Uralelektroapparat",
+    "model": "VGS-375/49-28",
+    "serial": "8534",
+    "serial_confidence": "uncertain",
+    "ambiguous_characters": "3rd digit 3 vs 5; first digit 8 vs 3",
+    "other_numbers_seen": "4800 kVA; 6300 V; 440 A; cos phi 0.8; 50 Hz; 214 rpm; 375 rpm runaway; 430 A rotor; 5050/5300 kVA; GOST 5616-50; weight 75 t; year 196? (last digit obscured)",
+    "distractor_numbers": [
+      "5616-50",
+      "375/49-28",
+      "4800"
+    ]
+  }
+}

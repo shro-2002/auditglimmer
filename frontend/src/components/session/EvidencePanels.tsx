@@ -38,6 +38,23 @@ export function findLedgerRecord(records: LedgerRecord[], assetId: string): Ledg
   return records.find((r) => r.asset_id === assetId) ?? records.find((r) => r.id === assetId);
 }
 
+/** Tier 1 gate second read. Experimental safeguard: agreement is supporting evidence, not proof. */
+function SecondRead({ confirmation }: { confirmation: Record<string, unknown> }) {
+  const ev = confirmation.evidence as { visible_serial_number?: string | null } | null;
+  const ok = confirmation.status === "ok";
+  return (
+    <div data-testid="second-read" className="border-t border-line pt-3">
+      <p className="text-xs uppercase tracking-wider text-ink-faint">
+        Second read (Tier 1 gate · experimental safeguard, not a safety guarantee)
+      </p>
+      <dl className="mt-2 grid grid-cols-2 gap-3">
+        <Field label="Second-read serial" value={ok ? (ev?.visible_serial_number ?? "not visible") : `failed (${String(confirmation.status)})`} mono={ok} />
+        <Field label="View" value={String(confirmation.view ?? "—")} />
+      </dl>
+    </div>
+  );
+}
+
 export function EvidencePanel({ bundle, call }: { bundle: DetectionBundle; call: ProviderCall | undefined }) {
   const { detection, evidence: record } = bundle;
   const ev = record?.evidence ?? null;
@@ -46,7 +63,15 @@ export function EvidencePanel({ bundle, call }: { bundle: DetectionBundle; call:
       <div className="space-y-4">
         <dl className="grid grid-cols-2 gap-3">
           <Field label="Detection" value={`${detection.concept} · provider object id ${detection.object_index}`} />
-          <Field label="Segmentation" value={`${detection.provider} · ${detection.model}`} mono />
+          <Field
+            label="Segmentation"
+            value={
+              detection.provider === "full-frame"
+                ? "SAM skipped — whole photo declared as one region by the auditor (no claim it shows the registered unit)"
+                : `${detection.provider} · ${detection.model}`
+            }
+            mono={detection.provider !== "full-frame"}
+          />
           <Field label={confidenceLabel(detection.mode, "Detector")} value={formatFraction(detection.confidence)} />
           <Field label="Mask encoding" value={detection.mask.encoding} mono />
         </dl>
@@ -109,6 +134,8 @@ export function EvidencePanel({ bundle, call }: { bundle: DetectionBundle; call:
             </div>
           </>
         )}
+
+        {record?.confirmation && <SecondRead confirmation={record.confirmation} />}
 
         {record && (
           <dl className="grid grid-cols-2 gap-3 border-t border-line pt-3">

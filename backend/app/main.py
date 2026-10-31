@@ -35,7 +35,7 @@ from .schemas import (
 from .security import sanitize_filename, validate_image
 from .services import (
     REVIEW_LOCK, apply_review, build_graph, build_overview, build_reconciliation, build_trace, detection_out, event_out, latest_detections,
-    evidence_out, find_decision, get_session_or_404, image_out, ledger_out, run_out, session_out,
+    evidence_out, find_decision, get_session_or_404, image_out, ledger_out, run_out, session_out, set_tier1_policy,
 )
 
 correlation_id: ContextVar[str] = ContextVar("correlation_id", default="-")
@@ -80,6 +80,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:  # noqa: C901 - rou
     database = Database(settings.database_url)
     seg, ext = build_providers(settings)
     pipeline = Pipeline(settings, database, seg, ext)
+    set_tier1_policy(settings.tier1_policy)
     with database.session() as db:  # runs orphaned by a previous process can never finish
         for stale in db.scalars(select(RunRow).where(RunRow.status.in_(("queued", "running")))).all():
             stale.status, stale.error = "failed", "interrupted: server restarted before the run finished"

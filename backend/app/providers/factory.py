@@ -33,7 +33,8 @@ class BlockedMuse:
     def __init__(self, reason: str, model: str) -> None:
         self.reason, self.model = reason, model
 
-    def extract_visual_evidence(self, crop: ImageInput, context: CropContext) -> ExtractionResult:
+    def extract_visual_evidence(self, crop: ImageInput, context: CropContext,
+                                purpose: str = "evidence") -> ExtractionResult:
         raise ProviderError("not_approved", self.reason)
 
     def explain_discrepancy(self, facts: list[str]) -> tuple[str, CallMeta]:

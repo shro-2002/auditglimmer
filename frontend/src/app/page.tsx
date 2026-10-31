@@ -12,7 +12,7 @@ import { formatDateTime } from "@/lib/format";
 import type { Session } from "@/lib/types";
 
 const DEMO_FACILITY = "WH-01"; // facility_id used by the bundled demo ledger
-const TEST_SESSION_PATTERN = /^e2e/i;
+const TEST_SESSION_PATTERN = /^(e2e|verify)/i;
 
 const PIPELINE = [
   ["Ledger", "Upload the borrower's equipment register (CSV) and site photos."],
@@ -153,7 +153,7 @@ export default function OverviewPage() {
             </Card>
           )}
 
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
             <Card title="Asset status across all sessions">
               <StatusDonut byStatus={overview.data.by_status} />
               <p className="mt-3 text-xs text-ink-muted">{UNVERIFIED_NOTE}</p>

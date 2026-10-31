@@ -160,6 +160,7 @@ export interface EvidenceRecord {
   model: string;
   mode: Mode;
   provider_call_id: string | null;
+  confirmation?: Record<string, unknown> | null;
 }
 
 export type Decision =
@@ -278,7 +279,7 @@ export interface ProviderCall {
   provider: string;
   model: string;
   mode: Mode;
-  operation: "segment" | "extract" | "explain";
+  operation: "segment" | "extract" | "confirm" | "explain";
   status: "ok" | "error" | "timeout" | "invalid_output";
   latency_ms: number;
   started_at: ISO;

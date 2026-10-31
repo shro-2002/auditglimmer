@@ -1,0 +1,179 @@
+{
+ "h01": {
+  "asset_type": "tractor",
+  "manufacturer": "Fritz Bührer Hinwil-Zch. Traktoren- & Motorenfabrik",
+  "model": "UNM4/10",
+  "serial": "11400",
+  "serial_confidence": "certain",
+  "ambiguous_characters": null,
+  "other_numbers_seen": "Motor No 9508879 (engine number); Bohrg 75 mm; Hub 100 mm; Cyl 4; PS 30; Gewicht 1300 kg; gauges 40-120 °C, 0-5 kg/cm²",
+  "distractor_numbers": [
+   "9508879"
+  ]
+ },
+ "h02": {
+  "asset_type": "wheel loader",
+  "manufacturer": "Liebherr-Werk Bischofshofen GmbH",
+  "model": "L544",
+  "serial": null,
+  "serial_confidence": "none",
+  "ambiguous_characters": null,
+  "other_numbers_seen": "PIN field blank (only two '*' marks; redacted by photographer per file description); Baujahr 2005; 121 kW; 40 km/h; 17900 / 9300 / 9800 kg; address A-5500; small vertical print 9069915 (plate/part number)",
+  "distractor_numbers": [
+   "9069915",
+   "2005",
+   "17900"
+  ]
+ },
+ "h03": {
+  "asset_type": "locomotive",
+  "manufacturer": "North British Locomotive Company Ltd, Glasgow",
+  "model": null,
+  "serial": "27291",
+  "serial_confidence": "certain",
+  "ambiguous_characters": null,
+  "other_numbers_seen": "1953 (build year). Commons title cites locomotive '25NC 3405', not visible on plate",
+  "distractor_numbers": [
+   "1953"
+  ]
+ },
+ "h04": {
+  "asset_type": "telehandler",
+  "manufacturer": "Merlo S.p.A.",
+  "model": "P40.17",
+  "serial": null,
+  "serial_confidence": "none",
+  "ambiguous_characters": "S.A.V. number: first char C or 0; last char 3 or Z",
+  "other_numbers_seen": "Chassis N° 'ZF1P4000' followed by a grey redaction box (rest of chassis number removed by photographer); S.A.V. N° C303223 (after-sales/service number, faint); 4000 kg; 10350 kg; 2013; 076978 (plate part number); 12010 Cuneo",
+  "distractor_numbers": [
+   "C303223",
+   "ZF1P4000",
+   "076978",
+   "10350"
+  ]
+ },
+ "h05": {
+  "asset_type": "current transformer",
+  "manufacturer": "Zhejiang Sanai Transformer Co., Ltd (ZH)",
+  "model": "LZZBJ-11",
+  "serial": "31074",
+  "serial_confidence": "certain",
+  "ambiguous_characters": null,
+  "other_numbers_seen": "CMC 03820522 (licence mark); 15/5 A; 0.5 / 5 VA; 50 Hz; IEC60044-1; 12/28/75 kV; 1.5 kA; 3.75 kA; date 2012 Y 11 M; 1S1 1S2",
+  "distractor_numbers": [
+   "03820522",
+   "15/5",
+   "12/28/75",
+   "IEC60044-1"
+  ]
+ },
+ "h06": {
+  "asset_type": "generator",
+  "manufacturer": "Bruce Peebles & Co. Ltd, Edinburgh",
+  "model": "2316 SP",
+  "serial": "70520",
+  "serial_confidence": "certain",
+  "ambiguous_characters": null,
+  "other_numbers_seen": "Induction generator: 4000 kW; 336 rpm; CMR; 3300 V; 3 phases; 50 cycles; 785 A; spec 226/1925; insul class B; star; runaway 750 rpm; 128,000 lbs. Water turbine by Boving & Co Ltd London: SERIAL No 987; 97 ft head; 5,600 HP; John Brown & Co (Clydebank)",
+  "distractor_numbers": [
+   "987",
+   "226/1925",
+   "128,000"
+  ]
+ },
+ "h07": {
+  "asset_type": "steam roller",
+  "manufacturer": null,
+  "model": null,
+  "serial": null,
+  "serial_confidence": "none",
+  "ambiguous_characters": null,
+  "other_numbers_seen": "Owner plate only: 'GUISELEY URBAN DISTRICT COUNCIL'; no maker, model or number visible. Commons title says Fowler steam roller (not visible in pixels)",
+  "distractor_numbers": []
+ },
+ "h08": {
+  "asset_type": "electrical equipment",
+  "manufacturer": "Crompton Parkinson",
+  "model": null,
+  "serial": null,
+  "serial_confidence": "none",
+  "ambiguous_characters": null,
+  "other_numbers_seen": "Heavily rusted cast maker's badge; no numbers legible. File description says it is on a crane",
+  "distractor_numbers": []
+ },
+ "h09": {
+  "asset_type": "elevator",
+  "manufacturer": null,
+  "model": null,
+  "serial": null,
+  "serial_confidence": "none",
+  "ambiguous_characters": null,
+  "other_numbers_seen": "Wide shot of lift entrance at Kasarwadi metro station (Pune Metro); small plates beside door illegible at this resolution; bus timetable 'Route No. 24', 'Frequency 40 min', times 06:15 etc.",
+  "distractor_numbers": [
+   "24"
+  ]
+ },
+ "h10": {
+  "asset_type": "pumping engine",
+  "manufacturer": "Nordberg",
+  "model": null,
+  "serial": null,
+  "serial_confidence": "none",
+  "ambiguous_characters": null,
+  "other_numbers_seen": "Archive photo: plate reads 'NORDBERG' with several lines too blurred to read; HAER IL-4-?-82 caption (one character overwritten); '5 x 7' / '4 x 5' film-format scale",
+  "distractor_numbers": [
+   "HAER IL-4-82",
+   "5 x 7"
+  ]
+ },
+ "h11": {
+  "asset_type": "locomotive",
+  "manufacturer": "Henschel & Sohn, Kassel",
+  "model": null,
+  "serial": "28756",
+  "serial_confidence": "certain",
+  "ambiguous_characters": null,
+  "other_numbers_seen": "1953 (build year). Commons title cites locomotive '25NC 3437', not visible on plate",
+  "distractor_numbers": [
+   "1953"
+  ]
+ },
+ "h12": {
+  "asset_type": "electric motor",
+  "manufacturer": "Westinghouse Electric & Manufacturing Company, East Pittsburgh",
+  "model": null,
+  "serial": "1S7P205",
+  "serial_confidence": "uncertain",
+  "ambiguous_characters": "first char '1' or 'I'; last char '5' or '6'",
+  "other_numbers_seen": "Marine D.C. motor; 1000 HP; 600 V; 1320 A; 425 rpm; instruction book 5107; small stamped number top-left ~'1759?' (illegible)",
+  "distractor_numbers": [
+   "5107",
+   "1320"
+  ]
+ },
+ "h13": {
+  "asset_type": "pump",
+  "manufacturer": null,
+  "model": null,
+  "serial": null,
+  "serial_confidence": "none",
+  "ambiguous_characters": null,
+  "other_numbers_seen": "Cast oval maker's plate painted over; text and numbers illegible",
+  "distractor_numbers": []
+ },
+ "h14": {
+  "asset_type": "generator",
+  "manufacturer": "Uralelektroapparat (УРАЛЭЛЕКТРОАППАРАТ)",
+  "model": "ВГС-375/49-28",
+  "serial": "8534",
+  "serial_confidence": "uncertain",
+  "ambiguous_characters": "first char 8 or 2; third char 3 or 5",
+  "other_numbers_seen": "Hydrogenerator, synchronous 3-phase; 4800 kVA; 6300 V; 440 A; cos φ 0.8; 50 Hz; 214 rpm; runaway 375 rpm; rotor current 430 A; 5050 kVA / 5300 kVA; cos φ 0.76/0.78; 75 t; ГОСТ 5616-50; year 196? (last digit obscured); made in USSR. Commons title says 'Turbine' but the plate is a generator",
+  "distractor_numbers": [
+   "5616-50",
+   "375/49-28",
+   "4800",
+   "6300"
+  ]
+ }
+}

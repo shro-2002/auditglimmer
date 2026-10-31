@@ -43,8 +43,13 @@ class Settings:
     provider_max_retries: int = 2
     provider_concurrency: int = 2
     cors_origins: tuple[str, ...] = ("http://localhost:3000", "http://127.0.0.1:3000")
+    tier1_policy: str = "two_read"  # two_read | human_review (every identifier match goes to a human)
     access_code: str = field(default="", repr=False)  # hosted demo gate; empty = local, no gate
     _api_key: str = field(default="", repr=False)
+
+    def __post_init__(self) -> None:
+        if self.tier1_policy not in {"two_read", "human_review"}:
+            raise ValueError(f"tier1_policy must be 'two_read' or 'human_review', got {self.tier1_policy!r}")
 
     @property
     def credentials_present(self) -> bool:
@@ -84,6 +89,13 @@ def _access_code() -> str:
     return code
 
 
+def _tier1_policy() -> str:
+    policy = os.environ.get("AUDITGLIMMER_TIER1_POLICY", "two_read").strip().lower()
+    if policy not in {"two_read", "human_review"}:
+        raise ValueError(f"AUDITGLIMMER_TIER1_POLICY must be 'two_read' or 'human_review', got {policy!r}")
+    return policy
+
+
 def load_settings() -> Settings:
     load_dotenv()
     mode = os.environ.get("AUDITGLIMMER_MODE", "demo").strip().lower()
@@ -103,6 +115,7 @@ def load_settings() -> Settings:
         max_live_usd_total=float(os.environ.get("AUDITGLIMMER_MAX_LIVE_USD_TOTAL", "1.00")),
         cors_origins=tuple(o.strip() for o in os.environ.get("AUDITGLIMMER_CORS_ORIGINS", "").split(",") if o.strip())
         or Settings.cors_origins,
+        tier1_policy=_tier1_policy(),
         access_code=_access_code(),
         _api_key=os.environ.get("MODEL_API_KEY", ""),
     )

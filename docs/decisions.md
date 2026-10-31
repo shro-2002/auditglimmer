@@ -53,3 +53,23 @@ without a benefit for the demo.
 
 **D-15 Live run caps.** 40 requests and $0.50 estimated per run by default (env-configurable);
 pre-call reservation with a conservative per-extraction estimate; actual usage recorded after.
+
+**D-16 Two-read confirmation gate before Tier 1 (2026-10-31; experimental safeguard).** Response to the
+pre-registered study's S1 failure (s14: one read, 5735 vs a disputed 5765). A first read with a single, certain,
+readable serial triggers a second Muse call on a view re-cut from the source photo (≤ 1536 px, contrast-stretched,
+sharpened) with an identifier-only prompt. Tier 1 is withheld (→ PROBABLE, rule `R2e_*`) unless the second read
+agrees on the normalised serial, manufacturer and asset type, does not conflict with the register row, sees one
+serial only, and neither read describes a standalone plate. Uniqueness, duplicate and conflict checks still run
+first. Both reads, model ids, the view image, timestamps and provider-call ids are stored on the evidence row.
+Agreement is supporting evidence, not proof: two reads of the same pixels by the same model can share a mistake
+(`test_shared_model_mistake_is_not_caught_by_agreement_alone`). `AUDITGLIMMER_TIER1_POLICY=human_review` sends every
+identifier match to a person. Evidence recorded before the gate has no second read and now shows
+`R2e_CONFIRMATION_MISSING`; it can be re-extracted (both reads) from the Inspect page.
+
+**D-17 Approved Tier 1 design (owner, 2026-10-31).** Tier 1 requires two consistent identifier reads, a unique
+serial match, at least one corroborating attribute (a read manufacturer or model matching the register row), no
+contradictory evidence and no unsupported plate-to-equipment association. A whole-photo (full-frame) region can
+never establish which physical unit a plate belongs to, so it never reaches Tier 1 (`R2e_WHOLE_PHOTO_ASSOCIATION_UNSUPPORTED`);
+it can still give the reviewer a single-candidate suggestion. A serial-only read, or a register row without
+manufacturer and model, cannot corroborate (`R2e_NO_CORROBORATING_ATTRIBUTE`). Ambiguity goes to human review.
+Two agreeing Muse calls are not an absolute safety guarantee. DEMO fixture A-004 shows the reads disagreeing.

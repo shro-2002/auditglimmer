@@ -210,6 +210,8 @@ class EvidenceRecordOut(BaseModel):
     model: str
     mode: Mode
     provider_call_id: str | None
+    # Tier 1 gate second read (experimental safeguard); raw provenance dict as recorded by the pipeline
+    confirmation: dict | None = None
 
 
 class ReviewCreate(Strict):
@@ -335,7 +337,7 @@ class ProviderCallOut(BaseModel):
     provider: str
     model: str
     mode: Mode
-    operation: Literal["segment", "extract", "explain"]
+    operation: Literal["segment", "extract", "confirm", "explain"]
     status: Literal["ok", "error", "timeout", "invalid_output"]
     latency_ms: float
     started_at: str

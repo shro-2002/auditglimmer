@@ -1,0 +1,45 @@
+asset_id,asset_type,manufacturer,model,serial_number,facility_id,expected_location,ledger_value,currency,inspection_date
+T-h01,tractor,Fritz Bührer Hinwil-Zch. Traktoren- & Motorenfabrik,UNM4/10,11400,WH-H,true unit,,,2026-10-31
+D-h01,tractor,Fritz Bührer Hinwil-Zch. Traktoren- & Motorenfabrik,UNM4/10,11401,WH-H,look-alike decoy (one transposition),,,2026-10-31
+X-h01-1,tractor,Fritz Bührer Hinwil-Zch. Traktoren- & Motorenfabrik,UNM4/10,1300,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h01-2,tractor,Fritz Bührer Hinwil-Zch. Traktoren- & Motorenfabrik,UNM4/10,9508879,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h02-1,wheel loader,Liebherr-Werk Bischofshofen GmbH,L544,17900,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h02-2,wheel loader,Liebherr-Werk Bischofshofen GmbH,L544,2005,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h02-3,wheel loader,Liebherr-Werk Bischofshofen GmbH,L544,9069915,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+N-h02,wheel loader,Liebherr-Werk Bischofshofen GmbH,L544,H02-UNSEEN-01,WH-H,registered unit whose serial is not visible,,,2026-10-31
+T-h03,locomotive,"North British Locomotive Company Ltd, Glasgow",,27291,WH-H,true unit,,,2026-10-31
+D-h03,locomotive,"North British Locomotive Company Ltd, Glasgow",,27219,WH-H,look-alike decoy (one transposition),,,2026-10-31
+X-h04-1,telehandler,Merlo S.p.A.,P40.17,076978,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h04-2,telehandler,Merlo S.p.A.,P40.17,10350,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h04-3,telehandler,Merlo S.p.A.,P40.17,C303223,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h04-4,telehandler,Merlo S.p.A.,P40.17,ZF1P4000,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+N-h04,telehandler,Merlo S.p.A.,P40.17,H04-UNSEEN-01,WH-H,registered unit whose serial is not visible,,,2026-10-31
+T-h05,current transformer,"Zhejiang Sanai Transformer Co., Ltd (ZH)",LZZBJ-11,31074,WH-H,true unit,,,2026-10-31
+D-h05,current transformer,"Zhejiang Sanai Transformer Co., Ltd (ZH)",LZZBJ-11,31047,WH-H,look-alike decoy (one transposition),,,2026-10-31
+X-h05-1,current transformer,"Zhejiang Sanai Transformer Co., Ltd (ZH)",LZZBJ-11,03820522,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h05-2,current transformer,"Zhejiang Sanai Transformer Co., Ltd (ZH)",LZZBJ-11,12/28/75,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h05-4,current transformer,"Zhejiang Sanai Transformer Co., Ltd (ZH)",LZZBJ-11,60044-1,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h05-5,current transformer,"Zhejiang Sanai Transformer Co., Ltd (ZH)",LZZBJ-11,IEC60044-1,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+T-h06,generator,"Bruce Peebles & Co. Ltd, Edinburgh",2316 SP,70520,WH-H,true unit,,,2026-10-31
+D-h06,generator,"Bruce Peebles & Co. Ltd, Edinburgh",2316 SP,70502,WH-H,look-alike decoy (one transposition),,,2026-10-31
+X-h06-1,generator,"Bruce Peebles & Co. Ltd, Edinburgh",2316 SP,"128,000",WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h06-2,generator,"Bruce Peebles & Co. Ltd, Edinburgh",2316 SP,226/1925,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+N-h07,steam roller,,,H07-UNSEEN-01,WH-H,registered unit whose serial is not visible,,,2026-10-31
+N-h08,electrical equipment,Crompton Parkinson,,H08-UNSEEN-01,WH-H,registered unit whose serial is not visible,,,2026-10-31
+N-h09,elevator,,,H09-UNSEEN-01,WH-H,registered unit whose serial is not visible,,,2026-10-31
+X-h10-2,pumping engine,Nordberg,,HAER IL-4-82,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h10-3,pumping engine,Nordberg,,IL-4-82,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+N-h10,pumping engine,Nordberg,,H10-UNSEEN-01,WH-H,registered unit whose serial is not visible,,,2026-10-31
+T-h11,locomotive,"Henschel & Sohn, Kassel",,28756,WH-H,true unit,,,2026-10-31
+D-h11,locomotive,"Henschel & Sohn, Kassel",,28765,WH-H,look-alike decoy (one transposition),,,2026-10-31
+X-h12-1,electric motor,"Westinghouse Electric & Manufacturing Company, East Pittsburgh",,1320,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h12-2,electric motor,"Westinghouse Electric & Manufacturing Company, East Pittsburgh",,5107,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+U-h12-1,electric motor,"Westinghouse Electric & Manufacturing Company, East Pittsburgh",,1S7P205,WH-H,disputed reading (readers disagree),,,2026-10-31
+U-h12-2,electric motor,"Westinghouse Electric & Manufacturing Company, East Pittsburgh",,IS7P205,WH-H,disputed reading (readers disagree),,,2026-10-31
+N-h13,pump,,,H13-UNSEEN-01,WH-H,registered unit whose serial is not visible,,,2026-10-31
+T-h14,generator,Uralelektroapparat (УРАЛЭЛЕКТРОАППАРАТ),ВГС-375/49-28,8534,WH-H,true unit,,,2026-10-31
+D-h14,generator,Uralelektroapparat (УРАЛЭЛЕКТРОАППАРАТ),ВГС-375/49-28,8543,WH-H,look-alike decoy (one transposition),,,2026-10-31
+X-h14-1,generator,Uralelektroapparat (УРАЛЭЛЕКТРОАППАРАТ),ВГС-375/49-28,375/49-28,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h14-2,generator,Uralelektroapparat (УРАЛЭЛЕКТРОАППАРАТ),ВГС-375/49-28,4800,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h14-3,generator,Uralelektroapparat (УРАЛЭЛЕКТРОАППАРАТ),ВГС-375/49-28,5616-50,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31
+X-h14-4,generator,Uralelektroapparat (УРАЛЭЛЕКТРОАППАРАТ),ВГС-375/49-28,6300,WH-H,distractor: printed number that is NOT the serial,,,2026-10-31

@@ -7,6 +7,14 @@ Pure functions only: same inputs -> same outputs. No model calls. Rules (docs/de
   Tier 4  NOT_IN_REGISTER  no supported match
   MISMATCHED           identifiers conflict with the best candidate -> human review
 Ambiguous matches are never resolved automatically. Absence of evidence -> UNVERIFIED, never MISSING.
+
+Tier 1 gate (D-16/D-17; experimental safeguard, not a validated safety guarantee). VERIFIED also needs:
+  - a region segmented on the equipment (a whole-photo region cannot establish which physical unit it shows),
+  - a second, independently constructed read that agrees on serial, manufacturer and type and does not
+    contradict the register,
+  - at least one corroborating attribute: a read manufacturer or model that matches the register row,
+  - no standalone-plate description in either read.
+Agreement is supporting evidence, not proof: two reads can share the same mistake.
 """
 
 from __future__ import annotations
@@ -35,7 +43,18 @@ TYPE_SYNONYMS = {
     "engine": "engine", "aircraft engine": "engine", "aviation engine": "engine", "diesel engine": "engine",
     "excavator": "excavator", "hydraulic excavator": "excavator", "tractor": "tractor",
     "transformer": "transformer", "load interrupter": "switchgear", "switchgear": "switchgear",
+    "locomotive": "locomotive", "steam locomotive": "locomotive", "wheel loader": "wheel loader",
+    "telehandler": "telehandler", "telescopic handler": "telehandler", "steam roller": "roller",
+    "road roller": "roller", "elevator": "elevator", "pump": "pump", "hand pump": "pump", "water pump": "pump",
+    "electrical equipment": "electrical equipment",
 }
+
+TIER1_POLICIES = ("two_read", "human_review")
+# Words that describe a detached identifier carrier, not the equipment the ledger registers.
+# ponytail: keyword heuristic; misses e.g. "generator emblem" and blocks "generator with nameplate visible" (safe side)
+_STANDALONE_PLATE = re.compile(
+    r"\b((name|data|rating|serial|type|id|identification|spec|specification) ?plates?|typeplates?|plaques?|badges?"
+    r"|placards?|stickers?|decals?|typenschild\w*|(serial|asset|id|identification|rating) (labels?|tags?))\b")
 
 _NON_ALNUM = re.compile(r"[\W_]+")  # unicode-aware: keeps letters like Ü, drops separators
 
@@ -116,6 +135,15 @@ class LedgerAsset:
 
 
 @dataclass(frozen=True)
+class Confirmation:
+    """Second read of the same detection, recorded by the pipeline (status ok | invalid | error)."""
+
+    status: str
+    evidence: ModelEvidence | None
+    error: str | None = None
+
+
+@dataclass(frozen=True)
 class Observation:
     evidence_id: str
     detection_id: str
@@ -125,6 +153,8 @@ class Observation:
     status: str  # ok | invalid | error
     evidence: ModelEvidence | None
     error: str | None = None
+    confirmation: Confirmation | None = None
+    whole_photo: bool = False  # auditor-declared full-frame region: no segmentation ties it to one unit
 
 
 @dataclass(frozen=True)
@@ -223,7 +253,7 @@ def _compare(ev: ModelEvidence, obs_type: str | None, asset: LedgerAsset) -> tup
     return round(max(0.0, min(1.0, score)), 3), conflicts, unmatched
 
 
-def _decide(obs: Observation, assets: list[LedgerAsset]) -> DecisionResult:
+def _decide(obs: Observation, assets: list[LedgerAsset], policy: str = "two_read") -> DecisionResult:
     did = decision_id_for(obs.evidence_id)
     base = dict(id=did, evidence_id=obs.evidence_id, detection_id=obs.detection_id, image_id=obs.image_id)
     if obs.status != "ok" or obs.evidence is None:
@@ -251,14 +281,14 @@ def _decide(obs: Observation, assets: list[LedgerAsset]) -> DecisionResult:
     if serial:
         hits = [a for a in assets if norm_id(a.serial_number) == serial]
         if hits:
-            return _serial_hit(obs, ev, obs_type, hits, uncertain, flags, base)
+            return _serial_hit(obs, ev, obs_type, hits, uncertain, flags, base, policy)
         if uncertain:  # an uncertain reading that matches nothing is not evidence of an unregistered serial
             return _no_serial(obs, ev, obs_type, pool, flags + ["SERIAL_UNCERTAIN"], base)
         return _serial_miss(obs, ev, obs_type, pool, flags, base)
     return _no_serial(obs, ev, obs_type, pool, flags, base)
 
 
-def _serial_hit(obs, ev, obs_type, hits, uncertain, flags, base) -> DecisionResult:  # noqa: ANN001
+def _serial_hit(obs, ev, obs_type, hits, uncertain, flags, base, policy="two_read") -> DecisionResult:  # noqa: ANN001
     ids = [a.asset_id for a in hits]
     if len(hits) > 1:
         score, _, unmatched = _compare(ev, obs_type, hits[0])
@@ -289,14 +319,87 @@ def _serial_hit(obs, ev, obs_type, hits, uncertain, flags, base) -> DecisionResu
                         "Uncertain identifiers never auto-verify.",
             unmatched_fields=unmatched, flags=flags + ["SERIAL_UNCERTAIN"],
         )
+    blocked = _tier1_gate(obs, ev, obs_type, policy, asset)
+    if blocked:
+        flag, reason = blocked
+        return DecisionResult(
+            **base, decision="PROBABLE", tier=2, matching_rule=f"R2e_{flag}",
+            candidate_asset_ids=[asset.asset_id], matched_asset_id=None, match_score=score, review_required=True,
+            explanation=f"Serial reading uniquely matches {asset.asset_id}, but automatic verification was withheld: "
+                        f"{reason}. Human review required.",
+            unmatched_fields=unmatched, flags=flags + [flag],
+        )
     return DecisionResult(
         **base, decision="VERIFIED", tier=1, matching_rule="R1_UNIQUE_SERIAL_MATCH",
         candidate_asset_ids=[asset.asset_id], matched_asset_id=asset.asset_id, match_score=score,
         review_required=False,
         explanation=f"Readable visible serial uniquely matches {asset.asset_id}; manufacturer, model and type "
-                    "do not conflict. Verified by identifier evidence only — not proof of ownership, condition or value.",
-        unmatched_fields=unmatched, flags=flags,
+                    "do not conflict, and an independent second read agreed (experimental safeguard; agreement is "
+                    "supporting evidence, not proof). Verified by identifier evidence only — not proof of ownership, "
+                    "condition or value.",
+        unmatched_fields=unmatched, flags=flags + ["CONFIRMED_BY_SECOND_READ"],
     )
+
+
+def _makers_agree(a: str | None, b: str | None) -> bool:
+    return not (norm_manufacturer(a) and norm_manufacturer(b)) or same_manufacturer(a, b) or same_manufacturer(b, a)
+
+
+def _corroborated(ev: ModelEvidence, asset: LedgerAsset) -> bool:
+    maker = bool(norm_manufacturer(ev.visible_manufacturer) and norm_manufacturer(asset.manufacturer)
+                 and same_manufacturer(ev.visible_manufacturer, asset.manufacturer))
+    model = bool(norm_text(ev.visible_model) and norm_text(ev.visible_model) == norm_text(asset.model))
+    return maker or model
+
+
+def _standalone(evidence: ModelEvidence) -> bool:
+    return bool(_STANDALONE_PLATE.search((evidence.observed_object_type or "").lower()))
+
+
+def _other_readable_serials(evidence: ModelEvidence, serial: str | None) -> set[str]:
+    return {key for i in evidence.visible_identifiers
+            if i.kind == "serial" and i.readable and (key := norm_id(i.value)) and len(key) >= MIN_SERIAL_LEN} - {serial}
+
+
+def _tier1_gate(obs: Observation, ev: ModelEvidence, obs_type: str | None, policy: str,  # noqa: C901
+                asset: LedgerAsset) -> tuple[str, str] | None:
+    """Return (flag, reason) when Tier 1 must be withheld, None when every confirmation check passes."""
+    if policy == "human_review":
+        return "HUMAN_REVIEW_POLICY", "the Tier 1 policy requires a human for every identifier match"
+    if obs.whole_photo:
+        return ("WHOLE_PHOTO_ASSOCIATION_UNSUPPORTED", "the region is the whole photo declared by the auditor; "
+                "nothing ties the identifier to one segmented physical unit")
+    if _standalone(ev):
+        return ("SOURCE_ASSOCIATION_UNSUPPORTED", f"the evidence describes a standalone '{ev.observed_object_type}', "
+                "which does not show which physical unit carries it")
+    if not _corroborated(ev, asset):
+        return ("NO_CORROBORATING_ATTRIBUTE", f"neither a read manufacturer nor a read model matches {asset.asset_id}; "
+                "a serial alone is not enough")
+    conf = obs.confirmation
+    if conf is None:
+        return "CONFIRMATION_MISSING", "no independent second read was recorded"
+    if conf.status != "ok" or conf.evidence is None:
+        return "CONFIRMATION_UNREADABLE", f"the second read failed ({conf.status}: {conf.error or 'no evidence'})"
+    first, _ = _serial_state(ev)
+    second, second_uncertain = _serial_state(conf.evidence)
+    if second is None or second_uncertain or _other_readable_serials(conf.evidence, second):
+        return "CONFIRMATION_UNREADABLE", "the second read could not read one serial with certainty"
+    if second != first:
+        return "CONFIRMATION_SERIAL_DISAGREES", f"first read '{first}' vs second read '{second}'"
+    if not _makers_agree(ev.visible_manufacturer, conf.evidence.visible_manufacturer):
+        return ("CONFIRMATION_MANUFACTURER_DISAGREES", f"first read '{ev.visible_manufacturer}' vs second read "
+                f"'{conf.evidence.visible_manufacturer}'")
+    if canonical_type(conf.evidence.observed_object_type) != obs_type:
+        return ("CONFIRMATION_TYPE_DISAGREES", f"first read '{ev.observed_object_type}' vs second read "
+                f"'{conf.evidence.observed_object_type}'")
+    if _standalone(conf.evidence):
+        return ("SOURCE_ASSOCIATION_UNSUPPORTED", f"the second read describes a standalone "
+                f"'{conf.evidence.observed_object_type}', which does not show which physical unit carries it")
+    _, conflicts, _ = _compare(conf.evidence, obs_type, asset)
+    if conflicts:
+        return ("CONFIRMATION_CONFLICTS_REGISTER", f"the second read conflicts with {asset.asset_id} "
+                f"({', '.join(sorted(set(conflicts)))})")
+    return None
 
 
 def _mfr_model_matches(ev: ModelEvidence, obs_type: str | None, pool: list[LedgerAsset]) -> list[LedgerAsset]:
@@ -422,10 +525,13 @@ def reconcile(
     observations: list[Observation],
     reviews: list[Review],
     inspected: set[tuple[str, str]],
+    tier1_policy: str = "two_read",
 ) -> tuple[list[DecisionResult], list[AssetResult]]:
     """inspected: {(facility_id, canonical_type)} covered by at least one inspection run."""
+    if tier1_policy not in TIER1_POLICIES:
+        raise ValueError(f"unknown tier1_policy {tier1_policy!r}")
     ordered = sorted(observations, key=lambda o: (o.image_id, o.detection_id))
-    decisions = [_decide(o, assets) for o in ordered]
+    decisions = [_decide(o, assets, tier1_policy) for o in ordered]
     _flag_duplicate_observations(decisions, ordered)
     _flag_competing_claims(decisions, ordered)
     latest = {r.decision_id: r for r in reviews}

@@ -49,7 +49,7 @@ def test_rerun_on_subset_keeps_other_images_evidence_and_reviews(client: TestCli
                       json={"concept": "Diesel Generator", "image_ids": [images["bay_b_forklifts.png"]]}).json()
     wait_run(client, run["id"])
     st = _statuses(client, demo_session)
-    assert st["A-001"]["status"] == "VERIFIED" and st["A-004"]["status"] == "VERIFIED"
+    assert st["A-001"]["status"] == "VERIFIED" and st["A-004"]["status"] == "PROBABLE"  # A-004: reads disagree
     assert st["A-002"]["status"] == "HUMAN_CONFIRMED" and st["A-002"]["human_confirmed"]
 
 

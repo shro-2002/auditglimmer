@@ -11,7 +11,10 @@ Humans review every ambiguous match; the audit report links each decision to its
 | Status | |
 |---|---|
 | DEMO mode (fixture providers, synthetic images, $0) | working end to end, tested |
-| LIVE mode (Meta Model API: `sam-3.1`, `muse-spark-1.3`) | implemented and contract-tested offline; **UNVERIFIED against the real API** (no key / no spend approval) |
+| LIVE mode (Meta Model API: `sam-3.1`, `muse-spark-1.3`) | exercised on real photos: 7 SAM + 51 Muse calls ≈ $0.3235 recorded (see `docs/submission-final.md`) |
+| Two-read Tier 1 gate | ran live in the holdout (5 second reads, 5 agreed); never yet seen catching a real disagreement — experimental safeguard |
+| Fresh holdout study | run 31 Oct, independently verified (`docs/holdout-study-results.md`) |
+| Production | **prototype — not production-certified** |
 
 ## Quick start (macOS, Apple Silicon)
 
@@ -75,12 +78,14 @@ cd auditglimmer && uv run --project backend python scripts/live_smoke.py --i-app
 
 | Outcome | Rule | Auto? |
 |---|---|---|
-| VERIFIED (Tier 1) | readable serial uniquely equals one ledger serial; no conflicting mfr/model/type/facility | yes |
-| PROBABLE (Tier 2) | mfr+model match, or serial uncertain / duplicated in ledger / seen on 2+ objects | review |
+| VERIFIED (Tier 1) | readable serial uniquely equals one ledger serial; no conflicting mfr/model/type/facility; a second independent Muse read agrees and does not contradict the register; manufacturer or model corroborates; region segmented on the equipment (never a whole-photo plate); no standalone-plate description | yes |
+| PROBABLE (Tier 2) | mfr+model match, or serial uncertain / duplicated in ledger / seen on 2+ objects, or a Tier 1 gate check failed (rule `R2e_*`, reason in the explanation) | review |
 | WEAK (Tier 3) | asset type only | review |
 | MISMATCHED | identifiers conflict (serial vs model, manufacturer, facility) | review |
 | NOT_IN_REGISTER (Tier 4) | observed object with no supported register match | review |
 | EVIDENCE_UNUSABLE | extraction failed validation / timed out | — |
+
+Two agreeing reads are supporting evidence, not proof (D-16/D-17 in `docs/decisions.md`). `AUDITGLIMMER_TIER1_POLICY=human_review` sends every match to a person.
 
 Asset statuses: VERIFIED, PROBABLE, MISMATCHED, UNVERIFIED (inspected, no adequate evidence),
 NOT_OBSERVABLE (not covered by any inspection).

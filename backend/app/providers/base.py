@@ -95,7 +95,9 @@ class EvidenceExtractionProvider(Protocol):
     name: str
     model: str
 
-    def extract_visual_evidence(self, crop: ImageInput, context: CropContext) -> ExtractionResult: ...
+    def extract_visual_evidence(self, crop: ImageInput, context: CropContext,
+                                purpose: str = "evidence") -> ExtractionResult: ...
+    # purpose="confirm": second, independent identifier read for the Tier 1 gate (enhanced view, own prompt)
 
     def explain_discrepancy(self, facts: list[str]) -> tuple[str, CallMeta]: ...
 

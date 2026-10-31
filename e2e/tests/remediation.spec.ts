@@ -38,7 +38,7 @@ test("inspect: run button cannot double-fire and stays disabled while the run is
 test("inspect: supported concepts hinted; unsupported concept shows the server message", async ({ page, request }) => {
   const sid = await createSession(request);
   await page.goto(`/sessions/${sid}/inspect`);
-  await expect(page.getByText(/compressor, electric motor, engine, excavator, forklift, generator/)).toBeVisible();
+  await expect(page.getByText(/compressor, electric motor, electrical equipment, elevator, engine, excavator, forklift, generator/)).toBeVisible();
   await page.getByTestId("concept-input").fill("spaceship");
   await page.getByTestId("run-button").click();
   await expect(page.getByRole("alert").filter({ hasText: "Run was not started" })).toContainText(/unsupported asset concept/i);

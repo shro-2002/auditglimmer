@@ -11,11 +11,13 @@ Setup: both servers running (README). Browser at http://localhost:3000, 1440-wid
 4. **Visual inspection (60 s) — the showcase.** Concept `industrial generator` → *Run inspection*.
    Live SSE log: 10 detections; one malformed model response and one response that tried to add
    `legal_owner` / `estimated_value_usd` are **rejected by schema**, not trusted.
-   Click region 1: serial GN-48213 → VERIFIED, rule R1. Click region 3: plate reads GN-55011, ledger
+   Click region 1: serial GN-48213 → VERIFIED, rule R1 (second read agrees, maker corroborates; panel shows
+   "Second read · experimental safeguard"). On bay C, A-004: first read GN-62040, second read GN-62046 →
+   PROBABLE, rule R2e_CONFIRMATION_SERIAL_DISAGREES → review queue. Click region 3: plate reads GN-55011, ledger
    says GN-55017 → MISMATCHED. Toggle masks; "the overlay is the SAM geometry in source pixels".
    Run `forklift`: two identical Liftmaster LM-25 with unreadable serials → ambiguous, never
    auto-resolved. One simulated provider timeout → EVIDENCE_UNUSABLE, run still completes.
-5. **Reconciliation (25 s).** 2 VERIFIED, 2 MISMATCHED, 6 PROBABLE, 5 UNVERIFIED, 3 NOT_OBSERVABLE.
+5. **Reconciliation (25 s).** 1 VERIFIED, 2 MISMATCHED, 7 PROBABLE, 5 UNVERIFIED, 3 NOT_OBSERVABLE.
    "UNVERIFIED is not missing — we inspected that bay and found no adequate evidence."
 6. **Review queue (25 s).** Confirm one LM-25 as A-011 (reviewer name + note). Try confirming the
    other LM-25 as A-011 too → 409: one asset cannot be two physical objects.

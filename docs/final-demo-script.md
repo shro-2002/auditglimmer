@@ -1,5 +1,11 @@
 # Final Demo Script — 3:00 (confirm the official maximum before recording)
 
+> **HOLD (2026-10-31): do not record yet.** Recording waits until the frozen holdout has run live and its results
+> are independently verified. A LIVE recording is itself paid (≈ 1 SAM + 2–4 Muse calls with second reads,
+> ≈ $0.02) and needs separate owner approval; it is **not** inside the $0.30 holdout ceiling. Until then use DEMO
+> footage with the DEMO badge visible. Scene-by-scene plan: `docs/video-storyboard.md` (supersedes the table below
+> where they differ; in particular use one call count — 7 SAM + 51 Muse ≈ $0.3235 — and no unofficial weights).
+
 Record the REAL app in LIVE mode. Budget for one take: 1 SAM call + 2 Muse calls ≈ $0.012
 (within the approved $1.00 cap; the app enforces session/total caps). Never cut in footage from
 fixture mode while narrating it as live; the DEMO/LIVE badge is always on screen.
@@ -23,7 +29,7 @@ fixture mode while narrating it as live; the DEMO/LIVE badge is always on screen
 | 1:40–2:05 | Reconcile + uncertainty | Reconciliation tab, decision panel | "Deterministic rules, not the model, decide. A brand alone can't separate two identical Hysters, so nothing is auto-matched; both go to review. Assets we didn't photograph are UNVERIFIED — not missing." |
 | 2:05–2:25 | Human review | Review queue: confirm R-002 for the Hyster region; try the same asset on the other forklift → 409 | "The inspector decides. And the system refuses to assign one asset to two physical objects." |
 | 2:25–2:45 | Audit trail | Report download (HTML), Observability: provider-call table with sam-3.1 / muse-spark-1.3, latency, cost; provenance graph | "Every conclusion traces back to an image hash, a mask, and the exact Meta calls behind it — with cost: about a cent for this whole inspection." |
-| 2:45–3:00 | Evidence + impact | Slide/text: evaluation numbers | "On our small live test set SAM found 4 of 4 named objects; Muse returned valid JSON 5 of 5 times with zero invented serials or ownership claims. It's built to make inspectors faster without letting AI overclaim." |
+| 2:45–3:00 | Evidence + impact | Slide/text: evaluation numbers | "In our pre-registered 26-photo study Muse read 69% of serials exactly, invented none — and one disputed read slipped through. We publish that, and the gate we built because of it." (add holdout numbers only once verified) |
 
 Adversarial beat (optional, swap into 1:40): the 1954 generator photo — Muse ignores the archive
 caption "BC-260" even though the register lists it as a serial, so the misleading entry is not verified.

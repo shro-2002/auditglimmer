@@ -100,10 +100,12 @@ SCENES = [
          "x": 340, "y": 310, "w": 260, "h": 230, "color": (196, 152, 38), "plate": ("CUMBERLAND", "PX-500", "S/N GN-31337"),
          "plate_mode": "clear", "confidence": 0.93,
          "muse": evidence("industrial generator", "Cumberland", "PX-500", "GN-31337")},
-        {"concept": "generator", "case": "exact_identifier_match", "true_asset_id": "A-004", "x": 630, "y": 320,
+        {"concept": "generator", "case": "second_read_disagrees", "true_asset_id": "A-004", "x": 630, "y": 320,
          "w": 250, "h": 220, "color": (58, 120, 170), "plate": ("BRIGHTWATER", "BW-220", "S/N GN-62040"),
          "plate_mode": "clear", "confidence": 0.94,
-         "muse": evidence("generator", "Brightwater", "BW-220", "GN-62040", cond=["dent on top right corner"])},
+         "muse": evidence("generator", "Brightwater", "BW-220", "GN-62040", cond=["dent on top right corner"]),
+         # authored second read: last digit misread (0 -> 6), so the Tier 1 gate must send it to human review
+         "muse_confirm": evidence("generator", "Brightwater", "BW-220", "GN-62046")},
         {"concept": "generator", "case": "duplicate_observation_second_view", "true_asset_id": "A-007", "x": 910,
          "y": 340, "w": 220, "h": 190, "color": (58, 120, 170), "plate": ("BRIGHTWATER", "BW-400", "S/N GN-70707"),
          "plate_mode": "clear", "confidence": 0.87,
@@ -234,6 +236,7 @@ def render_scene(scene: dict) -> dict:
             "object_index": index, "concept": o["concept"], "case": o["case"], "true_asset_id": o["true_asset_id"],
             "bounds": list(bbox), "raster_w": rw, "raster_h": rh, "area_px": sum(bits),
             "svg_path": raster_to_svg_path(bits, rw, rh), "confidence": o["confidence"], "muse": o["muse"],
+            **({"muse_confirm": o["muse_confirm"]} if "muse_confirm" in o else {}),
             "plate_text": list(o["plate"]) if o["plate"] else None, "plate_mode": o["plate_mode"],
         })
         d = ImageDraw.Draw(img)
@@ -254,7 +257,7 @@ def write_ledger() -> None:
 
 
 EXPECTED_ASSET_STATUS = {  # correct handling after inspecting BOTH concepts, before any human review
-    "A-001": "VERIFIED", "A-002": "PROBABLE", "A-003": "MISMATCHED", "A-004": "VERIFIED", "A-005": "PROBABLE",
+    "A-001": "VERIFIED", "A-002": "PROBABLE", "A-003": "MISMATCHED", "A-004": "PROBABLE", "A-005": "PROBABLE",
     "A-006": "PROBABLE", "A-007": "PROBABLE", "A-008": "UNVERIFIED", "A-009": "UNVERIFIED", "A-010": "MISMATCHED",
     "A-011": "PROBABLE", "A-012": "PROBABLE", "A-013": "UNVERIFIED", "A-014": "UNVERIFIED", "A-015": "UNVERIFIED",
     "A-020": "NOT_OBSERVABLE", "A-021": "NOT_OBSERVABLE", "A-022": "NOT_OBSERVABLE",

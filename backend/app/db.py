@@ -7,7 +7,7 @@ from collections.abc import Iterator
 from contextlib import contextmanager
 from datetime import UTC, datetime
 
-from sqlalchemy import JSON, Boolean, Float, ForeignKey, Integer, String, Text, create_engine, event
+from sqlalchemy import JSON, Boolean, Float, ForeignKey, Integer, String, Text, create_engine, event, inspect, text
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column, relationship, sessionmaker
 
@@ -118,6 +118,8 @@ class EvidenceRow(Base):
     model: Mapped[str] = mapped_column(String(40))
     mode: Mapped[str] = mapped_column(String(8))
     provider_call_id: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    # Tier 1 gate second read: {status, evidence, error, provider, model, provider_call_id, view, view_ref, created_at}
+    confirmation: Mapped[dict | None] = mapped_column(JSON, nullable=True)
 
 
 class ReviewRow(Base):
@@ -176,6 +178,10 @@ class Database:
             event.listen(self.engine, "connect", _sqlite_pragmas)
         self._factory = sessionmaker(self.engine, expire_on_commit=False)
         Base.metadata.create_all(self.engine)
+        with self.engine.begin() as conn:  # ponytail: one additive column, no migration framework
+            cols = {c["name"] for c in inspect(conn).get_columns("evidence")}
+            if "confirmation" not in cols:
+                conn.execute(text("ALTER TABLE evidence ADD COLUMN confirmation JSON"))
 
     @contextmanager
     def session(self) -> Iterator[Session]:

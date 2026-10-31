@@ -1,0 +1,411 @@
+{
+  "session_id": "ses_63033bcece24",
+  "protocol": "docs/holdout-study-protocol.md",
+  "frozen": "FROZEN.sha256",
+  "n_images": 14,
+  "n_positive": 6,
+  "n_verifiable": 6,
+  "metrics": {
+    "H1_unsafe_auto_verifications": {
+      "k": 0,
+      "ids": []
+    },
+    "H2_serial_exact_on_positives": {
+      "k": 5,
+      "n": 6,
+      "wilson95": [
+        0.436,
+        0.97
+      ]
+    },
+    "H3_verification_precision": {
+      "k": 0,
+      "n": 0,
+      "wilson95": null
+    },
+    "H4_correct_verification_yield": {
+      "k": 0,
+      "n": 6,
+      "wilson95": [
+        0.0,
+        0.39
+      ],
+      "note": "0 by design for whole-photo regions (D-17)"
+    },
+    "H4b_correct_single_suggestion_yield": {
+      "k": 5,
+      "n": 6,
+      "wilson95": [
+        0.436,
+        0.97
+      ]
+    },
+    "H4c_wrong_single_suggestions": {
+      "k": 6,
+      "ids": [
+        "h04",
+        "h07",
+        "h08",
+        "h09",
+        "h12",
+        "h13"
+      ]
+    },
+    "H5_abstention_rate_on_verifiable": {
+      "k": 1,
+      "n": 6
+    },
+    "H6_unsafe_rate": {
+      "k": 0,
+      "n": 14,
+      "wilson95": [
+        0.0,
+        0.215
+      ]
+    },
+    "H7_two_read": {
+      "second_reads": 5,
+      "agree": 5,
+      "disagree_or_failed": 0,
+      "gate_blocks_by_rule": {
+        "R2e_WHOLE_PHOTO_ASSOCIATION_UNSUPPORTED": 1
+      }
+    },
+    "H8_hallucinated_serial_on_negatives": [
+      "h04"
+    ],
+    "confusion_matrix_gt_status_x_outcome": {
+      "positive": {
+        "correct": 0,
+        "unsafe": 0,
+        "suggest_correct": 5,
+        "suggest_wrong": 0,
+        "abstained": 1
+      },
+      "negative": {
+        "correct": 0,
+        "unsafe": 0,
+        "suggest_correct": 0,
+        "suggest_wrong": 5,
+        "abstained": 2
+      },
+      "disputed": {
+        "correct": 0,
+        "unsafe": 0,
+        "suggest_correct": 0,
+        "suggest_wrong": 1,
+        "abstained": 0
+      }
+    },
+    "decisions": {
+      "MISMATCHED": 4,
+      "PROBABLE": 3,
+      "WEAK": 7
+    },
+    "per_inspection": {
+      "latency_ms_median": 7618.325000000001,
+      "cost_usd_mean": 0.008569
+    },
+    "estimated_cost_usd_total": 0.119969,
+    "baseline_without_muse": {
+      "correct_auto_verifications": 0,
+      "note": "no visual identifier: every asset needs a field check; benefit = H4 yield at the H1/H6 error rate"
+    }
+  },
+  "rows": [
+    {
+      "hid": "h01",
+      "gt_status": "positive",
+      "gt_serial": "11400",
+      "read1_serial": "11400",
+      "read2_serial": null,
+      "read2_status": null,
+      "reads_agree": false,
+      "serial_exact": true,
+      "serial_emitted": true,
+      "decision": "PROBABLE",
+      "rule": "R2c_SERIAL_UNCERTAIN",
+      "matched_asset": null,
+      "candidates": [
+        "T-h01"
+      ],
+      "latency_ms": 6644.86,
+      "cost_usd": 0.00764,
+      "outcome": "suggest_correct"
+    },
+    {
+      "hid": "h02",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "read1_serial": null,
+      "read2_serial": null,
+      "read2_status": null,
+      "reads_agree": false,
+      "serial_exact": false,
+      "serial_emitted": false,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "X-h02-1",
+        "X-h02-2",
+        "X-h02-3",
+        "N-h02"
+      ],
+      "latency_ms": 4584.53,
+      "cost_usd": 0.005226,
+      "outcome": "abstained"
+    },
+    {
+      "hid": "h03",
+      "gt_status": "positive",
+      "gt_serial": "27291",
+      "read1_serial": "27291",
+      "read2_serial": "27291",
+      "read2_status": "ok",
+      "reads_agree": true,
+      "serial_exact": true,
+      "serial_emitted": true,
+      "decision": "MISMATCHED",
+      "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+      "matched_asset": null,
+      "candidates": [
+        "T-h03"
+      ],
+      "latency_ms": 12575.09,
+      "cost_usd": 0.011163,
+      "outcome": "suggest_correct"
+    },
+    {
+      "hid": "h04",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "read1_serial": "ZF1P4000",
+      "read2_serial": null,
+      "read2_status": null,
+      "reads_agree": false,
+      "serial_exact": false,
+      "serial_emitted": true,
+      "decision": "PROBABLE",
+      "rule": "R2c_SERIAL_UNCERTAIN",
+      "matched_asset": null,
+      "candidates": [
+        "X-h04-4"
+      ],
+      "latency_ms": 7907.14,
+      "cost_usd": 0.008421,
+      "outcome": "suggest_wrong"
+    },
+    {
+      "hid": "h05",
+      "gt_status": "positive",
+      "gt_serial": "31074",
+      "read1_serial": "31074",
+      "read2_serial": "31074",
+      "read2_status": "ok",
+      "reads_agree": true,
+      "serial_exact": true,
+      "serial_emitted": true,
+      "decision": "MISMATCHED",
+      "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+      "matched_asset": null,
+      "candidates": [
+        "T-h05"
+      ],
+      "latency_ms": 10519.68,
+      "cost_usd": 0.010236,
+      "outcome": "suggest_correct"
+    },
+    {
+      "hid": "h06",
+      "gt_status": "positive",
+      "gt_serial": "70520",
+      "read1_serial": "70520",
+      "read2_serial": "70520",
+      "read2_status": "ok",
+      "reads_agree": true,
+      "serial_exact": true,
+      "serial_emitted": true,
+      "decision": "MISMATCHED",
+      "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+      "matched_asset": null,
+      "candidates": [
+        "T-h06"
+      ],
+      "latency_ms": 14038.84,
+      "cost_usd": 0.014921,
+      "outcome": "suggest_correct"
+    },
+    {
+      "hid": "h07",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "read1_serial": null,
+      "read2_serial": null,
+      "read2_status": null,
+      "reads_agree": false,
+      "serial_exact": false,
+      "serial_emitted": false,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "N-h07"
+      ],
+      "latency_ms": 5432.26,
+      "cost_usd": 0.004996,
+      "outcome": "suggest_wrong"
+    },
+    {
+      "hid": "h08",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "read1_serial": null,
+      "read2_serial": null,
+      "read2_status": null,
+      "reads_agree": false,
+      "serial_exact": false,
+      "serial_emitted": false,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "N-h08"
+      ],
+      "latency_ms": 6853.97,
+      "cost_usd": 0.005024,
+      "outcome": "suggest_wrong"
+    },
+    {
+      "hid": "h09",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "read1_serial": null,
+      "read2_serial": null,
+      "read2_status": null,
+      "reads_agree": false,
+      "serial_exact": false,
+      "serial_emitted": false,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "N-h09"
+      ],
+      "latency_ms": 10183.24,
+      "cost_usd": 0.005218,
+      "outcome": "suggest_wrong"
+    },
+    {
+      "hid": "h10",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "read1_serial": null,
+      "read2_serial": null,
+      "read2_status": null,
+      "reads_agree": false,
+      "serial_exact": false,
+      "serial_emitted": false,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "X-h10-2",
+        "X-h10-3",
+        "N-h10"
+      ],
+      "latency_ms": 7329.51,
+      "cost_usd": 0.007244,
+      "outcome": "abstained"
+    },
+    {
+      "hid": "h11",
+      "gt_status": "positive",
+      "gt_serial": "28756",
+      "read1_serial": "28756",
+      "read2_serial": "28756",
+      "read2_status": "ok",
+      "reads_agree": true,
+      "serial_exact": true,
+      "serial_emitted": true,
+      "decision": "PROBABLE",
+      "rule": "R2e_WHOLE_PHOTO_ASSOCIATION_UNSUPPORTED",
+      "matched_asset": null,
+      "candidates": [
+        "T-h11"
+      ],
+      "latency_ms": 13544.96,
+      "cost_usd": 0.013738,
+      "outcome": "suggest_correct"
+    },
+    {
+      "hid": "h12",
+      "gt_status": "disputed",
+      "gt_serial": null,
+      "read1_serial": "1S7P205",
+      "read2_serial": "1S7P205",
+      "read2_status": "ok",
+      "reads_agree": true,
+      "serial_exact": false,
+      "serial_emitted": true,
+      "decision": "MISMATCHED",
+      "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+      "matched_asset": null,
+      "candidates": [
+        "U-h12-1"
+      ],
+      "latency_ms": 14955.900000000001,
+      "cost_usd": 0.015248999999999999,
+      "outcome": "suggest_wrong"
+    },
+    {
+      "hid": "h13",
+      "gt_status": "negative",
+      "gt_serial": null,
+      "read1_serial": null,
+      "read2_serial": null,
+      "read2_status": null,
+      "reads_agree": false,
+      "serial_exact": false,
+      "serial_emitted": false,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "N-h13"
+      ],
+      "latency_ms": 4952.12,
+      "cost_usd": 0.004389,
+      "outcome": "suggest_wrong"
+    },
+    {
+      "hid": "h14",
+      "gt_status": "positive",
+      "gt_serial": "8534",
+      "read1_serial": "3554",
+      "read2_serial": null,
+      "read2_status": null,
+      "reads_agree": false,
+      "serial_exact": false,
+      "serial_emitted": true,
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "matched_asset": null,
+      "candidates": [
+        "T-h06",
+        "D-h06",
+        "X-h06-1",
+        "X-h06-2",
+        "T-h14",
+        "D-h14",
+        "X-h14-1",
+        "X-h14-2",
+        "X-h14-3",
+        "X-h14-4"
+      ],
+      "latency_ms": 7075.21,
+      "cost_usd": 0.006504,
+      "outcome": "abstained"
+    }
+  ]
+}

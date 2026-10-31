@@ -8,7 +8,7 @@
   },
   "runs": [
     {
-      "concept": "industrial generator",
+      "concept": "generator",
       "status": "partial",
       "detections": 10
     },
@@ -19,12 +19,12 @@
     }
   ],
   "metrics": {
-    "auto_match_count": 2,
+    "auto_match_count": 1,
     "auto_match_precision": 1.0,
     "false_automatic_match_rate": 0.0,
     "candidate_recall_all_labelled": 0.7857,
     "candidate_recall_usable_evidence": 1.0,
-    "human_review_rate": 0.6875,
+    "human_review_rate": 0.75,
     "unregistered_objects_flagged": "2/2",
     "asset_status_agreement_with_labels": "18/18",
     "provenance_completeness": 1.0,
@@ -35,18 +35,25 @@
     "end_to_end_runs_completed": "2/2",
     "latency_ms_fixture": [
       {
+        "operation": "confirm",
+        "count": 8,
+        "p50_ms": 0.02,
+        "p95_ms": 0.02,
+        "max_ms": 0.03
+      },
+      {
         "operation": "extract",
         "count": 16,
         "p50_ms": 0.01,
-        "p95_ms": 0.02,
-        "max_ms": 0.04
+        "p95_ms": 0.03,
+        "max_ms": 0.05
       },
       {
         "operation": "segment",
         "count": 6,
         "p50_ms": 0.02,
-        "p95_ms": 0.28,
-        "max_ms": 0.37
+        "p95_ms": 0.18,
+        "max_ms": 0.24
       }
     ],
     "estimated_cost_usd": 0.0
@@ -57,76 +64,6 @@
     "Live latency and actual billed cost"
   ],
   "per_detection": [
-    {
-      "case": "serial_match_conflicting_manufacturer",
-      "true_asset_id": "A-010",
-      "decision": "MISMATCHED",
-      "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
-      "candidates": [
-        "A-010"
-      ],
-      "review_required": true,
-      "evidence_status": "ok"
-    },
-    {
-      "case": "similar_looking_distinct_assets",
-      "true_asset_id": "A-011",
-      "decision": "PROBABLE",
-      "rule": "R2a_MANUFACTURER_MODEL_AMBIGUOUS",
-      "candidates": [
-        "A-010",
-        "A-011",
-        "A-012"
-      ],
-      "review_required": true,
-      "evidence_status": "ok"
-    },
-    {
-      "case": "similar_looking_distinct_assets",
-      "true_asset_id": "A-012",
-      "decision": "PROBABLE",
-      "rule": "R2a_MANUFACTURER_MODEL_AMBIGUOUS",
-      "candidates": [
-        "A-010",
-        "A-011",
-        "A-012"
-      ],
-      "review_required": true,
-      "evidence_status": "ok"
-    },
-    {
-      "case": "no_visible_identifiers",
-      "true_asset_id": "A-013",
-      "decision": "WEAK",
-      "rule": "R3_TYPE_ONLY",
-      "candidates": [
-        "A-010",
-        "A-011",
-        "A-012",
-        "A-013",
-        "A-014"
-      ],
-      "review_required": true,
-      "evidence_status": "ok"
-    },
-    {
-      "case": "provider_timeout",
-      "true_asset_id": "A-014",
-      "decision": "EVIDENCE_UNUSABLE",
-      "rule": "R0_EXTRACTION_FAILED",
-      "candidates": [],
-      "review_required": false,
-      "evidence_status": "error"
-    },
-    {
-      "case": "forklift_in_yard_unregistered",
-      "true_asset_id": null,
-      "decision": "NOT_IN_REGISTER",
-      "rule": "R4_NO_SUPPORTED_MATCH",
-      "candidates": [],
-      "review_required": true,
-      "evidence_status": "ok"
-    },
     {
       "case": "exact_identifier_match",
       "true_asset_id": "A-001",
@@ -202,14 +139,14 @@
       "evidence_status": "ok"
     },
     {
-      "case": "exact_identifier_match",
+      "case": "second_read_disagrees",
       "true_asset_id": "A-004",
-      "decision": "VERIFIED",
-      "rule": "R1_UNIQUE_SERIAL_MATCH",
+      "decision": "PROBABLE",
+      "rule": "R2e_CONFIRMATION_SERIAL_DISAGREES",
       "candidates": [
         "A-004"
       ],
-      "review_required": false,
+      "review_required": true,
       "evidence_status": "ok"
     },
     {
@@ -231,6 +168,76 @@
       "candidates": [],
       "review_required": false,
       "evidence_status": "invalid"
+    },
+    {
+      "case": "serial_match_conflicting_manufacturer",
+      "true_asset_id": "A-010",
+      "decision": "MISMATCHED",
+      "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+      "candidates": [
+        "A-010"
+      ],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "similar_looking_distinct_assets",
+      "true_asset_id": "A-011",
+      "decision": "PROBABLE",
+      "rule": "R2a_MANUFACTURER_MODEL_AMBIGUOUS",
+      "candidates": [
+        "A-010",
+        "A-011",
+        "A-012"
+      ],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "similar_looking_distinct_assets",
+      "true_asset_id": "A-012",
+      "decision": "PROBABLE",
+      "rule": "R2a_MANUFACTURER_MODEL_AMBIGUOUS",
+      "candidates": [
+        "A-010",
+        "A-011",
+        "A-012"
+      ],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "no_visible_identifiers",
+      "true_asset_id": "A-013",
+      "decision": "WEAK",
+      "rule": "R3_TYPE_ONLY",
+      "candidates": [
+        "A-010",
+        "A-011",
+        "A-012",
+        "A-013",
+        "A-014"
+      ],
+      "review_required": true,
+      "evidence_status": "ok"
+    },
+    {
+      "case": "provider_timeout",
+      "true_asset_id": "A-014",
+      "decision": "EVIDENCE_UNUSABLE",
+      "rule": "R0_EXTRACTION_FAILED",
+      "candidates": [],
+      "review_required": false,
+      "evidence_status": "error"
+    },
+    {
+      "case": "forklift_in_yard_unregistered",
+      "true_asset_id": null,
+      "decision": "NOT_IN_REGISTER",
+      "rule": "R4_NO_SUPPORTED_MATCH",
+      "candidates": [],
+      "review_required": true,
+      "evidence_status": "ok"
     }
   ]
 }

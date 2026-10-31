@@ -86,18 +86,20 @@ class FixtureMuseProvider:
     def __init__(self, store: FixtureStore) -> None:
         self._store = store
 
-    def extract_visual_evidence(self, crop: ImageInput, context: CropContext) -> ExtractionResult:
+    def extract_visual_evidence(self, crop: ImageInput, context: CropContext,
+                                purpose: str = "evidence") -> ExtractionResult:
         started = time.perf_counter()
         img = self._store.image(context.image_sha256)
         obj = next((o for o in img["objects"] if o["object_index"] == context.object_index), None)
         if obj is None:
             raise ProviderError("no_fixture", "no fixture evidence for this detection")
-        muse = obj["muse"]
+        # confirm reads reuse the labelled evidence unless the manifest authors a different second read
+        muse = obj.get("muse_confirm", obj["muse"]) if purpose == "confirm" else obj["muse"]
         if muse["kind"] == "timeout":
             raise ProviderError("timeout", "fixture-simulated provider timeout (failure-mode test case)")
         raw = muse["raw"] if "raw" in muse else json.dumps(muse["evidence"])
         meta = CallMeta(provider=self.name, model=self.model, latency_ms=(time.perf_counter() - started) * 1000,
-                        images=1, raw_output=raw, extra={"fixture": True, "case": obj.get("case")})
+                        images=1, raw_output=raw, extra={"fixture": True, "case": obj.get("case"), "purpose": purpose})
         return ExtractionResult(evidence=parse_evidence_json(raw), meta=meta)
 
     def explain_discrepancy(self, facts: list[str]) -> tuple[str, CallMeta]:

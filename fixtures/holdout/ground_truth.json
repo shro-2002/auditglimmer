@@ -1,0 +1,185 @@
+{
+ "adjudication": "docs/holdout-study-protocol.md",
+ "items": {
+  "h01": {
+   "status": "positive",
+   "serial": "11400",
+   "asset_type": "tractor",
+   "manufacturer": "Fritz B\u00fchrer Hinwil-Zch. Traktoren- & Motorenfabrik",
+   "model": "UNM4/10",
+   "distractor_numbers": [
+    "1300",
+    "9508879"
+   ],
+   "reader1_serial": "11400",
+   "reader2_serial": "11400"
+  },
+  "h02": {
+   "status": "negative",
+   "serial": null,
+   "asset_type": "wheel loader",
+   "manufacturer": "Liebherr-Werk Bischofshofen GmbH",
+   "model": "L544",
+   "distractor_numbers": [
+    "17900",
+    "2005",
+    "9069915"
+   ],
+   "reader1_serial": null,
+   "reader2_serial": null
+  },
+  "h03": {
+   "status": "positive",
+   "serial": "27291",
+   "asset_type": "locomotive",
+   "manufacturer": "North British Locomotive Company Ltd, Glasgow",
+   "model": null,
+   "distractor_numbers": [
+    "1953"
+   ],
+   "reader1_serial": "27291",
+   "reader2_serial": "27291"
+  },
+  "h04": {
+   "status": "negative",
+   "serial": null,
+   "asset_type": "telehandler",
+   "manufacturer": "Merlo S.p.A.",
+   "model": "P40.17",
+   "distractor_numbers": [
+    "076978",
+    "10350",
+    "C303223",
+    "ZF1P4000"
+   ],
+   "reader1_serial": null,
+   "reader2_serial": null
+  },
+  "h05": {
+   "status": "positive",
+   "serial": "31074",
+   "asset_type": "current transformer",
+   "manufacturer": "Zhejiang Sanai Transformer Co., Ltd (ZH)",
+   "model": "LZZBJ-11",
+   "distractor_numbers": [
+    "03820522",
+    "12/28/75",
+    "15/5",
+    "60044-1",
+    "IEC60044-1"
+   ],
+   "reader1_serial": "31074",
+   "reader2_serial": "31074"
+  },
+  "h06": {
+   "status": "positive",
+   "serial": "70520",
+   "asset_type": "generator",
+   "manufacturer": "Bruce Peebles & Co. Ltd, Edinburgh",
+   "model": "2316 SP",
+   "distractor_numbers": [
+    "128,000",
+    "226/1925",
+    "987"
+   ],
+   "reader1_serial": "70520",
+   "reader2_serial": "70520"
+  },
+  "h07": {
+   "status": "negative",
+   "serial": null,
+   "asset_type": "steam roller",
+   "manufacturer": null,
+   "model": null,
+   "distractor_numbers": [],
+   "reader1_serial": null,
+   "reader2_serial": null
+  },
+  "h08": {
+   "status": "negative",
+   "serial": null,
+   "asset_type": "electrical equipment",
+   "manufacturer": "Crompton Parkinson",
+   "model": null,
+   "distractor_numbers": [],
+   "reader1_serial": null,
+   "reader2_serial": null
+  },
+  "h09": {
+   "status": "negative",
+   "serial": null,
+   "asset_type": "elevator",
+   "manufacturer": null,
+   "model": null,
+   "distractor_numbers": [
+    "24"
+   ],
+   "reader1_serial": null,
+   "reader2_serial": null
+  },
+  "h10": {
+   "status": "negative",
+   "serial": null,
+   "asset_type": "pumping engine",
+   "manufacturer": "Nordberg",
+   "model": null,
+   "distractor_numbers": [
+    "5 x 7",
+    "HAER IL-4-82",
+    "IL-4-82"
+   ],
+   "reader1_serial": null,
+   "reader2_serial": null
+  },
+  "h11": {
+   "status": "positive",
+   "serial": "28756",
+   "asset_type": "locomotive",
+   "manufacturer": "Henschel & Sohn, Kassel",
+   "model": null,
+   "distractor_numbers": [
+    "1953"
+   ],
+   "reader1_serial": "28756",
+   "reader2_serial": "28756"
+  },
+  "h12": {
+   "status": "disputed",
+   "serial": null,
+   "asset_type": "electric motor",
+   "manufacturer": "Westinghouse Electric & Manufacturing Company, East Pittsburgh",
+   "model": null,
+   "distractor_numbers": [
+    "1320",
+    "5107"
+   ],
+   "reader1_serial": "1S7P205",
+   "reader2_serial": "IS7P205"
+  },
+  "h13": {
+   "status": "negative",
+   "serial": null,
+   "asset_type": "pump",
+   "manufacturer": null,
+   "model": null,
+   "distractor_numbers": [],
+   "reader1_serial": null,
+   "reader2_serial": null
+  },
+  "h14": {
+   "status": "positive",
+   "serial": "8534",
+   "asset_type": "generator",
+   "manufacturer": "Uralelektroapparat (\u0423\u0420\u0410\u041b\u042d\u041b\u0415\u041a\u0422\u0420\u041e\u0410\u041f\u041f\u0410\u0420\u0410\u0422)",
+   "model": "\u0412\u0413\u0421-375/49-28",
+   "distractor_numbers": [
+    "375/49-28",
+    "4800",
+    "5616-50",
+    "6300"
+   ],
+   "reader1_serial": "8534",
+   "reader2_serial": "8534"
+  }
+ }
+}

@@ -14,14 +14,15 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageFilter, ImageOps
 from sqlalchemy import select
 
 from .config import MUSE_USD_PER_INPUT_TOKEN, MUSE_USD_PER_OUTPUT_TOKEN, SAM_USD_PER_IMAGE, Settings
 from .db import Database, DetectionRow, EvidenceRow, ImageRow, ProviderCallRow, RunEventRow, RunRow, new_id, utcnow
 from .errors import ProviderError
 from .providers.base import CallMeta, CropContext, ImageInput
-from .schemas import EvidenceReference, VisualEvidence
+from .reconcile import MIN_SERIAL_LEN, norm_id
+from .schemas import EvidenceReference, ModelEvidence, VisualEvidence
 
 log = logging.getLogger("auditglimmer.pipeline")
 CROP_PAD_FRACTION = 0.08
@@ -77,6 +78,44 @@ def make_crop(image: ImageInput, bounds: tuple[int, int, int, int]) -> tuple[Ima
         crop.save(buf, format="JPEG", quality=90)
         data, (w, h) = buf.getvalue(), crop.size
     return ImageInput(data=data, media_type="image/jpeg", width=w, height=h, sha256=""), box
+
+
+CONFIRM_VIEW = "re-cut from source photo, <=1536 px (small regions upscaled <=x2), autocontrast, unsharp mask"
+CONFIRM_MAX_SIDE = 1536  # bounds image tokens: the second read must stay cheap
+
+
+def make_confirm_view(source: ImageInput, box: tuple[int, int, int, int]) -> ImageInput:
+    """Enhanced view for the second read, cut again from the SOURCE photo (not the 1024 px first-read crop):
+    up to 1536 px, small regions upscaled up to x2, contrast-stretched and sharpened."""
+    with Image.open(io.BytesIO(source.data)) as img:
+        view = img.convert("RGB").crop(box)
+        scale = min(2.0, CONFIRM_MAX_SIDE / max(view.size))
+        view = view.resize((max(1, int(view.width * scale)), max(1, int(view.height * scale))), Image.LANCZOS)
+        view = ImageOps.autocontrast(view, cutoff=1).filter(ImageFilter.UnsharpMask(radius=2, percent=120))
+        buf = io.BytesIO()
+        view.save(buf, format="JPEG", quality=92)
+    return ImageInput(data=buf.getvalue(), media_type="image/jpeg", width=view.width, height=view.height, sha256="")
+
+
+def needs_confirmation(evidence) -> bool:  # noqa: ANN001 - ModelEvidence
+    """Only a single, certain, readable serial can reach Tier 1, so only those reads pay for a second call."""
+    serial = norm_id(evidence.visible_serial_number)
+    if not serial or len(serial) < MIN_SERIAL_LEN:
+        return False
+    if any(u.field == "visible_serial_number" for u in evidence.uncertainties):
+        return False
+    for ident in evidence.visible_identifiers:
+        key = norm_id(ident.value)
+        if ident.kind == "serial" and (not ident.readable and key == serial
+                                       or ident.readable and key and len(key) >= MIN_SERIAL_LEN and key != serial):
+            return False
+    return True
+
+
+def _second_read_missing(row: EvidenceRow) -> bool:
+    """An ok first read whose required second read is absent or failed may be re-extracted (both reads)."""
+    evidence = ModelEvidence.model_validate({k: v for k, v in row.evidence.items() if k != "evidence_references"})
+    return needs_confirmation(evidence) and (row.confirmation or {}).get("status") != "ok"
 
 
 class Pipeline:
@@ -146,14 +185,14 @@ class Pipeline:
                 raise LookupError(detection_id)
             run = s.get(RunRow, det.run_id)
             img = s.get(ImageRow, det.image_id)
-            if det.evidence is not None and det.evidence.status == "ok":
+            if det.evidence is not None and det.evidence.status == "ok" and not _second_read_missing(det.evidence):
                 raise FileExistsError(detection_id)
-            if det.evidence is not None:  # replace a failed attempt with the retry
+            if det.evidence is not None:  # replace a failed attempt (or a missing/failed second read) with the retry
                 s.delete(det.evidence)
             session_id, corr, concept = run.session_id, run.correlation_id, run.concept
             image_input = ImageInput(Path(img.stored_path).read_bytes(), img.media_type, img.width, img.height,
                                      img.sha256)
-        budget = self.budget_for(session_id, 1, EST_EXTRACT_USD)
+        budget = self.budget_for(session_id, 2, 2 * EST_EXTRACT_USD)  # first read + second read
         with self.db.session() as s:
             det = s.get(DetectionRow, detection_id)
             return self._extract(run.id, session_id, corr, image_input, det, concept, budget)
@@ -265,6 +304,44 @@ class Pipeline:
         self.event(run_id, "segment", "done", msg, image_id=img.id, latency_ms=round(result.meta.latency_ms, 2))
         return rows
 
+    def _confirm(self, run_id, session_id, corr, image_input, crop_box, context, budget) -> dict:  # noqa: ANN001
+        """Second, independently constructed read for the Tier 1 gate. A failure is recorded (and a run event
+        written by the caller), never raised: without an agreeing second read the decision cannot reach Tier 1."""
+        started_at = utcnow()
+        record = {"view": CONFIRM_VIEW, "provider": self.ext.name, "model": self.ext.model, "created_at": started_at,
+                  "evidence": None, "error": None, "provider_call_id": None, "view_ref": None}
+        try:
+            view = make_confirm_view(image_input, crop_box)
+        except Exception as exc:  # no provider call was made: nothing to bill or record as a call
+            record.update(status="error", error=f"could not build the enhanced view ({type(exc).__name__})")
+            return record
+        t0 = time.perf_counter()
+        try:
+            budget.reserve(EST_EXTRACT_USD)
+            result = self.ext.extract_visual_evidence(view, context, purpose="confirm")
+            budget.settle(EST_EXTRACT_USD, result.meta.estimated_cost_usd if result.meta.input_tokens else None)
+        except BudgetExceeded:
+            record.update(status="error", error="run budget reached before the second read")
+            return record
+        except Exception as raw_exc:
+            exc = raw_exc if isinstance(raw_exc, ProviderError) else ProviderError(
+                "error", f"unexpected {type(raw_exc).__name__} during second read")
+            status = {"timeout": "timeout", "invalid_output": "invalid_output"}.get(exc.kind, "error")
+            record["provider_call_id"] = self.record_call(
+                session_id=session_id, run_id=run_id, operation="confirm", meta=None, status=status,
+                error=f"{exc.kind}: {exc.message}", correlation_id=corr, provider=self.ext, raw=exc.raw,
+                latency_ms=(time.perf_counter() - t0) * 1000, started_at=started_at)
+            record.update(status="invalid" if exc.kind == "invalid_output" else "error", error=exc.message)
+            return record
+        call_id = self.record_call(session_id=session_id, run_id=run_id, operation="confirm",
+                                   meta=result.meta, status="ok", error=None, correlation_id=corr, provider=self.ext,
+                                   started_at=started_at)
+        view_path = self.raw_dir / f"{call_id}.view.jpg"
+        view_path.write_bytes(view.data)
+        record.update(status="ok", evidence=result.evidence.model_dump(mode="json"), provider_call_id=call_id,
+                      view_ref=str(view_path.relative_to(self.settings.data_dir)))
+        return record
+
     def _extract_all(self, run_id, session_id, corr, image_input, dets, concept, budget) -> int:  # noqa: ANN001
         with ThreadPoolExecutor(max_workers=self.settings.provider_concurrency) as pool:
             results = list(pool.map(
@@ -306,10 +383,17 @@ class Pipeline:
                                    status="ok", error=None, correlation_id=corr, provider=self.ext,
                                    started_at=started_at)
         evidence = VisualEvidence(**result.evidence.model_dump(), evidence_references=[ref])
+        confirmation = None
+        if needs_confirmation(result.evidence):
+            confirmation = self._confirm(run_id, session_id, corr, image_input, crop_box, context, budget)
+            if confirmation["status"] != "ok":
+                self.event(run_id, "extract", "error", f"object #{det.object_index}: second read "
+                           f"{confirmation['status']} ({confirmation['error']}); Tier 1 withheld",
+                           image_id=det.image_id, detection_id=det.id)
         with self.db.session() as s:
             s.add(EvidenceRow(id=new_id("ev"), detection_id=det.id, status="ok", evidence=evidence.model_dump(mode="json"),
                               error=None, provider=self.ext.name, model=self.ext.model, mode=self.settings.mode,
-                              provider_call_id=call_id))
+                              provider_call_id=call_id, confirmation=confirmation))
         self.event(run_id, "extract", "done", f"object #{det.object_index}: evidence validated",
                    image_id=det.image_id, detection_id=det.id, latency_ms=round(result.meta.latency_ms, 2))
-        return True
+        return confirmation is None or confirmation["status"] == "ok"  # a failed second read is a failed step

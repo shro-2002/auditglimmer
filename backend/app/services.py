@@ -14,13 +14,29 @@ from .db import (
     new_id, utcnow,
 )
 from .errors import ApiError
-from .reconcile import LedgerAsset, Observation, Review, canonical_type, norm_id, reconcile
+from .reconcile import Confirmation, LedgerAsset, Observation, Review, canonical_type, norm_id, reconcile
 from .schemas import (
     ASSET_STATUSES, DECISIONS, AssetResultOut, DetectionOut, EvidenceGraphOut, EvidenceRecordOut, GraphEdge,
     GraphNode, ImageOut, LatencyStat, LedgerRecordOut, MatchDecisionOut, ModelEvidence, OverviewOut,
     ProviderCallOut, ReconciliationOut, ReconciliationSummary, ReviewCreate, ReviewOut, RunEventOut, RunOut,
     SessionOut, TraceOut, VisualEvidence,
 )
+
+
+# ponytail: process-wide (set once by create_app); pass per call if one process ever serves two policies
+TIER1_POLICY = {"value": "two_read"}
+
+
+def set_tier1_policy(policy: str) -> None:
+    TIER1_POLICY["value"] = policy
+
+
+def _confirmation(row: EvidenceRow) -> Confirmation | None:
+    c = row.confirmation
+    if not c:
+        return None
+    ev = ModelEvidence.model_validate(c["evidence"]) if c.get("status") == "ok" and c.get("evidence") else None
+    return Confirmation(c.get("status", "error"), ev, c.get("error"))
 
 
 def get_session_or_404(db: Session, sid: str) -> AuditSession:
@@ -78,7 +94,8 @@ def evidence_out(e: EvidenceRow) -> EvidenceRecordOut:
     return EvidenceRecordOut(
         id=e.id, detection_id=e.detection_id, status=e.status,
         evidence=VisualEvidence.model_validate(e.evidence) if e.evidence else None, error=e.error,
-        provider=e.provider, model=e.model, mode=e.mode, provider_call_id=e.provider_call_id)
+        provider=e.provider, model=e.model, mode=e.mode, provider_call_id=e.provider_call_id,
+        confirmation=e.confirmation)
 
 
 def review_out(r: ReviewRow) -> ReviewOut:
@@ -146,7 +163,8 @@ def build_reconciliation(db: Session, sid: str) -> tuple[ReconciliationOut, dict
             if d.evidence.evidence else None
         facility = images[d.image_id].facility_id if d.image_id in images else session.facility_id
         observations.append(Observation(d.evidence.id, d.id, d.image_id, facility, d.concept, d.evidence.status,
-                                        ev, d.evidence.error))
+                                        ev, d.evidence.error, _confirmation(d.evidence),
+                                        whole_photo=d.provider == "full-frame"))
         det_by_ev[d.evidence.id] = d
     reviews_rows = db.scalars(select(ReviewRow).where(ReviewRow.session_id == sid).order_by(ReviewRow.created_at,
                                                                                             ReviewRow.id)).all()
@@ -157,7 +175,7 @@ def build_reconciliation(db: Session, sid: str) -> tuple[ReconciliationOut, dict
         history.setdefault(r.decision_id, []).append(r)
     # zero-match segmentations still count as inspected; failed/skipped images do not
     inspected = {(images[iid].facility_id, concept) for iid, concept in covered if iid in images}
-    decisions, asset_results = reconcile(assets, observations, reviews, inspected)
+    decisions, asset_results = reconcile(assets, observations, reviews, inspected, TIER1_POLICY["value"])
     dec_out = [
         MatchDecisionOut(
             id=d.id, evidence_id=d.evidence_id, detection_id=d.detection_id, image_id=d.image_id,

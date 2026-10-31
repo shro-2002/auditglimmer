@@ -15,8 +15,9 @@ import { useSessionId } from "@/lib/use-session-id";
 const CONCEPT_MIN = 2;
 const CONCEPT_MAX = 60;
 const SUPPORTED_CONCEPTS = [
-  "compressor", "electric motor", "engine", "excavator", "forklift", "generator", "outboard motor", "racking",
-  "switchgear", "tractor", "transformer",
+  "compressor", "electric motor", "electrical equipment", "elevator", "engine", "excavator", "forklift", "generator",
+  "locomotive", "outboard motor", "pump", "racking", "roller", "switchgear", "telehandler", "tractor", "transformer",
+  "wheel loader",
 ];
 const ACTIVE_RUN: string[] = ["queued", "running"];
 const ACTIVE_POLL_MS = 2_000;
