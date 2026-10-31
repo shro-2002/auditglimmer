@@ -1,6 +1,6 @@
 # Final demo video — verification notes (1 Nov 2026)
 
-Engine: nilbuild/video-demo `767bfb8` (skill at `~/.claude/skills/video-demo`), workspace
+Engine: nilbuild/video-demo `767bfb8` plus one local patch (`engine/studio/voice.ts`: measured holds) (skill at `~/.claude/skills/video-demo`), workspace
 `~/.video-demo/auditglimmer-frontend` (outside the repo). Filmed from a pinned production build (`next build`,
 static export) of a **private copy** of `frontend/`; the app source was not modified for filming.
 
@@ -8,10 +8,11 @@ static export) of a **private copy** of `frontend/`; the app source was not modi
 | Check | Result |
 |---|---|
 | `AuditGlimmer_Final_Demo.mp4` decodes end to end (`ffmpeg -v error -f null`) | no errors |
-| Resolution / frame rate | 1920×1080, 60 fps (per scene 55.7–60.6 fps in motion; worst gap 273 ms in `muse`, under 2% of frames over 50 ms in any clip) |
-| Duration | 161.8 s (2:42). Official maximum not published on the public event page — **owner to confirm in the submission portal** |
+| Resolution / frame rate | 1920×1080, 60 fps (per scene 55.5–64.8 fps in motion; worst gap 265 ms in `muse`) |
+| Duration | 205.8 s (3:26). Official maximum not published on the public event page — **owner to confirm in the submission portal**; if the limit is 3:00, trim the `impact` study line |
 | Audio | present on every scene (mean −18.3 dB) |
-| Spoken lines vs narration calls | 22 / 22 (3+3+4+4+3+5), no overrun reported by the engine |
+| Spoken lines vs narration calls | 22 / 22 (3+3+4+4+3+5) |
+| No overlapping narration | Fixed after the owner heard overlap in the first cut: the engine's hold estimate (3.7 words/s) was 1.1–4.3 s short on 21 of 22 lines, so lines started under each other. Every line is now held for its measured Kokoro length + 0.35 s (`voice-holds.json`, engine reads `DEMO_VOICE_HOLDS`); the engine's 22 synthesized lines all fit inside their holds |
 | Credentials on screen | none: header shows `credentials: absent`, `live approved: no` |
 | Stills read by eye | 13 stills in `stills/`; no clipped UI, text legible |
 

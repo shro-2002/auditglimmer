@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31T19:27:16.676Z",
+  "generatedAt": "2026-10-31T19:41:27.200Z",
   "filmedAt": "2026-10-31T15:30:00.000Z",
   "stage": {
     "width": 1920,
@@ -34,31 +34,31 @@
           "mp4": "dark/problem.mp4",
           "webm": null,
           "poster": "dark/problem.poster.jpg",
-          "seconds": 19,
-          "fps": 60.1,
-          "worstGapMs": 50,
-          "motionSeconds": 3.43,
-          "motionGaps": 197,
+          "seconds": 27.83,
+          "fps": 55.5,
+          "worstGapMs": 106,
+          "motionSeconds": 3.5,
+          "motionGaps": 184,
           "gaps": [
             {
               "label": "<=17ms (60fps)",
-              "count": 112
+              "count": 104
             },
             {
               "label": "<=34ms (30fps)",
-              "count": 82
+              "count": 72
             },
             {
               "label": "<=50ms (20fps)",
-              "count": 3
+              "count": 5
             },
             {
               "label": "<=100ms (10fps)",
-              "count": 0
+              "count": 2
             },
             {
               "label": "<=250ms",
-              "count": 0
+              "count": 1
             },
             {
               "label": "slower",
@@ -82,27 +82,27 @@
           "mp4": "dark/sam.mp4",
           "webm": null,
           "poster": "dark/sam.poster.jpg",
-          "seconds": 18.94,
-          "fps": 60.6,
-          "worstGapMs": 69,
-          "motionSeconds": 3.44,
-          "motionGaps": 199,
+          "seconds": 25.27,
+          "fps": 63.7,
+          "worstGapMs": 41,
+          "motionSeconds": 3.37,
+          "motionGaps": 207,
           "gaps": [
             {
               "label": "<=17ms (60fps)",
-              "count": 156
+              "count": 130
             },
             {
               "label": "<=34ms (30fps)",
-              "count": 35
+              "count": 76
             },
             {
               "label": "<=50ms (20fps)",
-              "count": 5
+              "count": 1
             },
             {
               "label": "<=100ms (10fps)",
-              "count": 3
+              "count": 0
             },
             {
               "label": "<=250ms",
@@ -131,19 +131,19 @@
           "mp4": "dark/muse.mp4",
           "webm": null,
           "poster": "dark/muse.poster.jpg",
-          "seconds": 29.32,
-          "fps": 57.4,
-          "worstGapMs": 273,
-          "motionSeconds": 8.75,
-          "motionGaps": 475,
+          "seconds": 35.82,
+          "fps": 55.7,
+          "worstGapMs": 265,
+          "motionSeconds": 8.71,
+          "motionGaps": 459,
           "gaps": [
             {
               "label": "<=17ms (60fps)",
-              "count": 341
+              "count": 291
             },
             {
               "label": "<=34ms (30fps)",
-              "count": 122
+              "count": 157
             },
             {
               "label": "<=50ms (20fps)",
@@ -151,7 +151,7 @@
             },
             {
               "label": "<=100ms (10fps)",
-              "count": 3
+              "count": 2
             },
             {
               "label": "<=250ms",
@@ -181,31 +181,31 @@
           "mp4": "dark/reconcile.mp4",
           "webm": null,
           "poster": "dark/reconcile.poster.jpg",
-          "seconds": 24.61,
-          "fps": 55.7,
-          "worstGapMs": 160,
-          "motionSeconds": 3.44,
-          "motionGaps": 163,
+          "seconds": 33.6,
+          "fps": 58.2,
+          "worstGapMs": 59,
+          "motionSeconds": 3.46,
+          "motionGaps": 171,
           "gaps": [
             {
               "label": "<=17ms (60fps)",
-              "count": 109
+              "count": 121
             },
             {
               "label": "<=34ms (30fps)",
-              "count": 51
+              "count": 41
             },
             {
               "label": "<=50ms (20fps)",
-              "count": 2
+              "count": 8
             },
             {
               "label": "<=100ms (10fps)",
-              "count": 0
+              "count": 1
             },
             {
               "label": "<=250ms",
-              "count": 1
+              "count": 0
             },
             {
               "label": "slower",
@@ -231,27 +231,27 @@
           "mp4": "dark/review.mp4",
           "webm": null,
           "poster": "dark/review.poster.jpg",
-          "seconds": 28.9,
-          "fps": 57.7,
-          "worstGapMs": 55,
-          "motionSeconds": 9.22,
-          "motionGaps": 488,
+          "seconds": 34.14,
+          "fps": 62.2,
+          "worstGapMs": 44,
+          "motionSeconds": 9.07,
+          "motionGaps": 518,
           "gaps": [
             {
               "label": "<=17ms (60fps)",
-              "count": 297
+              "count": 341
             },
             {
               "label": "<=34ms (30fps)",
-              "count": 178
+              "count": 172
             },
             {
               "label": "<=50ms (20fps)",
-              "count": 11
+              "count": 5
             },
             {
               "label": "<=100ms (10fps)",
-              "count": 2
+              "count": 0
             },
             {
               "label": "<=250ms",
@@ -280,19 +280,19 @@
           "mp4": "dark/impact.mp4",
           "webm": null,
           "poster": "dark/impact.poster.jpg",
-          "seconds": 30.24,
-          "fps": 59.9,
-          "worstGapMs": 64,
-          "motionSeconds": 5.35,
-          "motionGaps": 275,
+          "seconds": 40.25,
+          "fps": 64.8,
+          "worstGapMs": 47,
+          "motionSeconds": 5.37,
+          "motionGaps": 297,
           "gaps": [
             {
               "label": "<=17ms (60fps)",
-              "count": 203
+              "count": 249
             },
             {
               "label": "<=34ms (30fps)",
-              "count": 64
+              "count": 43
             },
             {
               "label": "<=50ms (20fps)",
@@ -300,7 +300,7 @@
             },
             {
               "label": "<=100ms (10fps)",
-              "count": 3
+              "count": 0
             },
             {
               "label": "<=250ms",
