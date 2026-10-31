@@ -1,0 +1,307 @@
+{
+  "session_id": "ses_63033bcece24",
+  "post_hoc": true,
+  "arm2_engine_commit": "c7d6206",
+  "note": "Post-hoc analysis of stored outputs; not pre-registered. Arms differ only in rules.",
+  "arms": {
+    "1_no_muse": {
+      "correct_verifications": {
+        "k": 0,
+        "n": 6,
+        "wilson95": [
+          0.0,
+          0.39
+        ]
+      },
+      "unsafe_verifications": {
+        "k": 0,
+        "ids": [],
+        "wilson95": [
+          0.0,
+          0.215
+        ]
+      },
+      "correct_single_suggestions": 0,
+      "abstentions_on_verifiable": 6,
+      "decisions": {
+        "WEAK": 14
+      },
+      "muse_calls": 0,
+      "cost_usd": 0.0,
+      "latency_ms_median_per_inspection": 0.0,
+      "per_item": {
+        "h01": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        },
+        "h02": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        },
+        "h03": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        },
+        "h04": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        },
+        "h05": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        },
+        "h06": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        },
+        "h07": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "suggest_wrong"
+        },
+        "h08": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "suggest_wrong"
+        },
+        "h09": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "suggest_wrong"
+        },
+        "h10": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        },
+        "h11": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        },
+        "h12": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        },
+        "h13": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "suggest_wrong"
+        },
+        "h14": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        }
+      }
+    },
+    "2_muse_single_read": {
+      "correct_verifications": {
+        "k": 0,
+        "n": 6,
+        "wilson95": [
+          0.0,
+          0.39
+        ]
+      },
+      "unsafe_verifications": {
+        "k": 0,
+        "ids": [],
+        "wilson95": [
+          0.0,
+          0.215
+        ]
+      },
+      "correct_single_suggestions": 5,
+      "abstentions_on_verifiable": 1,
+      "decisions": {
+        "MISMATCHED": 5,
+        "NOT_IN_REGISTER": 1,
+        "PROBABLE": 2,
+        "WEAK": 6
+      },
+      "muse_calls": 14,
+      "cost_usd": 0.084413,
+      "latency_ms_median_per_inspection": 6539.7,
+      "per_item": {
+        "h01": {
+          "decision": "PROBABLE",
+          "rule": "R2c_SERIAL_UNCERTAIN",
+          "outcome": "suggest_correct"
+        },
+        "h02": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        },
+        "h03": {
+          "decision": "MISMATCHED",
+          "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+          "outcome": "suggest_correct"
+        },
+        "h04": {
+          "decision": "PROBABLE",
+          "rule": "R2c_SERIAL_UNCERTAIN",
+          "outcome": "suggest_wrong"
+        },
+        "h05": {
+          "decision": "MISMATCHED",
+          "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+          "outcome": "suggest_correct"
+        },
+        "h06": {
+          "decision": "MISMATCHED",
+          "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+          "outcome": "suggest_correct"
+        },
+        "h07": {
+          "decision": "NOT_IN_REGISTER",
+          "rule": "R4_NO_SUPPORTED_MATCH",
+          "outcome": "abstained"
+        },
+        "h08": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "suggest_wrong"
+        },
+        "h09": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "suggest_wrong"
+        },
+        "h10": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        },
+        "h11": {
+          "decision": "MISMATCHED",
+          "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+          "outcome": "suggest_correct"
+        },
+        "h12": {
+          "decision": "MISMATCHED",
+          "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+          "outcome": "suggest_wrong"
+        },
+        "h13": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "suggest_wrong"
+        },
+        "h14": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        }
+      }
+    },
+    "3_muse_two_read_gate": {
+      "correct_verifications": {
+        "k": 0,
+        "n": 6,
+        "wilson95": [
+          0.0,
+          0.39
+        ]
+      },
+      "unsafe_verifications": {
+        "k": 0,
+        "ids": [],
+        "wilson95": [
+          0.0,
+          0.215
+        ]
+      },
+      "correct_single_suggestions": 5,
+      "abstentions_on_verifiable": 1,
+      "decisions": {
+        "MISMATCHED": 4,
+        "PROBABLE": 3,
+        "WEAK": 7
+      },
+      "muse_calls": 19,
+      "cost_usd": 0.119969,
+      "latency_ms_median_per_inspection": 7618.3,
+      "per_item": {
+        "h01": {
+          "decision": "PROBABLE",
+          "rule": "R2c_SERIAL_UNCERTAIN",
+          "outcome": "suggest_correct"
+        },
+        "h02": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        },
+        "h03": {
+          "decision": "MISMATCHED",
+          "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+          "outcome": "suggest_correct"
+        },
+        "h04": {
+          "decision": "PROBABLE",
+          "rule": "R2c_SERIAL_UNCERTAIN",
+          "outcome": "suggest_wrong"
+        },
+        "h05": {
+          "decision": "MISMATCHED",
+          "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+          "outcome": "suggest_correct"
+        },
+        "h06": {
+          "decision": "MISMATCHED",
+          "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+          "outcome": "suggest_correct"
+        },
+        "h07": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "suggest_wrong"
+        },
+        "h08": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "suggest_wrong"
+        },
+        "h09": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "suggest_wrong"
+        },
+        "h10": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        },
+        "h11": {
+          "decision": "PROBABLE",
+          "rule": "R2e_WHOLE_PHOTO_ASSOCIATION_UNSUPPORTED",
+          "outcome": "suggest_correct"
+        },
+        "h12": {
+          "decision": "MISMATCHED",
+          "rule": "R5_SERIAL_MATCH_WITH_CONFLICTS",
+          "outcome": "suggest_wrong"
+        },
+        "h13": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "suggest_wrong"
+        },
+        "h14": {
+          "decision": "WEAK",
+          "rule": "R3_TYPE_ONLY",
+          "outcome": "abstained"
+        }
+      }
+    }
+  }
+}

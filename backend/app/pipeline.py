@@ -185,13 +185,24 @@ class Pipeline:
                 raise LookupError(detection_id)
             run = s.get(RunRow, det.run_id)
             img = s.get(ImageRow, det.image_id)
-            if det.evidence is not None and det.evidence.status == "ok" and not _second_read_missing(det.evidence):
+            first_read_ok = det.evidence is not None and det.evidence.status == "ok"
+            if first_read_ok and not _second_read_missing(det.evidence):
                 raise FileExistsError(detection_id)
-            if det.evidence is not None:  # replace a failed attempt (or a missing/failed second read) with the retry
-                s.delete(det.evidence)
             session_id, corr, concept = run.session_id, run.correlation_id, run.concept
             image_input = ImageInput(Path(img.stored_path).read_bytes(), img.media_type, img.width, img.height,
                                      img.sha256)
+            if first_read_ok:  # keep the recorded first read (and reviews keyed to it); redo only the second read
+                crop_box = tuple(det.evidence.evidence["evidence_references"][0]["crop_box"])
+                context = CropContext(img.sha256, det.object_index, crop_box, concept)
+                evidence_id = det.evidence.id
+            elif det.evidence is not None:  # replace a failed first read with the retry
+                s.delete(det.evidence)
+        if first_read_ok:
+            budget = self.budget_for(session_id, 1, EST_EXTRACT_USD)
+            confirmation = self._confirm(run.id, session_id, corr, image_input, crop_box, context, budget)
+            with self.db.session() as s:
+                s.get(EvidenceRow, evidence_id).confirmation = confirmation
+            return confirmation["status"] == "ok"
         budget = self.budget_for(session_id, 2, 2 * EST_EXTRACT_USD)  # first read + second read
         with self.db.session() as s:
             det = s.get(DetectionRow, detection_id)

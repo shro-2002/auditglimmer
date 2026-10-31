@@ -10,6 +10,7 @@ import { Button } from "./ui/primitives";
 
 const NAV = [
   { href: "/", label: "Overview" },
+  { href: "/challenge", label: "Evidence" },
   { href: "/sessions/new", label: "New session" },
 ];
 
@@ -79,14 +80,14 @@ export function AppHeader() {
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-canvas/90 backdrop-blur">
       <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
-        <div className="flex items-center gap-6">
+        <div className="flex min-w-0 flex-wrap items-center gap-x-6 gap-y-2">
           <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
             <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded bg-accent/15 font-mono text-accent">
               AG
             </span>
             AuditGlimmer
           </Link>
-          <nav aria-label="Main" className="flex gap-1 text-sm">
+          <nav aria-label="Main" className="flex flex-wrap gap-1 text-sm">
             {NAV.map((item) => {
               const isActive = pathname === item.href;
               return (

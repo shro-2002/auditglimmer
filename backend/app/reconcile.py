@@ -333,8 +333,9 @@ def _serial_hit(obs, ev, obs_type, hits, uncertain, flags, base, policy="two_rea
         **base, decision="VERIFIED", tier=1, matching_rule="R1_UNIQUE_SERIAL_MATCH",
         candidate_asset_ids=[asset.asset_id], matched_asset_id=asset.asset_id, match_score=score,
         review_required=False,
-        explanation=f"Readable visible serial uniquely matches {asset.asset_id}; manufacturer, model and type "
-                    "do not conflict, and an independent second read agreed (experimental safeguard; agreement is "
+        explanation=f"Readable visible serial, read inside the segmented region of this object, uniquely matches "
+                    f"{asset.asset_id}; manufacturer or model corroborates, nothing conflicts, and an independent "
+                    "second read agreed (experimental safeguard; agreement is "
                     "supporting evidence, not proof). Verified by identifier evidence only — not proof of ownership, "
                     "condition or value.",
         unmatched_fields=unmatched, flags=flags + ["CONFIRMED_BY_SECOND_READ"],
@@ -367,8 +368,8 @@ def _tier1_gate(obs: Observation, ev: ModelEvidence, obs_type: str | None, polic
     if policy == "human_review":
         return "HUMAN_REVIEW_POLICY", "the Tier 1 policy requires a human for every identifier match"
     if obs.whole_photo:
-        return ("WHOLE_PHOTO_ASSOCIATION_UNSUPPORTED", "the region is the whole photo declared by the auditor; "
-                "nothing ties the identifier to one segmented physical unit")
+        return ("WHOLE_PHOTO_ASSOCIATION_UNSUPPORTED", "the region covers the whole photo (declared by the auditor "
+                "or a near-full-frame mask); nothing ties the identifier to one segmented physical unit")
     if _standalone(ev):
         return ("SOURCE_ASSOCIATION_UNSUPPORTED", f"the evidence describes a standalone '{ev.observed_object_type}', "
                 "which does not show which physical unit carries it")

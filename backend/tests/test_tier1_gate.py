@@ -210,10 +210,12 @@ def test_failed_second_read_marks_step_failed_and_allows_retry(tmp_path) -> None
                  and r["evidence"]["evidence"]["visible_serial_number"] == "GN-48213")
     assert exact["decision"]["matching_rule"] == "R2e_CONFIRMATION_UNREADABLE"
     assert exact["evidence"]["confirmation"]["status"] == "error"
-    pipeline.ext = inner  # retry both reads on the same detection: now confirmed
+    pipeline.ext = inner  # retry only the second read; the recorded first read keeps its id (reviews survive)
     assert client.post(f"/api/detections/{exact['detection']['id']}/extract").status_code == 200
     rows = client.get(f"/api/sessions/{sid}/detections").json()
     again = next(r for r in rows if r["detection"]["id"] == exact["detection"]["id"])
+    assert again["evidence"]["id"] == exact["evidence"]["id"]
+    assert again["evidence"]["provider_call_id"] == exact["evidence"]["provider_call_id"]
     assert again["decision"]["decision"] == "VERIFIED"
 
 
@@ -342,3 +344,15 @@ def test_demo_whole_photo_region_never_verifies(tmp_path) -> None:  # noqa: ANN0
     wait_run(client, run["id"])
     decisions = client.get(f"/api/sessions/{sid}/reconciliation").json()["decisions"]
     assert decisions and not any(d["decision"] == "VERIFIED" for d in decisions)
+
+
+def test_near_full_frame_sam_mask_is_treated_as_whole_photo(tmp_path) -> None:  # noqa: ANN001
+    from app.db import DetectionRow, ImageRow
+    from app.services import _is_whole_photo
+
+    image = ImageRow(width=1000, height=800)
+    big = DetectionRow(provider="meta-sam", mask={"bounds": [0, 0, 1000, 760]})
+    small = DetectionRow(provider="meta-sam", mask={"bounds": [100, 100, 600, 500]})
+    declared = DetectionRow(provider="full-frame", mask={"bounds": [0, 0, 10, 10]})
+    assert _is_whole_photo(big, image) and _is_whole_photo(declared, image)
+    assert not _is_whole_photo(small, image)

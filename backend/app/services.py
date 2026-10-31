@@ -39,6 +39,19 @@ def _confirmation(row: EvidenceRow) -> Confirmation | None:
     return Confirmation(c.get("status", "error"), ev, c.get("error"))
 
 
+# A SAM mask whose box covers almost the whole photo does not isolate one unit any better than a declared full frame.
+WHOLE_PHOTO_AREA_FRACTION = 0.9
+
+
+def _is_whole_photo(det: DetectionRow, image: ImageRow | None) -> bool:
+    if det.provider == "full-frame":
+        return True
+    if image is None or not image.width or not image.height:
+        return False
+    x1, y1, x2, y2 = det.mask["bounds"]
+    return (x2 - x1) * (y2 - y1) >= WHOLE_PHOTO_AREA_FRACTION * image.width * image.height
+
+
 def get_session_or_404(db: Session, sid: str) -> AuditSession:
     row = db.get(AuditSession, sid)
     if row is None:
@@ -164,7 +177,7 @@ def build_reconciliation(db: Session, sid: str) -> tuple[ReconciliationOut, dict
         facility = images[d.image_id].facility_id if d.image_id in images else session.facility_id
         observations.append(Observation(d.evidence.id, d.id, d.image_id, facility, d.concept, d.evidence.status,
                                         ev, d.evidence.error, _confirmation(d.evidence),
-                                        whole_photo=d.provider == "full-frame"))
+                                        whole_photo=_is_whole_photo(d, images.get(d.image_id))))
         det_by_ev[d.evidence.id] = d
     reviews_rows = db.scalars(select(ReviewRow).where(ReviewRow.session_id == sid).order_by(ReviewRow.created_at,
                                                                                             ReviewRow.id)).all()

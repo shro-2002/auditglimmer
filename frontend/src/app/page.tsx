@@ -88,6 +88,9 @@ function ProductIntro({ isDemo }: { isDemo: boolean }) {
             Start an audit
           </Link>
         )}
+        <Link href="/challenge" className={buttonClass()} data-testid="challenge-link">
+          See the evidence challenge
+        </Link>
         {isDemo && <p className="text-xs text-ink-muted">Creates a session with the synthetic demo ledger and photos, then opens visual inspection.</p>}
       </div>
       {guided.isError && (

@@ -58,6 +58,28 @@ Decision mix: WEAK 7, MISMATCHED 4, PROBABLE 3.
   direction) and would not occur with the short names real registers usually hold. Not corrected after the fact.
 - Labels are AI-only (two AI readers, sealed before the run); single source site (Wikimedia Commons); n = 14.
 
+## Post-hoc 3-arm comparison (not pre-registered; same stored outputs, no new calls)
+
+`eval/holdout_arms.py` → `eval/results/holdout-arms.json`. Arms differ only in the rules applied to the same photos,
+register, ground truth and stored Muse outputs. Arm 2 uses the rule engine exactly as committed at `c7d6206`
+(before the gate).
+
+| Arm | Correct auto-verifications | Unsafe | Correct single suggestion | Abstained (of 6) | Muse calls | Cost | Median latency / inspection |
+|---|---|---|---|---|---|---|---|
+| 1 Rules, no Muse identifiers | 0/6 | 0 | 0/6 | 6 | 0 | $0 | — |
+| 2 Rules + Muse single read (c7d6206) | 0/6 | 0 | 5/6 | 1 | 14 | $0.0844 | 6.5 s |
+| 3 Rules + Muse + two-read gate (current) | 0/6 | 0 | 5/6 | 1 | 19 | $0.1200 | 7.6 s |
+
+Reading: Muse is what turns "check every asset" into a correct single candidate for 5 of 6 readable plates. On this
+set **no arm auto-verified anything**: the old engine was already held back by register conflicts (the long maker
+names noted above) and uncertainty flags. The gate changed one decision (h11 → `R2e_WHOLE_PHOTO_ASSOCIATION_UNSUPPORTED`)
+and added 5 calls (+42% cost, +1.1 s median). **This set gives no evidence that the gate prevents errors**; its value
+here is architectural (whole-photo plates can never auto-verify), not measured.
+
+Note: after this run the engine changed again (near-full-frame SAM masks are treated as whole-photo; a missing second
+read is retried in place). The executed run's code is commit `5b26076`, hashed in `fixtures/holdout/FROZEN.sha256`;
+`holdout_study.py run` now refuses to re-run against changed code, by design.
+
 ## Live footprint after this run
 
 SQLite now records 6 SAM + 50 Muse live calls ($0.3153); with the two persisted off-pipeline calls

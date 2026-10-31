@@ -115,3 +115,21 @@ test("access gate: 401 opens the access-code prompt; code is sent as header and 
   await expect.poll(() => img.evaluate((el) => (el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
   expect(sawHeader).toBeTruthy();
 });
+
+test("evidence challenge: sources are labelled; DEMO case is prepared without model calls", async ({ page }) => {
+  await page.goto("/");
+  await page.getByTestId("challenge-link").click();
+  await expect(page.getByRole("heading", { name: "Evidence challenge" })).toBeVisible();
+  const prepare = page.getByTestId("prepare-demo-case");
+  if (await prepare.isVisible().catch(() => false)) await prepare.click();
+  const demo = page.getByTestId("case-demo");
+  await expect(demo).toBeVisible({ timeout: 30_000 });
+  await expect(demo.getByTestId("source-demo")).toContainText(/no model was called/i);
+  await expect(demo).toContainText("R1_UNIQUE_SERIAL_MATCH");
+  await expect(demo.getByTestId("second-read")).toBeVisible();
+  const live = page.getByTestId("case-live");
+  if (await live.isVisible().catch(() => false)) {
+    await expect(live.getByTestId("source-live")).toContainText("Recorded LIVE");
+    await expect(live).toContainText(/meta-sam/);
+  }
+});
