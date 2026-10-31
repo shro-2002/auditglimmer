@@ -1,0 +1,319 @@
+{
+  "generatedAt": "2026-10-31T19:27:16.676Z",
+  "filmedAt": "2026-10-31T15:30:00.000Z",
+  "stage": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "stillScale": 2,
+    "video": {
+      "width": 1920,
+      "height": 1080,
+      "crf": 18,
+      "webmCrf": 32
+    }
+  },
+  "themes": [
+    "dark"
+  ],
+  "tours": {
+    "dark": "dark/full-tour.mp4"
+  },
+  "scenes": [
+    {
+      "scene": "problem",
+      "title": "The problem: collateral checked by hand",
+      "blurb": "A pledged-equipment register and site photos that someone has to reconcile.",
+      "ref": null,
+      "assets": {
+        "dark": {
+          "stills": [
+            "dark/problem-overview.png",
+            "dark/problem-ledger.png"
+          ],
+          "mp4": "dark/problem.mp4",
+          "webm": null,
+          "poster": "dark/problem.poster.jpg",
+          "seconds": 19,
+          "fps": 60.1,
+          "worstGapMs": 50,
+          "motionSeconds": 3.43,
+          "motionGaps": 197,
+          "gaps": [
+            {
+              "label": "<=17ms (60fps)",
+              "count": 112
+            },
+            {
+              "label": "<=34ms (30fps)",
+              "count": 82
+            },
+            {
+              "label": "<=50ms (20fps)",
+              "count": 3
+            },
+            {
+              "label": "<=100ms (10fps)",
+              "count": 0
+            },
+            {
+              "label": "<=250ms",
+              "count": 0
+            },
+            {
+              "label": "slower",
+              "count": 0
+            }
+          ],
+          "spoken": 3
+        }
+      }
+    },
+    {
+      "scene": "sam",
+      "title": "SAM 3.1 finds each machine",
+      "blurb": "Recorded live segmentation of a real photo, replayed.",
+      "ref": null,
+      "assets": {
+        "dark": {
+          "stills": [
+            "dark/sam-masks.png"
+          ],
+          "mp4": "dark/sam.mp4",
+          "webm": null,
+          "poster": "dark/sam.poster.jpg",
+          "seconds": 18.94,
+          "fps": 60.6,
+          "worstGapMs": 69,
+          "motionSeconds": 3.44,
+          "motionGaps": 199,
+          "gaps": [
+            {
+              "label": "<=17ms (60fps)",
+              "count": 156
+            },
+            {
+              "label": "<=34ms (30fps)",
+              "count": 35
+            },
+            {
+              "label": "<=50ms (20fps)",
+              "count": 5
+            },
+            {
+              "label": "<=100ms (10fps)",
+              "count": 3
+            },
+            {
+              "label": "<=250ms",
+              "count": 0
+            },
+            {
+              "label": "slower",
+              "count": 0
+            }
+          ],
+          "spoken": 3
+        }
+      }
+    },
+    {
+      "scene": "muse",
+      "title": "Muse Spark 1.3 reads what is printed",
+      "blurb": "Structured, validated evidence with its uncertainty.",
+      "ref": null,
+      "assets": {
+        "dark": {
+          "stills": [
+            "dark/muse-evidence.png",
+            "dark/muse-second-read.png"
+          ],
+          "mp4": "dark/muse.mp4",
+          "webm": null,
+          "poster": "dark/muse.poster.jpg",
+          "seconds": 29.32,
+          "fps": 57.4,
+          "worstGapMs": 273,
+          "motionSeconds": 8.75,
+          "motionGaps": 475,
+          "gaps": [
+            {
+              "label": "<=17ms (60fps)",
+              "count": 341
+            },
+            {
+              "label": "<=34ms (30fps)",
+              "count": 122
+            },
+            {
+              "label": "<=50ms (20fps)",
+              "count": 8
+            },
+            {
+              "label": "<=100ms (10fps)",
+              "count": 3
+            },
+            {
+              "label": "<=250ms",
+              "count": 0
+            },
+            {
+              "label": "slower",
+              "count": 1
+            }
+          ],
+          "spoken": 4
+        }
+      }
+    },
+    {
+      "scene": "reconcile",
+      "title": "Rules decide, people resolve ambiguity",
+      "blurb": "Photo and register side by side; one ambiguous, one supported.",
+      "ref": null,
+      "assets": {
+        "dark": {
+          "stills": [
+            "dark/reconcile-candidates.png",
+            "dark/reconcile-ambiguous.png",
+            "dark/reconcile-supported.png"
+          ],
+          "mp4": "dark/reconcile.mp4",
+          "webm": null,
+          "poster": "dark/reconcile.poster.jpg",
+          "seconds": 24.61,
+          "fps": 55.7,
+          "worstGapMs": 160,
+          "motionSeconds": 3.44,
+          "motionGaps": 163,
+          "gaps": [
+            {
+              "label": "<=17ms (60fps)",
+              "count": 109
+            },
+            {
+              "label": "<=34ms (30fps)",
+              "count": 51
+            },
+            {
+              "label": "<=50ms (20fps)",
+              "count": 2
+            },
+            {
+              "label": "<=100ms (10fps)",
+              "count": 0
+            },
+            {
+              "label": "<=250ms",
+              "count": 1
+            },
+            {
+              "label": "slower",
+              "count": 0
+            }
+          ],
+          "spoken": 4
+        }
+      }
+    },
+    {
+      "scene": "review",
+      "title": "A named person decides, and the report keeps the trail",
+      "blurb": "Two reads disagreed; a reviewer checks the plate.",
+      "ref": null,
+      "assets": {
+        "dark": {
+          "stills": [
+            "dark/review-before-confirm.png",
+            "dark/review-human-confirmed.png",
+            "dark/review-report.png"
+          ],
+          "mp4": "dark/review.mp4",
+          "webm": null,
+          "poster": "dark/review.poster.jpg",
+          "seconds": 28.9,
+          "fps": 57.7,
+          "worstGapMs": 55,
+          "motionSeconds": 9.22,
+          "motionGaps": 488,
+          "gaps": [
+            {
+              "label": "<=17ms (60fps)",
+              "count": 297
+            },
+            {
+              "label": "<=34ms (30fps)",
+              "count": 178
+            },
+            {
+              "label": "<=50ms (20fps)",
+              "count": 11
+            },
+            {
+              "label": "<=100ms (10fps)",
+              "count": 2
+            },
+            {
+              "label": "<=250ms",
+              "count": 0
+            },
+            {
+              "label": "slower",
+              "count": 0
+            }
+          ],
+          "spoken": 3
+        }
+      }
+    },
+    {
+      "scene": "impact",
+      "title": "Measured, traced, and honest about limits",
+      "blurb": "A frozen holdout of fourteen new photos, recorded live.",
+      "ref": null,
+      "assets": {
+        "dark": {
+          "stills": [
+            "dark/impact-holdout.png",
+            "dark/impact-trace.png"
+          ],
+          "mp4": "dark/impact.mp4",
+          "webm": null,
+          "poster": "dark/impact.poster.jpg",
+          "seconds": 30.24,
+          "fps": 59.9,
+          "worstGapMs": 64,
+          "motionSeconds": 5.35,
+          "motionGaps": 275,
+          "gaps": [
+            {
+              "label": "<=17ms (60fps)",
+              "count": 203
+            },
+            {
+              "label": "<=34ms (30fps)",
+              "count": 64
+            },
+            {
+              "label": "<=50ms (20fps)",
+              "count": 5
+            },
+            {
+              "label": "<=100ms (10fps)",
+              "count": 3
+            },
+            {
+              "label": "<=250ms",
+              "count": 0
+            },
+            {
+              "label": "slower",
+              "count": 0
+            }
+          ],
+          "spoken": 5
+        }
+      }
+    }
+  ]
+}

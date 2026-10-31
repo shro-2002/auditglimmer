@@ -21,3 +21,7 @@ frontend/tsconfig.tsbuildinfo
 backend/data.bak-*/
 *.db
 .claude/
+
+# Video masters: too large for git (229 MB each); stills, manifest and notes are tracked
+submission/*.mp4
+submission/scenes/
