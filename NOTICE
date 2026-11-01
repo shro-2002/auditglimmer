@@ -1,0 +1,16 @@
+AuditGlimmer
+Copyright 2026 Shroddha Ghosh
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+The Apache-2.0 licence covers the AuditGlimmer source code and documentation written for
+this project. It does not change the terms of third-party material, including:
+
+- Photographs under fixtures/real/, fixtures/study/ and fixtures/holdout/, and screenshots
+  or crops derived from them (including docs/media/): each keeps its own licence (public
+  domain, CC0, CC BY or CC BY-SA). See the LICENSES.md file in each fixtures folder and
+  docs/media/CREDITS.md. Derivatives of CC BY-SA photos remain under CC BY-SA.
+- Meta SAM 3.1 and Muse Spark 1.3 are accessed through the Meta Model API under Meta's
+  terms; the meta-sam-parser dependency is distributed under the SAM License.
+- Other dependencies are installed from their registries under their own licences.
+
+Development used an AI coding assistant (Claude Code).
