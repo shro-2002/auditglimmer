@@ -7,9 +7,9 @@ goes to a named human reviewer.
 
 Built for the Meta Global AI Developer Hackathon 2026 (Indie Developer track) · prototype, **not production-certified**.
 
-[![AuditGlimmer demo video: 174.9 s, includes live Meta API calls recorded 1 Nov 2026](docs/media/video-poster.jpg)](docs/demo-video.md)
+[![AuditGlimmer demo video: 174.9 s, includes live Meta API calls recorded 1 Nov 2026](docs/media/video-poster.jpg)](https://youtu.be/xvGoop1LOUE)
 
-▶ **Demo video (2:55):** `PLACEHOLDER: PUBLIC VIDEO URL` · scene list and live/replay/synthetic labels: [docs/demo-video.md](docs/demo-video.md)
+▶ **Demo video (2:55):** [https://youtu.be/xvGoop1LOUE](https://youtu.be/xvGoop1LOUE) · scene list and live/replay/synthetic labels: [docs/demo-video.md](docs/demo-video.md)
 
 ## In 60 seconds
 

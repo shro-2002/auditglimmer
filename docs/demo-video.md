@@ -1,8 +1,8 @@
 # AuditGlimmer demo video
 
-[![Video poster](media/video-poster.jpg)](media/video-poster.jpg)
+[![Video poster](media/video-poster.jpg)](https://youtu.be/xvGoop1LOUE)
 
-**Hosted link:** `PLACEHOLDER: PUBLIC VIDEO URL` (replace once the video is uploaded)
+**Hosted link:** [https://youtu.be/xvGoop1LOUE](https://youtu.be/xvGoop1LOUE) (YouTube, unlisted)
 Local master: `submission/AuditGlimmer_Meta_Final.mp4`. It is 174.9 s at 1920×1080, SHA-256 `02c22ab7…ad615`. The file is not committed, because video masters are git-ignored for size.
 Verification record: [submission/VERIFICATION-META-FINAL.md](../submission/VERIFICATION-META-FINAL.md).
 

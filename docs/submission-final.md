@@ -93,4 +93,4 @@ plate (holdout h11, used in the video): Franciscus3668, CC BY-SA 4.0. Full lists
 
 ## Links (owner to fill)
 
-Video: `PLACEHOLDER: PUBLIC VIDEO URL` (also in README.md and docs/demo-video.md) · Repository: https://github.com/shro-2002/auditglimmer (Apache-2.0; live once the owner publishes it) · Hosted demo: not deployed (localhost only; a shared access code exists, no per-user accounts)
+Video: https://youtu.be/xvGoop1LOUE (YouTube, unlisted, 2:55) · Repository: https://github.com/shro-2002/auditglimmer (public, Apache-2.0) · Hosted demo: not deployed (localhost only; a shared access code exists, no per-user accounts)
