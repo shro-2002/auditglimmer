@@ -18,13 +18,13 @@ not inspected.
 | Track | Indie developer (individuals/students, teams ≤ 4) or Startup | Indie appears to fit — owner confirms |
 | Meta technology | "build with Meta AI products, including Muse Spark, Glimmer, SAM 3" | uses **SAM 3.1** and **Muse Spark 1.3** via Meta Model API, verified live |
 | Judging (official weights) | Impact 30%, Use of Meta AI Tooling 25%, Technical Depth & Execution 20%, Demo 25% | see submission-final.md |
-| Demo video | implied by Demo criterion; length/hosting NOT FOUND | script ready; recording is an owner action |
-| Public repo / licence / hosted URL | NOT FOUND in public pages | repo not yet under git; no hosted URL (auth missing) |
+| Demo video | implied by Demo criterion; length/hosting NOT FOUND | done: `submission/AuditGlimmer_Meta_Final.mp4`, 174.9 s (≤ 3 min); hosting is an owner action |
+| Public repo / licence / hosted URL | NOT FOUND in public pages | local git repo; not published; no `LICENSE` yet (owner chooses); no hosted URL |
 | Original work; open source allowed if licences followed | stated | dependencies' licences recorded; SAM License for `meta-sam-parser`; photo licences in `fixtures/real/LICENSES.md` (one CC BY-SA asset needs attribution) |
 | Build window | "Ten days", Oct 26 – Nov 4 | AuditGlimmer was created 2026-10-31 inside the window (new folder, no code from other projects) |
 | AI-assistant disclosure | NOT FOUND | recommend disclosing that development used an AI coding assistant (Claude Code) |
 | Eligibility | 18+, sanctioned regions excluded, Meta/CV staff excluded | owner confirms |
-| Credits | "$150 in Meta Model API credits, valid for a 10-day development window"; Credit Terms not read | spend so far ≈ $0.041 est.; whether credits applied is unverified |
+| Credits | "$150 in Meta Model API credits, valid for a 10-day development window"; Credit Terms not read | spend so far ≈ $0.3455 est. (8 SAM + 54 Muse calls); owner reports promotional credits available |
 | Licence grant | entrants grant organisers a perpetual, royalty-free licence to the submission | owner should be aware before submitting |
 
 ## Unresolved questions (owner)

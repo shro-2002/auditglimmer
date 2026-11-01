@@ -1,181 +1,250 @@
 # AuditGlimmer
 
-Visual-financial reconciliation for physical collateral audits: segment equipment in inspection
-photos with **SAM 3.1**, record visible identifiers with **Muse Spark** as validated JSON, and
-reconcile them against an asset register with a **deterministic, explainable** matching engine.
-Humans review every ambiguous match; the audit report links each decision to its raw evidence.
+**From inspection photographs to traceable collateral evidence.**
+Meta **SAM 3.1** locates equipment in site photos. Meta **Muse Spark 1.3** reads what is printed on it as validated
+JSON. **Deterministic rules**, not a model, match that evidence to a lender's asset register, and anything uncertain
+goes to a named human reviewer.
 
-> AuditGlimmer records visual evidence. A photo does not prove ownership, authenticity, condition
-> or value, and an asset that was not photographed is **UNVERIFIED — not missing**.
+Built for the Meta Global AI Developer Hackathon 2026 (Indie Developer track) · prototype, **not production-certified**.
 
-| Status | |
+[![AuditGlimmer demo video: 174.9 s, includes live Meta API calls recorded 1 Nov 2026](docs/media/video-poster.jpg)](docs/demo-video.md)
+
+▶ **Demo video (2:55):** `PLACEHOLDER: PUBLIC VIDEO URL` · scene list and live/replay/synthetic labels: [docs/demo-video.md](docs/demo-video.md)
+
+## In 60 seconds
+
+| | |
 |---|---|
-| DEMO mode (fixture providers, synthetic images, $0) | working end to end, tested |
-| LIVE mode (Meta Model API: `sam-3.1`, `muse-spark-1.3`) | exercised on real photos: 7 SAM + 51 Muse calls ≈ $0.3235 recorded (see `docs/submission-final.md`) |
-| Two-read Tier 1 gate | ran live in the holdout (5 second reads, 5 agreed); never yet seen catching a real disagreement — experimental safeguard |
-| Fresh holdout study | run 31 Oct, independently verified (`docs/holdout-study-results.md`) |
-| Production | **prototype — not production-certified** |
+| **Problem** | A lender lends against physical equipment. The register says what was pledged; an inspector comes back with photos. Matching photos to register rows is manual, slow and error-prone: look-alike machines, worn or hidden serials, no audit trail. |
+| **What it does** | Upload a register and photos, then: SAM 3.1 isolates each machine → Muse Spark 1.3 extracts maker, model, serial and its own uncertainty → rules propose register candidates with a named rule → a person confirms → a report traces every status to a photo, a model reading and a rule. |
+| **Real Meta usage** | `sam-3.1` and `muse-spark-1.3` via the Meta Model API. **8 SAM + 54 Muse calls ≈ $0.35 estimated** across development, studies and the filmed live take, all logged with latency, tokens and cost ([evidence](#evidence-provenance-real-replayed-synthetic)). |
+| **Best real result** | Live, on camera: Muse read **28756** from a real builder's plate, a second extraction agreed, and the rules reduced a **44-row test register to one candidate** (the planted look-alike `28765` was not offered). The decision is **PROBABLE, not VERIFIED**: a plate photo alone does not prove which machine carries it. |
+| **Honest limits** | No real photo has been automatically verified yet. Studies are small (n = 14 and 26) with AI-made labels. See [Evaluation](#evaluation-honest-results). |
 
-**First 30 seconds:** open http://localhost:3000/challenge — one recorded-live SAM 3.1 + Muse Spark case that the
-rules sent to a human, next to one labelled DEMO match, each panel naming its source.
+> AuditGlimmer records visual evidence. A readable serial is **not** proof of ownership, title, physical identity,
+> condition or value, and an asset that was not photographed is **UNVERIFIED, not missing**.
 
-## The problem
+![Problem: register rows versus field photographs](docs/media/problem-flow.jpg)
 
-Lenders and insurers keep registers of pledged equipment. Checking them means site visits, reading nameplates and
-hand-reconciling spreadsheets. An AI tool that guesses serials, "verifies" from a logo or calls an unphotographed
-asset missing is worse than none. AuditGlimmer lets the models do what they are good at and keeps the decision
-deterministic and reviewable.
+## How it works
 
-## Architecture
+Two genuine execution paths share one evidence schema, one rule engine and one audit trail.
 
 ```mermaid
 flowchart LR
-  P[Inspection photo] --> S[SAM 3.1 · sam-3.1<br/>pixel masks per object]
-  P -. close-up plate: SAM skipped .-> W[Whole-photo region]
-  S --> C[Crop per mask]
-  W --> C
-  C --> M1[Muse Spark 1.3 · muse-spark-1.3<br/>read 1: closed JSON schema]
-  M1 -->|single certain serial| M2[Muse read 2<br/>re-cut enhanced view,<br/>identifier-only prompt]
-  L[Asset register CSV] --> R
-  M1 --> R[Deterministic rules<br/>Tier 1-4, conflicts, duplicates]
-  M2 --> R
-  R -->|all Tier 1 checks pass| V[VERIFIED]
-  R -->|anything ambiguous| H[Human review queue]
-  V --> A[Audit report + provenance graph<br/>image hash, mask, both reads, call ids, cost]
-  H --> A
+  REG["Asset register CSV<br/>validated, formula-injection safe"]
+  SITE["Site photo<br/>machines in context"]
+  PLATE["Close-up nameplate photo"]
+
+  subgraph PA["Path A: site photos"]
+    SAM["Meta SAM 3.1<br/>sam-3.1<br/>one pixel mask per object"]
+    CROP["Crop per mask"]
+  end
+
+  subgraph PB["Path B: close-up plates"]
+    FULL["Whole photo as one region<br/>SAM not called"]
+  end
+
+  MUSE["Meta Muse Spark 1.3<br/>muse-spark-1.3<br/>closed JSON schema: maker, model,<br/>serial, identifiers, uncertainty"]
+  READ2["Second Muse extraction<br/>enhanced re-cut of the same photo<br/>only when one certain serial is read"]
+  RULES["Deterministic reconciliation<br/>Tier 1 to 4 rules, conflicts, duplicates"]
+  AUTO["VERIFIED<br/>all Tier 1 checks pass"]
+  HUMAN["Human review queue<br/>PROBABLE, WEAK, MISMATCHED ..."]
+  OUT["Report and observability<br/>photo hash, mask, readings, rule,<br/>provider call ids, latency, cost"]
+
+  SITE --> SAM --> CROP --> MUSE
+  PLATE --> FULL --> MUSE
+  MUSE --> READ2
+  MUSE --> RULES
+  READ2 --> RULES
+  REG --> RULES
+  RULES --> AUTO
+  RULES --> HUMAN
+  AUTO --> OUT
+  HUMAN --> OUT
 ```
 
-Tier 1 (automatic VERIFIED) needs: a unique register serial; two consistent Muse reads; a manufacturer or model
-that corroborates; no contradictory evidence; and a segmented region on the equipment — a whole-photo plate or a
-near-full-frame mask never establishes which unit it belongs to. Muse never sees the register. Rationale: D-16/D-17
-in `docs/decisions.md`.
+- **Muse never sees the register.** It reports only what is visible, so matching can't leak into reading.
+- **Path B can never auto-verify.** A whole-photo region (or a SAM mask covering ≥ 90% of the frame) cannot show
+  which physical unit carries the plate, so the best outcome is PROBABLE plus human review (rule `R2e_*`).
+- **The second read is an experimental safeguard.** Two agreeing extractions are supporting evidence, not
+  independent ground truth ([decisions D-16/D-17](docs/decisions.md)).
 
-## Tested results (kept separate; all labels AI-made, small n)
+### System components
 
-| Set | What | Key numbers |
+```mermaid
+flowchart LR
+  UI["Next.js 16 frontend<br/>TypeScript, Tailwind, React Query"] -->|REST + SSE progress| API["FastAPI backend<br/>Pydantic v2, SQLAlchemy"]
+  API --> PIPE["Run pipeline<br/>spend caps, retries, validation"]
+  PIPE -->|LIVE| META["Meta Model API<br/>sam-3.1, muse-spark-1.3"]
+  PIPE -->|DEMO| FIX["Fixture providers<br/>no network, $0"]
+  API --> DB[("SQLite<br/>sessions, evidence,<br/>decisions, reviews, provider_calls")]
+  API --> RAW["Raw model outputs<br/>one file per call"]
+  API --> REP["Reports<br/>HTML, CSV, JSON"]
+```
+
+| Part | Where | What it does |
 |---|---|---|
-| Historical, pre-registered (26 photos) | `docs/muse-study-results.md` | serial exact 11/16 (69%); 0 invented serials; **1 unsafe verification (s14) — safety gate failed** |
-| Post-hoc (same 26) | engine changes after seeing outputs | correct auto-verifications 3/14 → 7/14, but the post-hoc rules still auto-verified the disputed s14 (optimistic; now impossible for whole-photo items) |
-| Fresh holdout (14 new photos, frozen before the run) | `docs/holdout-study-results.md`, independently verified | serial exact 5/6; **0 unsafe**, 0 auto-verifications (by design); correct single suggestion 5/6 (3 of the 5 reach the reviewer labelled MISMATCHED: the register's long maker names conflict); second reads 5/5 agreed; $0.12 |
-| Holdout arms (post-hoc, same outputs) | `eval/results/holdout-arms.json` | no Muse: 0/6 suggestions · Muse: 5/6 · Muse + gate: 5/6 at +42% cost; the gate caught nothing on this set |
-| Fixture regression (DEMO) | `eval/run_eval.py` | 18/18 asset statuses; 0 false automatic matches |
+| API | `backend/app/main.py` | sessions, register upload, photo upload, runs (with SSE progress), extraction, reconciliation, reviews, report, trace |
+| Pipeline | `backend/app/pipeline.py` | segment → crop → extract → second read; per-run, per-session and lifetime spend caps enforced before each call |
+| Meta adapters | `backend/app/providers/sam_meta.py`, `muse_meta.py` | Meta Model API calls; responses validated against a closed schema; failures recorded, never silently replaced |
+| Rules | `backend/app/reconcile.py` | deterministic tiers, conflict and duplicate detection, Tier 1 gate |
+| Review | `/sessions/<id>/review` | confirm or reject with a reviewer name and required note; shown as *Human-confirmed*, never as machine verification |
+| Observability | `/sessions/<id>/trace` | every provider call: model, status, latency, tokens, estimated cost, correlation id; evidence/provenance graph |
+| Report | `backend/app/report.py` | HTML/CSV/JSON audit report linking each status to its evidence |
 
-Reproduce offline: `uv run --project backend python eval/run_eval.py` (fixtures) and
-`uv run --project backend python eval/holdout_arms.py` (needs the API serving the stored holdout session).
+## Why Meta's models are essential here
 
-## Meta model usage — evidence
+- **SAM 3.1 turns one photo into per-machine evidence.** Yards hold look-alike machines side by side. Without
+  instance masks there is no way to say *which* machine a reading came from, and the rule engine refuses to
+  auto-verify anything that is not tied to one segmented object.
+- **Muse Spark 1.3 reads like an inspector, and says when it can't.** It returns the maker, model and serial as
+  structured fields, separates the serial from other printed numbers, and records per-field uncertainty
+  ("serial not visible", "best reading 3554"). The rules use that uncertainty: an uncertain serial is never
+  matched automatically.
+- **Measured contribution (retrospective):** on the 14-photo holdout, the same rules without Muse's readings
+  offered the correct single register row for **0 of 6** legible plates; with Muse, **5 of 6**. These are
+  review candidates, not automatic verifications ([holdout-arms.json](eval/results/holdout-arms.json)).
 
-Model ids are pinned in `backend/app/config.py`: `sam-3.1` (segmentation) and `muse-spark-1.3` (structured visual
-evidence), Meta Model API `https://api.meta.ai/v1`. Every live call is a `provider_calls` row (model, operation,
-latency, tokens, estimated cost, raw-output file) shown on each session's **Observability** page. Recorded total:
-**7 SAM + 51 Muse calls ≈ $0.3235**. Raw holdout outputs: `eval/results/holdout-study-raw/`.
+## Product walkthrough
 
-## Protected demo (not deployed; instructions only)
+| | |
+|---|---|
+| ![SAM 3.1 mask on a real warehouse photo](docs/media/live-sam-mask.jpg) | **1. Live SAM 3.1.** A real FEMA warehouse photo, concept "forklift": one mask returned (4.1 s). |
+| ![Muse Spark evidence panel](docs/media/live-muse-evidence.jpg) | **2. Live Muse Spark 1.3 inside the mask.** Maker `CAT`; serial `not visible`, with the reason recorded. No guessing. |
+| ![WEAK decision with two candidates](docs/media/live-decision-weak.jpg) | **3. Rules.** Two Caterpillar forklifts are on the demonstration register, so the result is **WEAK** and goes to a person. |
+| ![Muse reads serial 28756](docs/media/live-plate-serial.jpg) | **4. Live, Muse only (SAM not called).** A close-up builder's plate: serial `28756`. A second extraction of an enhanced view agrees. |
+| ![PROBABLE decision, one candidate](docs/media/live-plate-probable.jpg) | **5. One candidate from 44 test-register rows**, **PROBABLE**, with rule `R2e_WHOLE_PHOTO_ASSOCIATION_UNSUPPORTED` and an examiner required. |
+| ![Provider calls with latency and cost](docs/media/live-provider-calls.jpg) | **6. Audit trail.** Every call on record: model, latency, tokens in/out, estimated cost, correlation id. |
+| ![Before and after for a lender](docs/media/payoff.jpg) | **7. The payoff.** The examiner's job changes from searching every photo against every row to reviewing one evidence-linked candidate. |
 
-Use `deploy/demo.env.example`: `AUDITGLIMMER_MODE=demo`, `AUDITGLIMMER_LIVE_APPROVED=0`, **no `MODEL_API_KEY`
-on any shared host**, and `AUDITGLIMMER_ACCESS_CODE` (≥ 24 characters) so every `/api/*` request needs the
-`X-Access-Code` header (the UI prompts for it). Recorded live sessions replay from stored outputs; no model is called.
+All seven screens come from the filmed live take on 1 Nov 2026 (recorded once; see [demo-video.md](docs/demo-video.md)).
 
-## Licences
+## Evidence provenance: real, replayed, synthetic
 
-Code: owner to choose before publishing. Photos: `fixtures/real/LICENSES.md`, `fixtures/study/LICENSES.md`,
-`fixtures/holdout/LICENSES.md` (CC0 / public domain / CC BY / CC BY-SA, with attribution; derivatives of CC BY-SA
-photos, such as overlays and second-read views, stay CC BY-SA).
+| Label | Meaning | Where |
+|---|---|---|
+| **Live** | A Meta Model API call made by the app | 4 calls filmed 1 Nov 2026: [calls.json](eval/results/live-film-2026-11-01/calls.json) + [raw outputs](eval/results/live-film-2026-11-01/raw/) |
+| **Replay** | Stored outputs of earlier real calls, shown again without calling a model | holdout: [holdout-study-raw/](eval/results/holdout-study-raw/) · 26-photo study: [muse-study-raw/](eval/results/muse-study-raw/) · first live journey: [live-journey/](eval/results/live-journey/) |
+| **Synthetic** | Hand-made fixture images and outputs; no model involved | `fixtures/images/`, DEMO mode, the "evidence challenge" Tier 1 example |
+| **Test data** | Registers written for testing, never a real lender's records | `fixtures/real/ledger_real.csv`, `fixtures/holdout/ledger_holdout.csv` (decoy rows planted on purpose) |
 
-## Quick start (macOS, Apple Silicon)
+**Recorded live footprint: 8 SAM 3.1 + 54 Muse Spark 1.3 calls ≈ $0.3455 estimated.** That is 7 SAM + 53 Muse
+($0.3373) in the app's `provider_calls` table plus 1 SAM + 1 Muse from earlier standalone scripts
+([live-muse-nameplate.json](eval/results/live-muse-nameplate.json)). Estimates use Meta's published prices; the
+Meta console bill is authoritative.
 
-Requirements: [uv](https://docs.astral.sh/uv/) (Python 3.13 is fetched automatically), Node 20.17+ / 22.9+.
+## Evaluation: honest results
+
+Three result sets are kept separate and never pooled. All labels are AI-made (two AI readers, sealed before each
+run), not independent human ground truth.
+
+| Set | Method | Result |
+|---|---|---|
+| **Fresh holdout**, 14 photos | protocol and labels frozen and hashed before the run ([protocol](docs/holdout-study-protocol.md), [results](docs/holdout-study-results.md)); independently re-computed | exact serial on legible plates **5/6** (95% CI 44–97%); correct single candidate **5/6**; automatic verifications **0**, by design (whole-photo plates cannot verify), so **safety is not yet measured**; 19 Muse calls, $0.12 |
+| **Holdout arms**, retrospective | same stored outputs re-scored under three rule sets (not pre-registered) | rules only 0/6 · + Muse 5/6 · + Muse + second read 5/6 at +42% cost; the second read caught nothing on this set |
+| **Historical study**, 26 photos | pre-registered ([protocol](docs/muse-study-protocol.md), [results](docs/muse-study-results.md)) | exact serial 11/16 (69%, below the 70% bar); 0 invented serials on 8 negatives; **1 automatic verification of a reading the labellers disputed (5735 vs 5765): safety gate FAILED**. This led to the second read and the whole-photo rule. |
+| **Fixture regression** | DEMO mode, `eval/run_eval.py` | 18/18 asset statuses; 0 false automatic matches (measures the rules, not the models) |
+
+Known weaknesses: n is small; one image source (Wikimedia Commons); 3 of the 5 correct holdout candidates reach
+the reviewer labelled MISMATCHED, because the test register's long maker names don't prefix-match the read
+(safe direction, not corrected after the fact); the second read has never been seen catching a real disagreement.
+
+## Run it (safe DEMO mode by default)
+
+Requirements: [uv](https://docs.astral.sh/uv/) (it fetches Python 3.13) and Node 20.17+ or 22.9+. Run all commands
+from the repository root.
 
 ```bash
-cd auditglimmer/backend && uv sync
+uv sync --project backend
 ```
 
 ```bash
-cd auditglimmer/frontend && npm ci
+npm --prefix frontend ci
 ```
 
-Start the API (DEMO mode, port 8000):
+Start the API in DEMO mode (fixture providers, no network, $0). Both variables are set explicitly on purpose, so a
+local `.env` can't switch you into paid mode:
 
 ```bash
-cd auditglimmer && AUDITGLIMMER_MODE=demo uv run --project backend uvicorn app.main:create_app --factory --app-dir backend --host 127.0.0.1 --port 8000
+AUDITGLIMMER_MODE=demo AUDITGLIMMER_LIVE_APPROVED=0 uv run --project backend uvicorn app.main:create_app --factory --app-dir backend --host 127.0.0.1 --port 8000
 ```
 
-`AUDITGLIMMER_MODE=demo` is explicit on purpose: a local `.env` may set live mode.
-
-Start the UI (port 3000) in a second terminal:
+Start the UI in a second terminal:
 
 ```bash
-cd auditglimmer/frontend && npm run dev
+npm --prefix frontend run dev
 ```
 
-Open http://localhost:3000 → **New session** (facility `WH-01`) → **Load demo dataset** →
-**Visual inspection**: run `industrial generator`, then `forklift` → **Reconciliation** →
-**Review queue** → **Report** → **Observability**. Walkthrough: [docs/demo-script.md](docs/demo-script.md).
+Open http://localhost:3000 → **Start guided demo** (or **New session**, facility `WH-01` → **Load demo dataset**) →
+**Visual inspection** → **Reconciliation** → **Review queue** → **Report** → **Observability**.
 
-## Tests and evaluation
+A fresh clone has no recorded live sessions, because `backend/data/` (SQLite and uploads) is git-ignored. The overview
+then lists no live evidence, and **Evidence challenge** says "No recorded live SAM + Muse evidence is stored here"
+(its labelled DEMO case still works). Demo runs finish as `partial` on purpose: the fixtures include malformed and
+timed-out provider responses. Real model outputs ship as files under `eval/results/`, and replaying or making live
+calls needs your own Meta Model API key (LIVE mode below).
+
+### Tests and evaluation
 
 ```bash
-cd auditglimmer/backend && uv run pytest -q -p no:logging
+uv run --project backend pytest -q -p no:logging
 ```
 
 ```bash
-cd auditglimmer && uv run --project backend python eval/run_eval.py
+uv run --project backend python eval/run_eval.py
 ```
 
 ```bash
-cd auditglimmer/e2e && npm ci && npx playwright install chromium && npx playwright test
+cd e2e && npm ci && npx playwright install chromium && npx playwright test
 ```
 
-(The browser suite expects both servers running.) Regenerate fixtures:
-`uv run --project backend python scripts/make_fixtures.py`.
+The browser suite expects both servers running.
 
-## LIVE mode (paid — read [docs/cost-control.md](docs/cost-control.md) first)
+### LIVE mode (paid; read [docs/cost-control.md](docs/cost-control.md) first)
 
-```bash
-export AUDITGLIMMER_MODE=live MODEL_API_KEY=... AUDITGLIMMER_LIVE_APPROVED=1
-```
-
-Without the key or approval, live runs return `403 LIVE_NOT_APPROVED`; there is never a silent
-fallback to fixtures. Smoke test (≈ $0.04 worst case, refuses without `--i-approve-spend`):
-
-```bash
-cd auditglimmer && uv run --project backend python scripts/live_smoke.py --i-approve-spend
-```
+LIVE needs all three: `AUDITGLIMMER_MODE=live`, a `MODEL_API_KEY` and `AUDITGLIMMER_LIVE_APPROVED=1`. Otherwise
+runs return `403 LIVE_NOT_APPROVED`; there is never a silent fallback to fixtures. Spend caps per run, per session
+and lifetime are enforced before every call. The key is read from the environment, never logged, and never returned
+by the API (`/api/config` exposes only `credentials_present`). See [.env.example](.env.example).
 
 ## How matching works
 
-| Outcome | Rule | Auto? |
+| Outcome | Rule | Automatic? |
 |---|---|---|
-| VERIFIED (Tier 1) | readable serial uniquely equals one ledger serial; no conflicting mfr/model/type/facility; a second independent Muse read agrees and does not contradict the register; manufacturer or model corroborates; region segmented on the equipment (never a whole-photo plate); no standalone-plate description | yes |
-| PROBABLE (Tier 2) | mfr+model match, or serial uncertain / duplicated in ledger / seen on 2+ objects, or a Tier 1 gate check failed (rule `R2e_*`, reason in the explanation) | review |
-| WEAK (Tier 3) | asset type only | review |
-| MISMATCHED | identifiers conflict (serial vs model, manufacturer, facility) | review |
-| NOT_IN_REGISTER (Tier 4) | observed object with no supported register match | review |
-| EVIDENCE_UNUSABLE | extraction failed validation / timed out | — |
+| VERIFIED (Tier 1) | serial uniquely equals one register serial; maker or model corroborates; nothing conflicts; a second Muse extraction agrees; region segmented on the equipment (never a whole-photo plate); no standalone-plate description | yes |
+| PROBABLE (Tier 2) | maker + model match, or the serial is uncertain, duplicated or seen on 2+ objects, or a Tier 1 check failed (`R2e_*`, reason shown) | human review |
+| WEAK (Tier 3) | asset type (± maker) only | human review |
+| MISMATCHED | identifiers conflict (serial vs model, maker or facility) | human review |
+| NOT_IN_REGISTER (Tier 4) | object with no supported register match | human review |
+| EVIDENCE_UNUSABLE | extraction failed validation or timed out | — |
 
-Two agreeing reads are supporting evidence, not proof (D-16/D-17 in `docs/decisions.md`). `AUDITGLIMMER_TIER1_POLICY=human_review` sends every match to a person.
+Asset statuses: VERIFIED, PROBABLE, MISMATCHED, UNVERIFIED (inspected, no adequate evidence), NOT_OBSERVABLE (not
+covered), Human-confirmed. `AUDITGLIMMER_TIER1_POLICY=human_review` sends every match to a person.
 
-Asset statuses: VERIFIED, PROBABLE, MISMATCHED, UNVERIFIED (inspected, no adequate evidence),
-NOT_OBSERVABLE (not covered by any inspection).
+## Hackathon contributions, attribution and licensing
+
+- **Built during the event window** (Oct 26 – Nov 4, 2026): the project folder and all code were created on
+  31 Oct 2026, and the git history runs 31 Oct – 1 Nov ([compliance notes](docs/hackathon-compliance.md)).
+  No code was reused from earlier projects.
+- **Author:** Shroddha Ghosh (indie entry). Development used an AI coding assistant (Claude Code), disclosed for
+  transparency. The demo video was produced with [Ultrademo](https://github.com/new-xp/ultrademo) (Apache-2.0),
+  narrated with the local Kokoro TTS voice.
+- **Meta models:** SAM 3.1 and Muse Spark 1.3 via the Meta Model API. `meta-sam-parser` is used under the SAM License.
+- **Photos:** Wikimedia Commons, public domain / CC0 / CC BY / CC BY-SA with attribution:
+  [fixtures/real/LICENSES.md](fixtures/real/LICENSES.md), [fixtures/study/LICENSES.md](fixtures/study/LICENSES.md),
+  [fixtures/holdout/LICENSES.md](fixtures/holdout/LICENSES.md). Overlays and crops of CC BY-SA photos (e.g. the
+  Henschel plate, Franciscus3668, CC BY-SA 4.0) remain CC BY-SA 4.0. Synthetic fixtures: CC0.
+- **Code licence:** Apache-2.0 ([LICENSE](LICENSE), [NOTICE](NOTICE)). Third-party photos and dependencies keep their own licences.
 
 ## Repository map
 
 | Path | Contents |
 |---|---|
-| `backend/app/` | FastAPI app: `main.py` routes, `pipeline.py` run worker, `reconcile.py` engine, `providers/` (Meta + fixture adapters), `ledger.py`, `security.py`, `report.py`, `services.py`, `db.py`, `schemas.py` |
-| `backend/tests/` | pytest: journey, reconciliation rules, provider contracts and failure modes, input security |
+| `backend/app/` | FastAPI app, pipeline, rules, Meta and fixture providers, ledger validation, security, report |
+| `backend/tests/` | 144 pytest tests: journeys, rules, Tier 1 gate, provider contracts and failure modes, input security |
 | `frontend/` | Next.js 16 + TypeScript + Tailwind 4 + React Query + Recharts |
-| `e2e/` | Playwright browser tests (independent verifier) |
-| `fixtures/` | synthetic CC0 images, ledger CSV, labelled manifest |
-| `eval/` | evaluation harness and results |
-| `scripts/` | fixture generator, gated live smoke test |
-| `docs/` | [task graph](docs/task-graph.md), [architecture](docs/architecture.md), [ontology](docs/ontology.md), [decisions](docs/decisions.md), [contracts](docs/integration-contracts.md), [evaluation plan](docs/evaluation-plan.md) / [report](docs/evaluation-report.md), [cost control](docs/cost-control.md), [security](docs/security.md), [demo script](docs/demo-script.md), [submission draft](docs/submission-draft.md) |
-
-## Configuration
-
-See [.env.example](.env.example). Data (SQLite + uploads + raw provider outputs) lives in
-`backend/data/` (git-ignored). Delete a session from the API to remove its rows and images.
-
-## Licence notes
-
-Fixtures: CC0 (generated). `meta-sam-parser` is distributed under the SAM License.
+| `e2e/` | Playwright browser tests |
+| `fixtures/` | synthetic images, test registers, real photo sets with licences |
+| `eval/` | evaluation harness, study scripts, stored results and raw model outputs |
+| `docs/` | [architecture](docs/architecture.md), [decisions](docs/decisions.md), [ontology](docs/ontology.md), [cost control](docs/cost-control.md), [security](docs/security.md), [submission](docs/submission-final.md) |

@@ -1,0 +1,79 @@
+{
+  "recorded": "2026-11-01",
+  "purpose": "live filming take for the demo video (owner-approved)",
+  "sessions": {
+    "ses_c2be9f15d7fe": "warehouse photo fixtures/real/fema_distribution_warehouse.jpg, concept forklift, SAM path, register fixtures/real/ledger_real.csv",
+    "ses_54d4781e4fbb": "holdout plate fixtures/holdout/images/h11.jpg, full-frame (SAM not called), register fixtures/holdout/ledger_holdout.csv"
+  },
+  "decisions": {
+    "ses_c2be9f15d7fe": "WEAK R3_TYPE_ONLY, candidates R-004, R-005",
+    "ses_54d4781e4fbb": "PROBABLE R2e_WHOLE_PHOTO_ASSOCIATION_UNSUPPORTED, candidate T-h11"
+  },
+  "calls": [
+    {
+      "id": "call_b1626a6da7d7",
+      "session_id": "ses_c2be9f15d7fe",
+      "run_id": "run_464a9dd11966",
+      "operation": "segment",
+      "model": "sam-3.1",
+      "mode": "live",
+      "status": "ok",
+      "latency_ms": 4126.170749999801,
+      "input_tokens": null,
+      "output_tokens": null,
+      "images": 1,
+      "estimated_cost_usd": 0.0025,
+      "raw_output_ref": "raw/call_b1626a6da7d7.txt"
+    },
+    {
+      "id": "call_4344dc6cbb35",
+      "session_id": "ses_c2be9f15d7fe",
+      "run_id": "run_464a9dd11966",
+      "operation": "extract",
+      "model": "muse-spark-1.3",
+      "mode": "live",
+      "status": "ok",
+      "latency_ms": 6625.036249999539,
+      "input_tokens": 1035,
+      "output_tokens": 800,
+      "images": 1,
+      "estimated_cost_usd": 0.004694,
+      "raw_output_ref": "raw/call_4344dc6cbb35.txt"
+    },
+    {
+      "id": "call_90f8beaab753",
+      "session_id": "ses_54d4781e4fbb",
+      "run_id": "run_9953111770e8",
+      "operation": "extract",
+      "model": "muse-spark-1.3",
+      "mode": "live",
+      "status": "ok",
+      "latency_ms": 6949.196209001457,
+      "input_tokens": 1111,
+      "output_tokens": 1125,
+      "images": 1,
+      "estimated_cost_usd": 0.00617,
+      "raw_output_ref": "raw/call_90f8beaab753.txt"
+    },
+    {
+      "id": "call_72934b46150f",
+      "session_id": "ses_54d4781e4fbb",
+      "run_id": "run_9953111770e8",
+      "operation": "confirm",
+      "model": "muse-spark-1.3",
+      "mode": "live",
+      "status": "ok",
+      "latency_ms": 8926.462583998727,
+      "input_tokens": 1981,
+      "output_tokens": 1445,
+      "images": 1,
+      "estimated_cost_usd": 0.008618,
+      "raw_output_ref": "raw/call_72934b46150f.txt"
+    }
+  ],
+  "incremental_estimated_usd": 0.021982,
+  "ledger_live_total_after": {
+    "calls": 60,
+    "estimated_usd": 0.337253
+  }
+}

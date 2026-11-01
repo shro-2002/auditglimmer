@@ -3,6 +3,7 @@
 AuditGlimmer is a hackathon prototype. It is **not production-certified** and makes no regulatory or audit-standard claim.
 
 **Track:** Indie developer (owner to confirm) · **Built:** started Oct 31, 2026, inside the event window (Oct 26 – Nov 4).
+**Demo video:** `submission/AuditGlimmer_Meta_Final.mp4` (174.9 s, includes 4 live Meta API calls recorded 1 Nov 2026), described in [demo-video.md](demo-video.md).
 
 ## Tagline
 
@@ -25,7 +26,7 @@ missing) is worse than none.
 3. **Muse Spark 1.3** (`muse-spark-1.3`) reads the crop into a closed JSON schema (manufacturer, model, serial,
    identifiers, visible condition, uncertainties). It never sees the register.
 4. A **deterministic engine** matches evidence to the register. Automatic verification (Tier 1) needs all of:
-   a unique serial match; a second, independently constructed Muse read that agrees; a corroborating manufacturer
+   a unique serial match; a second Muse extraction (an enhanced re-cut of the same photo, own prompt) that agrees; a corroborating manufacturer
    or model; no contradictory evidence; and a region segmented on the equipment (a whole-photo plate cannot prove
    which unit carries it). Everything else goes to a named human reviewer. The two-read check is an
    **experimental safeguard**: two agreeing reads are supporting evidence, not proof.
@@ -33,9 +34,10 @@ missing) is worse than none.
 
 ## Verified live footprint (single source of truth)
 
-**7 SAM 3.1 + 51 Muse Spark calls ≈ $0.3235 estimated**, all persisted: SQLite `provider_calls` (6 SAM + 50 Muse,
-$0.3153), `eval/results/live-smoke.json` (1 SAM) and `eval/results/live-muse-nameplate.json` (1 Muse via a direct
-script). Independently recomputed 31 Oct. Older figures ("7 SAM + 5 Muse", "6 + 5", "6 + 31", "7 + 32") are superseded.
+**8 SAM 3.1 + 54 Muse Spark calls ≈ $0.3455 estimated**, all persisted: SQLite `provider_calls` (7 SAM + 53 Muse,
+$0.3373), `eval/results/live-smoke.json` (1 SAM, local only) and `eval/results/live-muse-nameplate.json` (1 Muse via a
+direct script). Includes the filmed live take of 1 Nov 2026 (1 SAM + 3 Muse, $0.0220;
+`eval/results/live-film-2026-11-01/`). Older figures ("7 SAM + 51 Muse", "7 + 5", "6 + 31") are superseded.
 
 ## Results — three separate sets, never mixed
 
@@ -66,28 +68,29 @@ experimental safeguard, not validated.
 Engineering: 144 backend tests (incl. 40 for the Tier 1 gate), 17 browser tests + 1 paid live journey, axe 0
 serious issues, independent adversarial reviews. Labels in all studies are AI-made, not independent human ground truth.
 
-## Judging criteria
+## Judging criteria (Impact 30% · Use of Meta AI Tooling 25% · Technical Depth & Execution 20% · Demo 25%)
 
-The official event page (cerebralvalley.ai/e/meta-ai-developer-hackathon) describes judging on creativity, technical
-ambition and whether it works, **without published weights**. Weightings seen elsewhere are not official and are
-not used here.
-
-- **Creativity** — evidence-first collateral audit: the model reads, rules decide, humans own ambiguity.
-- **Technical ambition** — two Meta models with distinct jobs (SAM geometry, Muse structured reading), provenance
-  graph, pre-registered evaluation, spend caps, failure-mode handling.
-- **Whether it works** — DEMO runs end to end offline; live calls are recorded and replayable; limits stated above.
+- **Impact** — collateral inspection for asset-based lending: turns "search every photo against every row" into
+  reviewing one evidence-linked candidate, without claiming title, ownership or physical identity.
+- **Use of Meta AI tooling** — SAM 3.1 for per-machine geometry and Muse Spark 1.3 for structured identifier reading with
+  stated uncertainty; retrospective holdout comparison: rules alone 0/6 correct candidates, with Muse 5/6.
+- **Technical depth & execution** — deterministic rules with a Tier 1 gate, provenance graph, pre-registered
+  evaluation, spend caps, 144 backend tests, recorded provider calls.
+- **Demo** — 174.9 s video with live SAM and Muse calls captured once, every result labelled live, replay or synthetic.
 
 ## Built with
 
 Meta Model API (SAM 3.1, Muse Spark 1.3), FastAPI, Pydantic v2, SQLAlchemy/SQLite, Next.js 16,
 TypeScript, Tailwind 4, TanStack Query, Recharts, Playwright, axe-core. Development used an AI
-coding assistant (Claude Code) — disclosed for transparency.
+coding assistant (Claude Code) — disclosed for transparency. Demo video produced with Ultrademo (Apache-2.0)
+and a local Kokoro TTS voice.
 
 ## Credits
 
 Photos via Wikimedia Commons: US Army Corps of Engineers; FEMA (Casey Deshong, Eliud Echevarria);
-US Army (SSG Alfred Batungbacal) — public domain. Generator nameplate: Haweroth, CC BY-SA 4.0.
+US Army (SSG Alfred Batungbacal) — public domain. Generator nameplate: Haweroth, CC BY-SA 4.0. Henschel builder's
+plate (holdout h11, used in the video): Franciscus3668, CC BY-SA 4.0. Full lists: `fixtures/*/LICENSES.md`.
 
 ## Links (owner to fill)
 
-Video: … · Repository: … · Hosted demo: not deployed (localhost only; a shared access code exists, no per-user accounts)
+Video: `PLACEHOLDER: PUBLIC VIDEO URL` (also in README.md and docs/demo-video.md) · Repository: https://github.com/shro-2002/auditglimmer (Apache-2.0; live once the owner publishes it) · Hosted demo: not deployed (localhost only; a shared access code exists, no per-user accounts)
