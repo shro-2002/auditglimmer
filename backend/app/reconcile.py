@@ -10,8 +10,8 @@ Ambiguous matches are never resolved automatically. Absence of evidence -> UNVER
 
 Tier 1 gate (D-16/D-17; experimental safeguard, not a validated safety guarantee). VERIFIED also needs:
   - a region segmented on the equipment (a whole-photo region cannot establish which physical unit it shows),
-  - a second, independently constructed read that agrees on serial, manufacturer and type and does not
-    contradict the register,
+  - a second Muse extraction (own prompt, enhanced re-cut of the same photo; not independent evidence) that
+    agrees on serial, manufacturer and type and does not contradict the register,
   - at least one corroborating attribute: a read manufacturer or model that matches the register row,
   - no standalone-plate description in either read.
 Agreement is supporting evidence, not proof: two reads can share the same mistake.
@@ -334,8 +334,8 @@ def _serial_hit(obs, ev, obs_type, hits, uncertain, flags, base, policy="two_rea
         candidate_asset_ids=[asset.asset_id], matched_asset_id=asset.asset_id, match_score=score,
         review_required=False,
         explanation=f"Readable visible serial, read inside the segmented region of this object, uniquely matches "
-                    f"{asset.asset_id}; manufacturer or model corroborates, nothing conflicts, and an independent "
-                    "second read agreed (experimental safeguard; agreement is "
+                    f"{asset.asset_id}; manufacturer or model corroborates, nothing conflicts, and a second Muse "
+                    "extraction of an enhanced view of the same photo agreed (experimental safeguard; agreement is "
                     "supporting evidence, not proof). Verified by identifier evidence only — not proof of ownership, "
                     "condition or value.",
         unmatched_fields=unmatched, flags=flags + ["CONFIRMED_BY_SECOND_READ"],
@@ -378,7 +378,7 @@ def _tier1_gate(obs: Observation, ev: ModelEvidence, obs_type: str | None, polic
                 "a serial alone is not enough")
     conf = obs.confirmation
     if conf is None:
-        return "CONFIRMATION_MISSING", "no independent second read was recorded"
+        return "CONFIRMATION_MISSING", "no second Muse extraction was recorded"
     if conf.status != "ok" or conf.evidence is None:
         return "CONFIRMATION_UNREADABLE", f"the second read failed ({conf.status}: {conf.error or 'no evidence'})"
     first, _ = _serial_state(ev)
